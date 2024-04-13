@@ -8,7 +8,6 @@ import SignUp from './SignUp';
 import {
     createBrowserRouter,
     RouterProvider,
-    Route
 } from "react-router-dom";
 
 const router = createBrowserRouter([{
