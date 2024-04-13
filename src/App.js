@@ -1,7 +1,7 @@
 import React from 'react';
 
 function App() {
-  const value = "World From Blessing's Computer here";
+  const value = "World From Thapelo's Computer here";
   return <div>Hello {value}</div>;
 }
 
