@@ -1,63 +1,40 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
-import './index.css';
+import React from "react";
+import LandingPage from "./Pages/Home/LandingPage/LandingPage";
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+import LoginForm from "./Pages/Login/LoginForm";
+import About from "./Pages/About/About";
+import AdminPage from "./Pages/Admin/AdminPage";
+import StaffPage from "./Pages/Staff/StuffPage";
+import Hero from "./Pages/Home/Hero/Hero";
+import Error404 from "./Pages/Errors/Error404";
+import SignUpForm from "./Pages/SignUP/SignUpForm";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<LandingPage />}>
+        <Route path="" element={<Hero />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="*" element={<Error404 />} />
+      </Route>
+      <Route path="/admin" element={<AdminPage />}>
+        <Route path="signup" element={<SignUpForm />} />
+      </Route>
+      <Route path="/resident" element={<LoginForm />} />
+      <Route path="/staff" element={<StaffPage />} />
+    </Route>
+  )
+);
 function App() {
-  
-
-  return (
-    <div className="wrapper">
-        <nav className="nav">
-            <div className="nav-logo">
-                <p>Logo</p>
-            </div>
-            <div className="nav-menu">
-                <ul>
-                    <li> <a href="#" className="link active">Home</a></li>
-                    <li> <a href="#" className="link">Services</a></li>
-                    <li> <a href="#" className="link">About</a></li>
-                </ul>
-            </div>
-            <div className="nav-menu-btn">
-                <i className='bx bx-menu'></i>
-            </div>
-        </nav>
-
-        
-        <div className="form-box">
-           
-            <div className="login-container" id="login">
-                <div className="top">
-                    <header>Welcome</header>
-                </div>
-
-                <div className="google">
-                    <i className="bx bxl-google"></i>
-                </div>
-
-                <div className="input-box">
-                    <input type="text" className="input-field" placeholder="Username"/>
-                    <i className="bx bx-user"></i>
-                </div>
-                <div className="input-box">
-                    <input type="password" className="input-field" placeholder="Password"/>
-                    <i className="bx bx-lock-alt"></i>
-                </div>
-                <div className="input-box">
-                  <form action="/admin">
-                  <input type="submit" className="submit" value="Login"/>
-                  </form>
-                    
-                </div>
-                <div className="forgot">
-                    <label><a href="#"></a> Forgot password?</label>
-                </div>
-            </div>
-
-        </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
