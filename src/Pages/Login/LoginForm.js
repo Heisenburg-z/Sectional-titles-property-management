@@ -6,27 +6,45 @@ import auth from "../../utils/firebase";
 import { doc, getFirestore,getDoc } from "firebase/firestore";
 const db = getFirestore();
 
+
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
   const onLogin = async (e) => {
     e.preventDefault();
+    
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-
-        // getting user's role
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef).then((snap) => {
-          console.log(snap.data());
-        });
-
-        navigate("/admin");
-      
+        console.log(user);
+  
+        // Fetch user's role from Firestore
+        const docRef = doc(db, "accounts", user.uid);
+        const docSnap = await getDoc(docRef);
+  
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          const userRole = userData.roles;
+  
+          // Navigate based on user's role
+          switch (userRole) {
+            case "Admin":
+              navigate("/admin");
+              break;
+            case "Resident":
+              navigate("/resident"); 
+              break;
+            case "Staff":
+              navigate("/staff"); 
+              break;
+            default:
+              navigate("/admin");
+              break;
+          }
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -34,9 +52,11 @@ function LoginForm() {
         if (errorCode) {
           setError(true);
         }
-        console.log(errorCode);
+        console.log(errorCode,errorMessage);
       });
   };
+  
+
   return (
     <section className="LoginPage">
       <Form className="LoginForm" method="POST" action="/admin">

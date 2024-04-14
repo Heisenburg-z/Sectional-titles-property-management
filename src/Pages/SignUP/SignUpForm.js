@@ -27,46 +27,48 @@ function SignUpForm() {
   const [error, setError] = useState(null);
 
   // Form submission handler
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// Form submission handler
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Check if passwords match
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    setError("Passwords do not match");
+    return;
+  }
 
-    try {
-      // Create a new user with Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+  try {
+    // Create a new user with Firebase Authentication
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-      // Get user details from the userCredential
-      const user = userCredential.user;
+    // Get user details from the userCredential
+    const user = userCredential.user;
 
-      // Add the user's details to Firestore
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        roles:dropdownValue,
-        name: name,
-        surName: surName,
-        userName: userName,
-        userAddress: userAddress,
-        email: email,
-        cellPhone: cellPhone,
-      });
+    // Add the user's details to Firestore
+    await addDoc(collection(db, "accounts"), {
+      userId: user.uid, // Add user's UID as userId field
+      roles: dropdownValue,
+      name: name,
+      surName: surName,
+      userName: userName,
+      userAddress: userAddress,
+      email: email,
+      cellPhone: cellPhone,
+    });
 
-      // Redirect to a different page after successful signup
-      navigate("/admin");
-    } catch (error) {
-      // Handle any errors that may occur during signup
-      console.log(error);
-      setError("An error occurred during signup");
-    }
-  };
+    // Redirect to a different page after successful signup
+    navigate("/admin");
+  } catch (error) {
+    // Handle any errors that may occur during signup
+    console.log(error);
+    setError("An error occurred during signup");
+  }
+};
+
 
   return (
     <section>
