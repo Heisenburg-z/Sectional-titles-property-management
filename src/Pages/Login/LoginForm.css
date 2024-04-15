@@ -1,20 +1,45 @@
-.LoginForm{
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: space-between;
-    align-items: center;
-   height: 20vh;
-  
-    
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: center;
+  height: 20vh;
 }
 
-.validemail{
-    visibility: hidden;
-    color: red; 
+.validemail {
+  visibility: hidden;
+  color: red;
 }
 
-.invalidemail{
-    visibility: visible;
-    color: red;
+.invalidemail {
+  visibility: visible;
+  color: red;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 20vw;
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: black;
+  border-radius: 4px;
+  background-image: none;
+  border: 1px solid #000;
+}
+.loginbtn {
+  width: 10vw;
+  padding: 0.5rem 0.75rem;
+  background-color: rgb(99, 102, 241);
+  border-radius: 0.375rem;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background-image: none;
+}
+
+.loginbtn:hover {
+  background-color: rgb(80, 83, 233);
 }

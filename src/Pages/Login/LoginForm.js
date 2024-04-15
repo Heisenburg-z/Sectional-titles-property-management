@@ -3,9 +3,8 @@ import { Form, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../../utils/firebase";
-import { doc, getFirestore,getDoc } from "firebase/firestore";
+import { doc, getFirestore, getDoc } from "firebase/firestore";
 const db = getFirestore();
-
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -14,31 +13,31 @@ function LoginForm() {
   const [error, setError] = useState(false);
   const onLogin = async (e) => {
     e.preventDefault();
-    
+
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-  
+
         // Fetch user's role from Firestore
         const docRef = doc(db, "accounts", user.uid);
         const docSnap = await getDoc(docRef);
-  
+
         if (docSnap.exists()) {
           const userData = docSnap.data();
           const userRole = userData.roles;
-  
+
           // Navigate based on user's role
           switch (userRole) {
             case "Admin":
               navigate("/admin");
               break;
             case "Resident":
-              navigate("/resident"); 
+              navigate("/resident");
               break;
             case "Staff":
-              navigate("/staff"); 
+              navigate("/staff");
               break;
             default:
               navigate("/admin");
@@ -52,10 +51,9 @@ function LoginForm() {
         if (errorCode) {
           setError(true);
         }
-        console.log(errorCode,errorMessage);
+        console.log(errorCode, errorMessage);
       });
   };
-  
 
   return (
     <section className="LoginPage">
@@ -78,7 +76,9 @@ function LoginForm() {
         <label className={error ? "invalidemail" : "validemail"}>
           Invalid email or password{" "}
         </label>
-        <button onClick={onLogin}>Login</button>
+        <button className="loginbtn" onClick={onLogin}>
+          Login
+        </button>
       </Form>
     </section>
   );
