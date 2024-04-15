@@ -1,5 +1,13 @@
-# React basic
+# Sectional titles and property management
 
-[Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) allows you to easily build [React](https://reactjs.org/) apps in minutes. Use this repo with the [React quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=react) to build and customize a new static site.
+[Link to site](https://witty-plant-0efd7e103.5.azurestaticapps.net/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+
+Sectional title describes the separate ownership of a unit within a group-owned complex or
+development. Simply put, the term refers to a complex with flats, townhouses or apartments
+that has multiple owners; each owning a section of the overall property. The collective of owners
+typically elect a body corporate made up of some of the owners to take responsibility for some
+of the tasks required to maintain the property. This includes overseeing the enforcement of rules
+and regulations, the security, upkeep and maintenance of the property, and managing
+communication with the owners, renters and related parties among other things.
