@@ -8,7 +8,7 @@
 .container {
   width: 100vw;
   height: 91.3vh;
-  background: rgb(248, 250, 252);
+  background: #f2f9fe;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,10 +1,10 @@
 .LoginForm {
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
   align-items: center;
   height: 20vh;
+  width: 300px;
 }
 
 .validemail {
@@ -17,29 +17,51 @@
   color: red;
 }
 
+
 input[type="text"],
 input[type="password"] {
-  width: 20vw;
-  display: block;
-  padding: 6px 12px;
+  margin: 10px 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding: 10px;
+  width: 94.4%;
   font-size: 14px;
   color: black;
+  border: 1px solid black;
+  background: none;
   border-radius: 4px;
-  background-image: none;
-  border: 1px solid #000;
+  outline: none;
 }
+
 .loginbtn {
-  width: 10vw;
+  width: 100%;
   padding: 0.5rem 0.75rem;
-  background-color: rgb(99, 102, 241);
-  border-radius: 0.375rem;
+  background-color: #00a1f1;
+  border-radius: 4px;
   color: white;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   border: none;
   background-image: none;
 }
 
 .loginbtn:hover {
-  background-color: rgb(80, 83, 233);
+  background-color: #258fff;
 }
+.login{
+  color: #00a1f1;
+  font-size: 40px;
+}
+.LoginForm{
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /*max-width: 400px;*/
+  width: 400px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

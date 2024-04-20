@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f2f9fe;
+    background-color: #f8fafc;
     padding: 12px;
 }
 
@@ -34,7 +34,7 @@ a {
 }
 
 a:visited{
-    color: #00a1f1
+    color: rgb(164, 164, 164);
 }
 a:hover,a:focus{
     color: #5eacff;

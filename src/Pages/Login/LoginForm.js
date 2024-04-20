@@ -4,6 +4,7 @@ import "./LoginForm.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../../utils/firebase";
 import { doc, getFirestore, getDoc } from "firebase/firestore";
+
 const db = getFirestore();
 
 function LoginForm() {
@@ -58,6 +59,8 @@ function LoginForm() {
   return (
     <section className="LoginPage">
       <Form className="LoginForm" method="POST" action="/admin">
+        <h1 className="login">Login</h1> <br/><br/>
+
         <input
           type="text"
           className="user"
@@ -65,7 +68,7 @@ function LoginForm() {
           placeholder="Username"
           onChange={(e) => setEmail(e.target.value)}
         />
-
+        
         <input
           type="password"
           required
@@ -73,6 +76,8 @@ function LoginForm() {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        
+        
         <label className={error ? "invalidemail" : "validemail"}>
           Invalid email or password{" "}
         </label>
@@ -81,6 +86,8 @@ function LoginForm() {
         </button>
       </Form>
     </section>
+    
+    
   );
 }
 

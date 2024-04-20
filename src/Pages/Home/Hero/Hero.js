@@ -1,14 +1,11 @@
 import React from 'react'
 import './Hero.css'
-import LoginBtn from './LoginBtn';
 
 function Hero() {
   return <>
-    <h1>Welcome back</h1>
-    <LoginBtn/>
-  </>
-  
-      
+    <h1 className="welcometxt"> Welcome </h1>
+    <h3 className="welcomeMsg">Sectional Propeties Managements</h3>
+  </>  
 }
 
 export default Hero

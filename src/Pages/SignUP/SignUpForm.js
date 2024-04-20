@@ -70,7 +70,7 @@ function SignUpForm() {
 
 	return (
 		<section>
-			<h1>SignUpForm</h1>
+			<h1 className="SignUptxt">Create account</h1>
 
 			<Form className="form" onSubmit={handleSubmit}>
 				{/* Input fields for form data */}
@@ -107,7 +107,7 @@ function SignUpForm() {
 				<input
 					type="text"
 					className="input-field"
-					placeholder="userName"
+					placeholder="Username"
 					value={userName}
 					onChange={(e) => setUserName(e.target.value)}
 					required
@@ -115,7 +115,7 @@ function SignUpForm() {
 				<input
 					type="email"
 					className="input-field"
-					placeholder="Email Address"
+					placeholder="Email address"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 					required
@@ -123,12 +123,16 @@ function SignUpForm() {
 				<input
 					type="tel"
 					className="input-field"
-					placeholder="Cellphone Number"
+					placeholder="Cellphone number"
 					value={cellPhone}
 					onChange={(e) => setCellPhone(e.target.value)}
 					required
 				/>
-				<textarea onChange={(e) => setuserAddress(e.target.value)} />
+				<input
+				className="input-field" 
+				placeholder="Addresss"
+				onChange={(e) => setuserAddress(e.target.value)}
+				 />
 				<input
 					type="password"
 					className="input-field"
@@ -140,18 +144,17 @@ function SignUpForm() {
 				<input
 					type="password"
 					className="input-field"
-					placeholder="Confirm Password"
+					placeholder="Confirm password"
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
 				/>
 
 				{/* Submit button */}
-				<button type="submit">Sign Up</button>
+				{error && <center><p  className="error-message"style={{ color: "red" }}>{error}</p></center>}
+				<button type="submit">Create account</button>
 			</Form>
 
-			{/* Error message */}
-			{error && <p style={{ color: "red" }}>{error}</p>}
 		</section>
 	);
 }
