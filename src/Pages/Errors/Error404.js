@@ -1,10 +1,10 @@
 import React from 'react'
-
+import './Error404.css'
+import logo from '../../assets/svg/404.svg'
 export default function Error404() {
   return (
     <section>
-     <h1>404</h1> 
-     <h1>Page not found</h1>
+      <img src={logo} className='page404' alt='404 Page not found!' />
     </section>
   )
 }

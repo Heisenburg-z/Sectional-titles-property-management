@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import auth from "../../utils/firebase"; // Import your Firebase configuration
 import { setDoc, doc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
@@ -30,13 +30,13 @@ function SignUpForm() {
 	// Form submission handler
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+	
 		// Check if passwords match
 		if (password !== confirmPassword) {
 			setError("Passwords do not match");
 			return;
 		}
-
+	
 		try {
 			// Create a new user with Firebase Authentication
 			const userCredential = await createUserWithEmailAndPassword(
@@ -44,10 +44,13 @@ function SignUpForm() {
 				email,
 				password
 			);
-
+	
+			// Send email verification
+			await sendEmailVerification(userCredential.user);
+	
 			// Get user details from the userCredential
 			const user = userCredential.user;
-
+	
 			// Add the user's details to Firestore
 			await setDoc(doc(db, "accounts", user.uid), {
 				roles: dropdownValue,
@@ -58,7 +61,7 @@ function SignUpForm() {
 				email: email,
 				cellPhone: cellPhone,
 			});
-
+	
 			// Redirect to a different page after successful signup
 			navigate("/admin");
 		} catch (error) {
@@ -67,6 +70,7 @@ function SignUpForm() {
 			setError("An error occurred during signup");
 		}
 	};
+	
 
 	return (
 		<section>
@@ -129,10 +133,10 @@ function SignUpForm() {
 					required
 				/>
 				<input
-				className="input-field" 
-				placeholder="Addresss"
-				onChange={(e) => setuserAddress(e.target.value)}
-				 />
+					className="input-field"
+					placeholder="Addresss"
+					onChange={(e) => setuserAddress(e.target.value)}
+				/>
 				<input
 					type="password"
 					className="input-field"
@@ -151,7 +155,7 @@ function SignUpForm() {
 				/>
 
 				{/* Submit button */}
-				{error && <center><p  className="error-message"style={{ color: "red" }}>{error}</p></center>}
+				{error && <center><p className="error-message" style={{ color: "red" }}>{error}</p></center>}
 				<button type="submit">Create account</button>
 			</Form>
 

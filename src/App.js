@@ -16,25 +16,32 @@ import Hero from "./Pages/Home/Hero/Hero";
 import Error404 from "./Pages/Errors/Error404";
 import SignUpForm from "./Pages/SignUP/SignUpForm";
 import ResidentsPage from "./Pages/Residents/ResidentsPage";
+import { RequireAuth } from "./routes/RequireAuth";
+import { AuthProvider } from "./utils/auth";
+
+
+
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route>
+
 			<Route path="/" element={<LandingPage />}>
 				<Route path="" element={<Hero />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<LoginForm />} />
 				<Route path="*" element={<Error404 />} />
 			</Route>
-			<Route path="/admin" element={<AdminPage />}/>
-			<Route path="/signup" element={<SignUpForm />} />
-			<Route path="/resident" element={<ResidentsPage />} />
-			<Route path="/staff" element={<StaffPage />} />
+			<Route path="/admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
+			<Route path="/signup" element={<RequireAuth><SignUpForm /></RequireAuth>} />
+			<Route path="/resident" element={<RequireAuth><ResidentsPage /></RequireAuth>} />
+			<Route path="/staff" element={<RequireAuth><StaffPage /></RequireAuth>} />
+
 		</Route>
 	)
 );
 function App() {
-	return <RouterProvider router={router} />;
+	return <AuthProvider><RouterProvider router={router} /></AuthProvider>;
 }
 
 export default App;
