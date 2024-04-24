@@ -8,16 +8,11 @@ import { useAuth } from "../../utils/auth";
 
 const db = getFirestore();
 
-
-
-
-
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
 
   // auth 20 is the auth for page routing and not to be confused with firease auth.
   const auth20 = useAuth();
@@ -32,36 +27,31 @@ function LoginForm() {
 
         // Fetch user's role from Firestore
         const docRef = doc(db, "accounts", user.uid);
-        await getDoc(docRef).then(
-          (docSnap) => {
-            if (docSnap.exists()) {
-              const userData = docSnap.data();
-              const userRole = userData.roles;
+        await getDoc(docRef).then((docSnap) => {
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            const userRole = userData.roles;
 
-              // Navigate based on user's role
+            // Navigate based on user's role
 
-              
-              auth20.login(userData.name);
+            auth20.login(userData.name);
 
-              switch (userRole) {
-                case "Admin":
-                  navigate("/admin");
-                  break;
-                case "Resident":
-                  navigate("/resident");
-                  break;
-                case "Staff":
-                  navigate("/staff");
-                  break;
-                default:
-                  navigate("/admin");
-                  break;
-              }
+            switch (userRole) {
+              case "Admin":
+                navigate("/admin", { replace: true });
+                break;
+              case "Resident":
+                navigate("/resident");
+                break;
+              case "Staff":
+                navigate("/staff");
+                break;
+              default:
+                navigate("/admin");
+                break;
             }
           }
-        );
-
-
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -75,36 +65,35 @@ function LoginForm() {
 
   return (
     <section className="LoginPage">
-      {!auth20.user ? <Form className="LoginForm" method="POST" action="/admin">
-        <h1 className="login">Login</h1> <br /><br />
-
-        <input
-          type="text"
-          className="user"
-          required
-          placeholder="Username"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="password"
-          required
-          className="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-
-        <label className={error ? "invalidemail" : "validemail"}>
-          Invalid email or password{" "}
-        </label>
-        <button className="loginbtn" onClick={onLogin}>
-          Login
-        </button>
-      </Form>: <h1>You are already logged in</h1>}
+      {!auth20.user ? (
+        <Form className="LoginForm" method="POST" action="/admin">
+          <h1 className="login">Login</h1> <br />
+          <br />
+          <input
+            type="text"
+            className="user"
+            required
+            placeholder="Username"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            required
+            className="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label className={error ? "invalidemail" : "validemail"}>
+            Invalid email or password{" "}
+          </label>
+          <button className="loginbtn" onClick={onLogin}>
+            Login
+          </button>
+        </Form>
+      ) : (
+        <h1>You are already logged in</h1>
+      )}
     </section>
-
-
   );
 }
 
