@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import "./AdminPage.css";
 import SideBar from "./Components/SideBar/SideBar";
 import TopNav from "./Components/TopNav/TopNav";
