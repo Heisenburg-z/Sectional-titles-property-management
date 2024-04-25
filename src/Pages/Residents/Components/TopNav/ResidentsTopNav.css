@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .header-title {
+    display: flex;
+    font-size: 1.5em;
+    align-self: center;
+    flex-grow: 3;
+  }
+  
+  .header-icon {
+    display: flex;
+    justify-self: flex-end;
+    color: #c3e0f3;
+  }
+  
