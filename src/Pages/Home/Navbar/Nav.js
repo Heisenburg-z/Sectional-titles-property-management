@@ -12,16 +12,24 @@ function Nav() {
           <NavLink to="" className="logo">
             Logo
           </NavLink>
-          <ul>
-            <li>
-              <NavLink to="about">About Us</NavLink>
+          <ul className="nav-links-container">
+            <li className="nav-link">
+              <NavLink className="anchor-link" to="about">
+                About Us
+              </NavLink>
             </li>
             {!auth.user ? (
-              <li>
-                <NavLink to="login">Login</NavLink>
+              <li className="nav-link">
+                <NavLink className="anchor-link" to="login">
+                  Login
+                </NavLink>
               </li>
             ) : (
-              <li>{auth.user}</li>
+              <li className="nav-link">
+                <NavLink className="anchor-link" to="admin">
+                  {auth.user}
+                </NavLink>
+              </li>
             )}
           </ul>
         </nav>
