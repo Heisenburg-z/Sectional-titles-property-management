@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FaBars, FaUsers, FaUsersGear, FaToolbox } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
-import { PiSignOutBold } from "react-icons/pi";
+import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
 
 function SideBar({ className }) {
@@ -79,7 +79,7 @@ function SideBar({ className }) {
       </ul>
       <footer className="sidebar-footer">
         <ul className="sidebar-footer-li-container">
-          <li className="sidebar-link-li">
+          <li className="sidebar-link-li__image">
             <NavLink className="sidebar-link">
               <span className="icon-text">
                 <img
@@ -94,7 +94,7 @@ function SideBar({ className }) {
           <li className="sidebar-link-li">
             <NavLink className="sidebar-link" to="/">
               <span className="icon-text">
-                <PiSignOutBold size="1.5em" />
+                <GiExitDoor size="1.5em" />
                 <p className="item-padding" onClick={logout}>
                   Sign Out
                 </p>
