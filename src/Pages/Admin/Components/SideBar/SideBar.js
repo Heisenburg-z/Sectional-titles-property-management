@@ -21,7 +21,7 @@ function SideBar({ className }) {
 
       <ul className="sidebar-links-container">
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='dashboard'>
             <span className="icon-text">
               <FaBars size="1.5em" />
               <p className="item-padding">Dashboard</p>
@@ -29,7 +29,7 @@ function SideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='staff'>
             <span className="icon-text">
               <FaUsers size="1.5em" />
               <p className="item-padding">Staff</p>
@@ -37,7 +37,7 @@ function SideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to="residents">
             <span className="icon-text">
               <FaUsers size="1.5em" />
               <p className="item-padding">Residents</p>
@@ -45,7 +45,7 @@ function SideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to="admins">
             <span className="icon-text">
               <FaUsersGear size="1.5em" />
               <p className="item-padding">Admins</p>
@@ -53,7 +53,7 @@ function SideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='maintenance'>
             <span className="icon-text">
               <FaToolbox size="1.5em" />
               <p className="item-padding">Maintenance</p>
@@ -61,15 +61,15 @@ function SideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
-            <span className="icon-text">
+          <NavLink className="sidebar-link" to="fines">
+            <span className="icon-text" >
               <GiTakeMyMoney size="1.5em" />
               <p className="item-padding">Fines</p>
             </span>
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to="reports">
             <span className="icon-text">
               <TbReportSearch size="1.5em" />
               <p className="item-padding">Reports</p>
