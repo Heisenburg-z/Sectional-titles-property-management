@@ -14,7 +14,7 @@ import AdminPage from "./Pages/Admin/AdminPage";
 import StaffPage from "./Pages/Staff/StaffPage";
 import Hero from "./Pages/Home/Hero/Hero";
 import Error404 from "./Pages/Errors/Error404";
-// import SignUpForm from "./Pages/SignUP/SignUpForm";
+//import SignUpForm from "./Pages/SignUP/SignUpForm";
 import ResidentsPage from "./Pages/Residents/ResidentsPage";
 import { RequireAuth } from "./routes/RequireAuth";
 import { AuthProvider } from "./utils/auth";
@@ -25,6 +25,16 @@ import Residents from "./Pages/Admin/AdminTabs/Resident/Residents";
 import Maintenance from "./Pages/Admin/AdminTabs/Maintenance/Maintenance";
 import Admins from "./Pages/Admin/AdminTabs/Admin/Admins";
 import DashBoard from "./Pages/Admin/AdminTabs/Dashboard/DashBoard";
+import ResidentsDashBoard from "./Pages/Residents/ResidentTabs/Dashboard/ResidentsDashboard";
+import ResidentsFileComplaint from "./Pages/Residents/ResidentTabs/FileComplaint/ResidentsFileComplaint";
+import ResidentsIssues from "./Pages/Residents/ResidentTabs/Issues/ResidentsIssues";
+import ResidentsFines from "./Pages/Residents/ResidentTabs/Fines/ResidentsFines";
+import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Maintenance/ResidentsMaintenance";
+import ResidentsReports from "./Pages/Residents/ResidentTabs/Reports/ResidentsReports";
+import StaffAllMaintenance from "./Pages/Staff/StaffTabs/AllMaintenanceIssues/StaffAllMaintenance";
+import AssignedMaintenance from "./Pages/Staff/StaffTabs/AssignMaintenanceIssues/AssignedMaintenance";
+import StaffDashboard from "./Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
+import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -41,8 +51,7 @@ const router = createBrowserRouter(
 					<RequireAuth>
 						<AdminPage />
 					</RequireAuth>
-				}
-			>
+				}>
 				<Route
 					path="reports"
 					element={
@@ -100,7 +109,7 @@ const router = createBrowserRouter(
 							<Admins />
 						</RequireAuth>
 					}
-				/>
+				/>				
 			</Route>
 			<Route
 				path="/resident"
@@ -109,7 +118,56 @@ const router = createBrowserRouter(
 						<ResidentsPage />
 					</RequireAuth>
 				}
-			/>
+			>
+			<Route
+					path="residentsdashboard"
+					element={
+						<RequireAuth>
+							<ResidentsDashBoard/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="residentsfilecomplaint"
+					element={
+						<RequireAuth>
+							<ResidentsFileComplaint/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="residentsissues"
+					element={
+						<RequireAuth>
+							<ResidentsIssues/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="residentsfines"
+					element={
+						<RequireAuth>
+							<ResidentsFines/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="residentsmaintenance"
+					element={
+						<RequireAuth>
+							<ResidentsMaintenance/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="residentsreports"
+					element={
+						<RequireAuth>
+							<ResidentsReports/>
+						</RequireAuth>
+					}
+				/>
+			</Route>
 			<Route
 				path="/staff"
 				element={
@@ -117,7 +175,40 @@ const router = createBrowserRouter(
 						<StaffPage />
 					</RequireAuth>
 				}
-			/>
+			>
+				<Route
+					path="staffdashboard"
+					element={
+						<RequireAuth>
+							<StaffDashboard/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="assignedmaintenanceissues"
+					element={
+						<RequireAuth>
+							<AssignedMaintenance/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="allmaintenanceissues"
+					element={
+						<RequireAuth>
+							<StaffAllMaintenance/>
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="staffreports"
+					element={
+						<RequireAuth>
+							<StaffReports/>
+						</RequireAuth>
+					}
+				/>	
+			</Route>
 		</Route>
 	)
 );

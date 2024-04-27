@@ -22,7 +22,7 @@ function ResidentsSideBar({ className }) {
 
       <ul className="sidebar-links-container">
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsdashboard'>
             <span className="icon-text">
               <FaBars size="1.5em" />
               <p className="item-padding">Dashboard</p>
@@ -30,7 +30,7 @@ function ResidentsSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsfilecomplaint'>
             <span className="icon-text">
               <FaExclamationCircle size="1.5em" />
               <p className="item-padding">File Complaint</p>
@@ -38,7 +38,7 @@ function ResidentsSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsissues'>
             <span className="icon-text">
               <FaRegEdit size="1.5em" />
               <p className="item-padding">Issues</p>
@@ -46,7 +46,7 @@ function ResidentsSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsfines'>
             <span className="icon-text">
               <GiTakeMyMoney size="1.5em" />
               <p className="item-padding">Fines</p>
@@ -54,7 +54,7 @@ function ResidentsSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsmaintenance'>
             <span className="icon-text">
               <FaToolbox size="1.5em" />
               <p className="item-padding">Maintenance</p>
@@ -62,7 +62,7 @@ function ResidentsSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='residentsreports'>
             <span className="icon-text">
               <TbReportSearch size="1.5em" />
               <p className="item-padding">Reports</p>

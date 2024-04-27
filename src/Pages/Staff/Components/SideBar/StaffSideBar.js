@@ -21,7 +21,7 @@ function StaffSideBar({ className }) {
 
       <ul className="sidebar-links-container">
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to='staffdashboard'>
             <span className="icon-text">
               <FaBars size="1.5em" />
               <p className="item-padding">Dashboard</p>
@@ -29,7 +29,7 @@ function StaffSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to ='assignedmaintenanceissues'>
             <span className="icon-text">
               <FaToolbox size="1.5em" />
               <p className="item-padding">Assigned Maintenance Issues</p>
@@ -37,7 +37,7 @@ function StaffSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to="allmaintenanceissues">
             <span className="icon-text">
               <FaTools size="1.5em" />
               <p className="item-padding">All Maintenance Issues</p>
@@ -45,7 +45,7 @@ function StaffSideBar({ className }) {
           </NavLink>
         </li>
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link">
+          <NavLink className="sidebar-link" to="staffreports">
             <span className="icon-text">
               <TbReportSearch size="1.5em" />
               <p className="item-padding">Reports</p>
@@ -63,7 +63,7 @@ function StaffSideBar({ className }) {
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="profile"
                 />
-                <p className="item-padding">Jim Kalake</p>
+                <p className="item-padding"> Thabo </p>
               </span>
             </NavLink>
           </li>
