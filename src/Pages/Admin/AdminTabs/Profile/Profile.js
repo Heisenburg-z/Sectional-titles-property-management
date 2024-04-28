@@ -19,18 +19,43 @@ function Profile() {
 
 	return (
 		<>
-			{profile && (
-				<section className="profile-section">
-					<h1>
-						{profile.surName} {profile.name}
-					</h1>
-					<p>email:{profile.email}</p>
-					<p>phone: {profile.cellPhone}</p>
-					<p>role: {profile.roles}</p>
-					<p>Home Address: {profile.userAddress}</p>
-				</section>
-			)}
-		</>
+		{profile && (
+			 <section className="profile-container">
+	 <h1 className="profile-heading">Resident Profile</h1>
+	 <section className="profile-details">
+	   <article className="detail">
+		 <label>Name:</label>
+		 <span>{profile.name}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Surname:</label>
+		 <span>{profile.surName}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Roles:</label>
+		 <span>{profile.roles}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Username:</label>
+		 <span>{profile.userName}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Address:</label>
+		 <span>{profile.userAddress}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Cell Phone:</label>
+		 <span>{profile.cellPhone}</span>
+	   </article>
+	   <article className="detail">
+		 <label>Email:</label>
+		 <span>{profile.email}</span>
+	   </article>
+	 </section>
+   </section>
+
+		)}
+	</>
 	);
 }
 

@@ -37,6 +37,7 @@ import StaffDashboard from "./Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
 import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
 import Profile from "./Pages/Admin/AdminTabs/Profile/Profile";
 import ResidentProfile from "./Pages/Residents/ResidentTabs/Profile/ResidentProfile";
+import StaffProfile from "./Pages/Staff/StaffTabs/Profile/StaffProfile";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -222,6 +223,14 @@ const router = createBrowserRouter(
 					element={
 						<RequireAuth>
 							<StaffReports />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="staffprofile"
+					element={
+						<RequireAuth>
+							<StaffProfile />
 						</RequireAuth>
 					}
 				/>
