@@ -1,4 +1,6 @@
 [![codecov](https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management/branch/main/graph/badge.svg?token=NCM4PXH1F3)](https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management)
+
+<img src="https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management/graphs/sunburst.svg?token=NCM4PXH1F3">
 # Sectional titles and property management
 
 [Link to site](https://witty-plant-0efd7e103.5.azurestaticapps.net/)
