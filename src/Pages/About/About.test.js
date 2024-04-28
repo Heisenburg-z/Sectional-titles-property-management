@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import About from './About'; // Assuming the About component is in the same directory
+import "@testing-library/jest-dom";
+import About from './About.js'; // Assuming the About component is in the same directory
+import "@testing-library/jest-dom/extend-expect"
 
 // Test case to check if the "About Us" heading is rendered
 test('renders About Us heading', () => {

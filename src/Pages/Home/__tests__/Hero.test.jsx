@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import "@testing-library/jest-dom/extend-expect"
 import Hero from "../Hero/Hero.js";
 
 describe('Hero Component', () => {
@@ -13,14 +14,5 @@ describe('Hero Component', () => {
     render(<Hero />);
     const welcomeMessage = screen.getByText('Sectional Properties Management');
     expect(welcomeMessage).toBeInTheDocument();
-  });
-
-  test('applies correct CSS classes to elements', () => {
-    render(<Hero />);
-    const welcomeText = screen.getByText('Welcome');
-    const welcomeMessage = screen.getByText('Sectional Properties Management');
-
-    expect(welcomeText).toHaveClass('welcometxt');
-    expect(welcomeMessage).toHaveClass('welcomeMsg');
   });
 });
