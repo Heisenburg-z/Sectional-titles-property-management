@@ -35,6 +35,8 @@ import StaffAllMaintenance from "./Pages/Staff/StaffTabs/AllMaintenanceIssues/St
 import AssignedMaintenance from "./Pages/Staff/StaffTabs/AssignMaintenanceIssues/AssignedMaintenance";
 import StaffDashboard from "./Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
 import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
+import Profile from "./Pages/Admin/AdminTabs/Profile/Profile";
+import ResidentProfile from "./Pages/Residents/ResidentTabs/Profile/ResidentProfile";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -51,7 +53,8 @@ const router = createBrowserRouter(
 					<RequireAuth>
 						<AdminPage />
 					</RequireAuth>
-				}>
+				}
+			>
 				<Route
 					path="reports"
 					element={
@@ -68,7 +71,6 @@ const router = createBrowserRouter(
 						</RequireAuth>
 					}
 				/>
-
 				<Route
 					path="staff"
 					element={
@@ -77,7 +79,6 @@ const router = createBrowserRouter(
 						</RequireAuth>
 					}
 				/>
-
 				<Route
 					path="residents"
 					element={
@@ -98,7 +99,7 @@ const router = createBrowserRouter(
 					path="dashboard"
 					element={
 						<RequireAuth>
-							<DashBoard/>
+							<DashBoard />
 						</RequireAuth>
 					}
 				/>
@@ -109,7 +110,15 @@ const router = createBrowserRouter(
 							<Admins />
 						</RequireAuth>
 					}
-				/>				
+				/>
+				<Route
+					path="profile"
+					element={
+						<RequireAuth>
+							<Profile />
+						</RequireAuth>
+					}
+				/>
 			</Route>
 			<Route
 				path="/resident"
@@ -119,51 +128,59 @@ const router = createBrowserRouter(
 					</RequireAuth>
 				}
 			>
-			<Route
-					path="residentsdashboard"
+				<Route
+					path="dashboard"
 					element={
 						<RequireAuth>
-							<ResidentsDashBoard/>
+							<ResidentsDashBoard />
 						</RequireAuth>
 					}
 				/>
 				<Route
-					path="residentsfilecomplaint"
+					path="filecomplaint"
 					element={
 						<RequireAuth>
-							<ResidentsFileComplaint/>
+							<ResidentsFileComplaint />
 						</RequireAuth>
 					}
 				/>
 				<Route
-					path="residentsissues"
+					path="issues"
 					element={
 						<RequireAuth>
-							<ResidentsIssues/>
+							<ResidentsIssues />
 						</RequireAuth>
 					}
 				/>
 				<Route
-					path="residentsfines"
+					path="fines"
 					element={
 						<RequireAuth>
-							<ResidentsFines/>
+							<ResidentsFines />
 						</RequireAuth>
 					}
 				/>
 				<Route
-					path="residentsmaintenance"
+					path="maintenance"
 					element={
 						<RequireAuth>
-							<ResidentsMaintenance/>
+							<ResidentsMaintenance />
 						</RequireAuth>
 					}
 				/>
 				<Route
-					path="residentsreports"
+					path="reports"
 					element={
 						<RequireAuth>
-							<ResidentsReports/>
+							<ResidentsReports />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="profile"
+					element={
+						<RequireAuth>
+							<ResidentProfile />
 						</RequireAuth>
 					}
 				/>
@@ -180,7 +197,7 @@ const router = createBrowserRouter(
 					path="staffdashboard"
 					element={
 						<RequireAuth>
-							<StaffDashboard/>
+							<StaffDashboard />
 						</RequireAuth>
 					}
 				/>
@@ -188,7 +205,7 @@ const router = createBrowserRouter(
 					path="assignedmaintenanceissues"
 					element={
 						<RequireAuth>
-							<AssignedMaintenance/>
+							<AssignedMaintenance />
 						</RequireAuth>
 					}
 				/>
@@ -196,7 +213,7 @@ const router = createBrowserRouter(
 					path="allmaintenanceissues"
 					element={
 						<RequireAuth>
-							<StaffAllMaintenance/>
+							<StaffAllMaintenance />
 						</RequireAuth>
 					}
 				/>
@@ -204,10 +221,10 @@ const router = createBrowserRouter(
 					path="staffreports"
 					element={
 						<RequireAuth>
-							<StaffReports/>
+							<StaffReports />
 						</RequireAuth>
 					}
-				/>	
+				/>
 			</Route>
 		</Route>
 	)
