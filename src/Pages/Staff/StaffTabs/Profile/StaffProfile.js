@@ -21,7 +21,7 @@ function StaffProfile() {
         <>
         {profile && (
              <section className="profile-container">
-     <h1 className="profile-heading"> Profile</h1>
+     <h1 className="profile-heading">Staff Profile</h1>
      <section className="profile-details">
        <article className="detail">
          <label>Name:</label>
