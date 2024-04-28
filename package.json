@@ -19,9 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "test:coverage": "react-scripts test --coverage --watchAll"
+    "test": "react-scripts test --coverage --watchAll",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +41,17 @@
     ]
   },
   "devDependencies": {
-    "jest-dom": "^4.0.0"
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
+    "babel-jest": "^29.7.0",
+    "jest-dom": "^4.0.0",
+    "nyc": "^15.1.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "testEnvironment": "jsdom"
+    
   }
 }
