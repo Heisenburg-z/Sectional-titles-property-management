@@ -23,5 +23,5 @@ app.http("getAdminProfile", {
 		} else {
 			return { message: "Does not exist" };
 		}
-	},
+	}
 });
