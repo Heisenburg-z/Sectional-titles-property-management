@@ -56,7 +56,7 @@ function StaffSideBar({ className }) {
       <footer className="sidebar-footer">
         <ul className="sidebar-footer-li-container">
           <li className="sidebar-link-li__image">
-            <NavLink className="sidebar-link">
+            <NavLink className="sidebar-link" to="staffprofile">
               <span className="icon-text">
                 <img
                   className="sidebar-footer-profile"
