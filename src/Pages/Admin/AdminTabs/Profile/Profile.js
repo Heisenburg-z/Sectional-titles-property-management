@@ -12,7 +12,7 @@ function Profile() {
 				return response.json();
 			})
 			.then((data) => {
-				// console.log(data);
+				// console.log(data);  16a7361594710c85a7b9df27dc6357223dffdc23git
 				setProfile(data);
 			});
 	}, [id]);
