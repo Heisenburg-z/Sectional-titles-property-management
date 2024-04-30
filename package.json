@@ -8,6 +8,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^10.11.0",
+    "jest": "^27.5.1",
+    "jest-environment-jsdom": "^27.5.1",
     "react": "^16.14.0",
     "react-admin": "^4.16.15",
     "react-dom": "^16.14.0",
@@ -46,12 +48,5 @@
     "babel-jest": "^29.7.0",
     "jest-dom": "^4.0.0",
     "nyc": "^15.1.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "testEnvironment": "jsdom"
-    
   }
 }
