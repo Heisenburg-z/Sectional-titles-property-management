@@ -26,7 +26,7 @@ function Nav() {
               </li>
             ) : (
               <li className="nav-link">
-                <NavLink className="anchor-link" to="admin">
+                <NavLink className="anchor-link" to="admin/dashboard">
                   {auth.user}
                 </NavLink>
               </li>

@@ -7,13 +7,13 @@ import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
 
-function SideBar({ className }) {
+function SideBar() {
   const auth = useAuth();
   const logout = () => {
     auth.logout();
   };
   return (
-    <section className={className}>
+    <section className="sidebar">
       <ul className="sidebar-title">
         <li className="sidebar-title-items">Sectional Titles</li>
         <li className="sidebar-title-items">&</li>

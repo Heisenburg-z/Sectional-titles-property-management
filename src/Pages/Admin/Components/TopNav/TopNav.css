@@ -1,6 +1,10 @@
 .header {
   display: flex;
   justify-content: center;
+  background-color: #f2f9fe;
+  grid-column: 2 / 3;
+  border-bottom: 1px solid #c3e0f3;
+  padding: 10px;
 }
 
 .header-title {

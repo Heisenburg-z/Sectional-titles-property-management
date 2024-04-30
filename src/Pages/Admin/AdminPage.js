@@ -8,9 +8,9 @@ import AdminMain from "./Components/MainSection/AdminMainSection";
 function AdminPage() {
   return (
     <section className="body">
-      <TopNav className="header" />
-      <SideBar className="sidebar" />
-      <AdminMain className="main">
+      <TopNav />
+      <SideBar />
+      <AdminMain>
         <Outlet />
       </AdminMain>
     </section>
@@ -18,5 +18,3 @@ function AdminPage() {
 }
 
 export default AdminPage;
-
-//  /* <NavLink to={"signup"} className="linkToSignUp"> */
