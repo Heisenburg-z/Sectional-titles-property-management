@@ -26,10 +26,9 @@ import Maintenance from "./Pages/Admin/AdminTabs/Maintenance/Maintenance";
 import Admins from "./Pages/Admin/AdminTabs/Admin/Admins";
 import DashBoard from "./Pages/Admin/AdminTabs/Dashboard/DashBoard";
 import ResidentsDashBoard from "./Pages/Residents/ResidentTabs/Dashboard/ResidentsDashboard";
-import ResidentsFileComplaint from "./Pages/Residents/ResidentTabs/FileComplaint/ResidentsFileComplaint";
-import ResidentsIssues from "./Pages/Residents/ResidentTabs/Issues/ResidentsIssues";
-import ResidentsFines from "./Pages/Residents/ResidentTabs/Fines/ResidentsFines";
-import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Maintenance/ResidentsMaintenance";
+import ResidentsIssues from "./Pages/Residents/ResidentTabs/Reports/ResidentsIssues";
+import ResidentsFines from "./Pages/Residents/ResidentTabs/Reports/ResidentsFines";
+import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Reports/ResidentsMaintenance";
 import ResidentsReports from "./Pages/Residents/ResidentTabs/Reports/ResidentsReports";
 import StaffAllMaintenance from "./Pages/Staff/StaffTabs/AllMaintenanceIssues/StaffAllMaintenance";
 import AssignedMaintenance from "./Pages/Staff/StaffTabs/AssignMaintenanceIssues/AssignedMaintenance";
@@ -138,30 +137,14 @@ const router = createBrowserRouter(
 					}
 				/>
 				<Route
-					path="filecomplaint"
+					path="reports"
 					element={
 						<RequireAuth>
-							<ResidentsFileComplaint />
+							<ResidentsReports />
 						</RequireAuth>
 					}
-				/>
-				<Route
-					path="issues"
-					element={
-						<RequireAuth>
-							<ResidentsIssues />
-						</RequireAuth>
-					}
-				/>
-				<Route
-					path="fines"
-					element={
-						<RequireAuth>
-							<ResidentsFines />
-						</RequireAuth>
-					}
-				/>
-				<Route
+				>
+					<Route
 					path="maintenance"
 					element={
 						<RequireAuth>
@@ -169,14 +152,24 @@ const router = createBrowserRouter(
 						</RequireAuth>
 					}
 				/>
-				<Route
-					path="reports"
+					<Route
+					path="fines"
 					element={
 						<RequireAuth>
-							<ResidentsReports />
+							<ResidentsFines />
 						</RequireAuth>
 					}
 				/>
+					<Route
+					path="issues"
+					element={
+						<RequireAuth>
+							<ResidentsIssues />
+						</RequireAuth>
+					}
+				/>
+
+				</Route>
 				<Route
 					path="profile"
 					element={
