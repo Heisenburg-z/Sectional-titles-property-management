@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./Resident.css";
 
 function Resident() {
-  //const [Columns, setColumns] = useState([]);
   const [resident, setResident] = useState([]);
 
 
   useEffect(() => {
-		fetch(`http://localhost:7071/api/property/admin/resident`)
+		fetch(`/api/property/admin/resident`)
 			.then((response) => {
 				return response.json();
 			})
 			.then((data) => { 
-        //setColumns(Object.keys(data[0])); not needed because we assign the table header manually. Gael
+
+        console.log(data);
         setResident(data);
 			}).catch(() => {
         console.error('No data to be fetched');
@@ -26,6 +26,8 @@ function Resident() {
       .then(response => response.json())
       .then(() => {
         console.log('Success');
+
+        //Fetch again / reload
     })
     .catch(error => {
         console.error('Error:', error);
