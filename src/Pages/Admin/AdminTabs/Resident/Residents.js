@@ -11,8 +11,7 @@ function Resident() {
 				return response.json();
 			})
 			.then((data) => { 
-
-        console.log(data);
+        //console.log(data);
         setResident(data);
 			}).catch(() => {
         console.error('No data to be fetched');

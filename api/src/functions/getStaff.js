@@ -24,7 +24,7 @@ app.http('getStaff', {
 
             const staffList = [];
             snapshot.forEach(doc => {
-                staffList.push(doc.data());
+                staffList.push({id: doc.id, ...doc.data()});
             });
 
             return { body: JSON.stringify(staffList) };
