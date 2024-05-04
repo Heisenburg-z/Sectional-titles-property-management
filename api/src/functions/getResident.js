@@ -1,12 +1,13 @@
+const db = require('./firebaseDB');
 const { app } = require('@azure/functions');
-const admin = require("firebase-admin");
-const serviceAccount = require("./serviceKey.json");
+// const admin = require("firebase-admin");
+// const serviceAccount = require("./serviceKey.json");
 
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-}, 'getResident');   // whenever a new initialization is created assign another description to 'getStaff' ( preferably related to the api ). Gael
+// admin.initializeApp({
+// 	credential: admin.credential.cert(serviceAccount),
+// }, 'getResident');   // whenever a new initialization is created assign another description to 'getStaff' ( preferably related to the api ). Gael
 
-const db = admin.firestore();
+// const db = admin.firestore();
 
 app.http('getResident', {
     route: "property/admin/resident",
@@ -23,7 +24,7 @@ app.http('getResident', {
 
             const staffList = [];
             snapshot.forEach(doc => {
-                staffList.push(doc.data());
+                staffList.push({id: doc.id, ...doc.data()});
             });
 
             return { body: JSON.stringify(staffList) };

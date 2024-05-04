@@ -30,3 +30,14 @@
 .resident-table tbody tr:last-of-type{
     border-bottom: 2px solid #00a1f1;
 }
+
+.remove-btn{
+    padding: 12px 20px;
+    background-color: #00a1f1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+}
