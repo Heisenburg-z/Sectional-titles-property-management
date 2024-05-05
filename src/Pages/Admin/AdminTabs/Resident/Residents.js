@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Resident.css";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function Resident() {
+  const location = useLocation();
+  const path = location.pathname.split('/')[3];
+  const navigate = useNavigate();
   const [resident, setResident] = useState([]);
 
 
@@ -34,10 +38,13 @@ function Resident() {
   }
 
   if(resident.length === 0){
-    return <h2 className="fetching-error"> No data available </h2>;
+    return (path === 'signupform' ? <Outlet/> :
+
+    <><h2 className="fetching-error"> No data available </h2>
+    <button id="bottom-right-button" onClick={() => navigate('signupform')}>+ Sign Up</button></>);
   }
   else{
-    return (
+    return ( path === 'signupform' ? <Outlet/> :
         <section className="resident-section">
           <table className="resident-table">
             <thead>
@@ -72,6 +79,7 @@ function Resident() {
                 }
             </tbody>
           </table>
+          <button id="bottom-right-button" onClick={() => navigate('signupform')}>+ Sign Up</button>
         </section>
     )
   } 

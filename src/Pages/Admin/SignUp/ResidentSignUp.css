@@ -1,0 +1,127 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 50%;
+    padding: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2f9fe;
+    
+  }
+  
+  /* Form styles */
+  .form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*max-width: 400px;*/
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ .SignUptxt{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #00a1f1;
+    text-align: center;
+  }
+  h1{
+    padding-bottom: 2px;
+    color: #ffffff;
+  }
+
+  .form .SignUptxt {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333;
+  }
+  
+  /* Input fields */
+  .input-field {
+    margin: 10px 0px;
+    padding: 10px;
+    padding-bottom: 10px;
+    width: 94.4%;
+    font-size: 14px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 4px;
+    background: none;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  /* Select dropdown */
+  select.input-field {
+    /*appearance: none;*/
+    width: 80%;
+  }
+  
+  .select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .input-field + .select-icon {
+    position: relative;
+  }
+  
+  /* Submit button */
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #00a1f1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #258fff;
+  }
+  
+  /* Error message */
+  p.error-message {
+    color: red;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .formBox {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+  }
+
+  #back-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #00a1f1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  #back-button:hover {
+    background-color: #0056b3;
+  }

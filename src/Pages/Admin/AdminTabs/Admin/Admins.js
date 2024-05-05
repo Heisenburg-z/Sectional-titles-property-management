@@ -1,9 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Admins.css";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function Admins() {
+	const location = useLocation();
+  	const path = location.pathname.split('/')[3];
+  	const navigate = useNavigate();
 	const [admins, setAdmins] = useState([]);
+
 	useEffect(() => {
 		fetch(`/api/property/admin/admins`)
 			.then((response) => {
@@ -17,7 +22,8 @@ function Admins() {
 				console.error("No data to be fetched");
 			});
 	}, []);
-	return (
+
+	return ( path === 'signupform' ? <Outlet/> :
 		<section className="admin-section">
 			<table className="admin-table">
 				<thead>
@@ -45,7 +51,9 @@ function Admins() {
 					))}
 				</tbody>
 			</table>
+			<button id="bottom-right-button" onClick={() => navigate('signupform')}>+ Sign Up</button>
 		</section>
+		
 	);
 }
 

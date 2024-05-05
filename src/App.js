@@ -37,6 +37,9 @@ import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
 import Profile from "./Pages/Admin/AdminTabs/Profile/Profile";
 import ResidentProfile from "./Pages/Residents/ResidentTabs/Profile/ResidentProfile";
 import StaffProfile from "./Pages/Staff/StaffTabs/Profile/StaffProfile";
+import StaffSignUpForm from "./Pages/Admin/SignUp/StaffSignUp";
+import ResidentSignUpForm from "./Pages/Admin/SignUp/ResidentSignUp";
+import AdminSignUpForm from "./Pages/Admin/SignUp/AdminSignUp";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -78,7 +81,16 @@ const router = createBrowserRouter(
 							<Staff />
 						</RequireAuth>
 					}
-				/>
+				>
+					<Route
+						path="staffsignupform"
+						element={
+							<RequireAuth>
+								<StaffSignUpForm />
+							</RequireAuth>
+						}
+					/>
+				</Route>
 				<Route
 					path="residents"
 					element={
@@ -86,7 +98,16 @@ const router = createBrowserRouter(
 							<Residents />
 						</RequireAuth>
 					}
-				/>
+				> 
+					<Route
+						path="signupform"
+						element={
+							<RequireAuth>
+								<ResidentSignUpForm />
+							</RequireAuth>
+						}
+					/>
+				</Route>
 				<Route
 					path="maintenance"
 					element={
@@ -110,7 +131,16 @@ const router = createBrowserRouter(
 							<Admins />
 						</RequireAuth>
 					}
-				/>
+				> 
+					<Route
+						path="signupform"
+						element={
+							<RequireAuth>
+								<AdminSignUpForm />
+							</RequireAuth>
+						}
+					/>
+				</Route>
 				<Route
 					path="profile"
 					element={

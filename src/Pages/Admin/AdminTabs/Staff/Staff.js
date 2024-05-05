@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Staff.css";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function Staff() {
+  const location = useLocation();
+  const path = location.pathname.split('/')[3];
+  const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
 
   useEffect(() => {
@@ -30,10 +34,14 @@ function Staff() {
   }
 
   if(staff.length === 0){
-    return <h2 className="fetching-error"> No data available </h2>;
+    return ( path === 'staffsignupform' ? <Outlet/> :
+    <><h2 className="fetching-error"> No data available </h2>
+    <button id="bottom-right-button" onClick={() => navigate('staffsignupform')}>+ Sign Up</button>
+    </>
+  );
   }
   else{ 
-    return (
+    return ( path === 'staffsignupform' ? <Outlet/> :
         <section className="staff-section">
           <table className="staff-table">
             <thead>
@@ -68,6 +76,7 @@ function Staff() {
                 }
             </tbody>
           </table>
+          <button id="bottom-right-button" onClick={() => navigate('staffsignupform')}>+ Sign Up</button>
         </section>
     )
   }
