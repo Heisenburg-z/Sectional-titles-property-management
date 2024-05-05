@@ -1,45 +1,33 @@
-.resident-table {
+.admin-table {
 	border-collapse: collapse;
 	margin: 25px 0;
 	font-size: 0.9em;
 	min-width: 400px;
+	overflow: auto;
 	border-radius: 5px 5px 0 0;
 	box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
-	overflow-y: scroll;
 }
 
-.resident-table thead tr {
+.admin-table thead tr {
 	background-color: #00a1f1;
 	color: white;
 	text-align: left;
 	font-weight: bold;
 }
 
-.resident-table th,
-.resident-table td {
+.admin-table th,
+.admin-table td {
 	padding: 12px 15px;
 }
 
-.resident-table tbody tr {
+.admin-table tbody tr {
 	border-bottom: 1px solid #dddddd;
 }
 
-.resident-table tbody tr:nth-of-type(even) {
+.admin-table tbody tr:nth-of-type(even) {
 	background-color: #e4fbff;
 }
 
-.resident-table tbody tr:last-of-type {
+.admin-table tbody tr:last-of-type {
 	border-bottom: 2px solid #00a1f1;
 }
-
-.remove-btn {
-	padding: 12px 20px;
-	background-color: #00a1f1;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 10px;
-	font-weight: bold;
-}
-

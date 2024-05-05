@@ -19,7 +19,7 @@ function Admins() {
 	}, []);
 	return (
 		<section className="admin-section">
-			<table className="resident-table">
+			<table className="admin-table">
 				<thead>
 					<tr>
 						<th>Name</th>

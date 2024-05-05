@@ -1,4 +1,6 @@
 .main {
-  background-color: #f2f9fe;
-  padding: 10px;
+	background-color: #f2f9fe;
+	padding: 10px;
+	overflow-y: scroll;
+	max-height: 100vh;
 }
