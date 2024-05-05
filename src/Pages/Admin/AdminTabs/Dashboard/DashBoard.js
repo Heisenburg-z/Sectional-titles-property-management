@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import SignUpForm from "../../../SignUP/SignUpForm";
 
 function DashBoard() {
   return (
     <section>
-     <h1>Admin DashBoard</h1> 
+      <SignUpForm />
     </section>
-  )
+  );
 }
 
-export default DashBoard
+export default DashBoard;
