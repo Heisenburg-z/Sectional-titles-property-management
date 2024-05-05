@@ -34,7 +34,7 @@ function LoginForm() {
 
 						// Navigate based on user's role
 
-						auth20.login(userData.name, user.uid);
+						auth20.login(userData.name, user.uid, userRole.toLowerCase());
 
 						switch (userRole) {
 							case "Admin":

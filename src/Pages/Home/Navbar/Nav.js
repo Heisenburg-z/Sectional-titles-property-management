@@ -26,7 +26,7 @@ function Nav() {
               </li>
             ) : (
               <li className="nav-link">
-                <NavLink className="anchor-link" to="admin/dashboard">
+                <NavLink className="anchor-link" to={`${auth.userRole}/dashboard`}>
                   {auth.user}
                 </NavLink>
               </li>
