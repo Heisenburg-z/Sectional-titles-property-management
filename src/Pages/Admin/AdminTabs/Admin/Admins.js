@@ -36,7 +36,6 @@ function Admins() {
 						<th>Email</th>
 						<th>Address</th>
 						<th>Cellno</th>
-						<th>Action</th>
 					</tr>
 				</thead>
 
