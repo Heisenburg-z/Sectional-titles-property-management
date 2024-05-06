@@ -1,17 +1,18 @@
 import React from 'react'
 import './ResidentsResports.css';
-import { Outlet} from "react-router-dom";
+import { Outlet, useNavigate} from "react-router-dom";
 
 
 function ResidentsReports() {
+  const navigate = useNavigate();
   return (
     <section className="area">
      <section className="buttons">
-      <button>Maintenance</button>
-      <button>Fines</button>
-      <button>Issues</button>
+      <button onClick={()=> navigate(`/resident/reports/maintenance`)}>Maintenance</button>
+      <button onClick={()=> navigate(`/resident/reports/fines`)}>Fines</button>
+      <button onClick={()=> navigate(`/resident/reports/issues`)}>Issues</button>
      </section>
-     <br /><br />
+     <br />
      <Outlet/>
     </section>
   )
