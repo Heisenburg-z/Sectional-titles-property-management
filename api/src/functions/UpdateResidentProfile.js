@@ -11,7 +11,7 @@ const db = admin.firestore();
 
 app.http("updateResidentProfile", {
 	route: "property/resident/profile/{id}",
-	methods: ["POST"],
+	methods: ["PUT"],
 	authLevel: "anonymous",
 	handler: async (request, context) => {
 		const uid = request.params.id;
