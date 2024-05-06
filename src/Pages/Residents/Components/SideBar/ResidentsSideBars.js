@@ -5,7 +5,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
-import { FaExclamationCircle, FaRegEdit } from "react-icons/fa";
+import { FaExclamationCircle, FaRegEdit, FaRegAddressCard } from "react-icons/fa";
 
 function ResidentsSideBar({ className }) {
 	const auth = useAuth();
@@ -69,7 +69,16 @@ function ResidentsSideBar({ className }) {
 						</span>
 					</NavLink>
 				</li>
+				<li className="sidebar-link-li">
+					<NavLink className="sidebar-link" to="vistors">
+						<span className="icon-text">
+							<FaRegAddressCard size="1.5em" />
+							<p className="item-padding">Visitations</p>
+						</span>
+					</NavLink>
+				</li>
 			</ul>
+
 			<footer className="sidebar-footer">
 				<ul className="sidebar-footer-li-container">
 					<li className="sidebar-link-li__image">

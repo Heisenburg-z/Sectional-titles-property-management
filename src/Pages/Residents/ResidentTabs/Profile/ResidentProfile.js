@@ -129,7 +129,7 @@ function ResidentProfile() {
                   <span onClick={handleCellphoneClick}>{profile.cellPhone}</span>
                 )}
                 {editCellphone && (
-                  <button onClick={handleCellphoneUpdate}>Update</button>
+                  <button id="updateButton" onClick={handleCellphoneUpdate}>Update</button>
                 )}
               </label>
             </article>
@@ -146,7 +146,7 @@ function ResidentProfile() {
                   <span onClick={handleEmailClick}>{profile.email}</span>
                 )}
                 {editEmail && (
-                  <button onClick={handleEmailUpdate}>Update</button>
+                  <button  id="updateButton" onClick={handleEmailUpdate}>Update</button>
                 )}
               </label>
             </article>
