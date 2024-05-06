@@ -7,7 +7,7 @@ function StaffProfile() {
 	const [profile, setProfile] = useState(null);
 
 	useEffect(() => {
-		fetch(`http://localhost:7071/api/property/staff/profile/${id}`)
+		fetch(`/api/property/staff/profile/${id}`)
 			.then((response) => {
 				return response.json();
 			})
