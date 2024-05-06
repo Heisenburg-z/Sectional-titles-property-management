@@ -4,6 +4,7 @@ import "./ResidentProfile.css"; // Import CSS file
 
 function ResidentProfile() {
   const id = useAuth().profileId;
+  const [isReLoading, setIsReLoading] = useState(true);
   const [profile, setProfile] = useState(null);
   const [editEmail, setEditEmail] = useState(false);
   const [editCellphone, setEditCellphone] = useState(false);
@@ -18,7 +19,7 @@ function ResidentProfile() {
       .then((data) => {
         setProfile(data);
       });
-  }, [id]);
+  }, [id, isReLoading]);
 
   const handleEmailClick = () => {
     setEditEmail(true);
@@ -43,14 +44,13 @@ function ResidentProfile() {
       const response = await fetch(`/api/property/resident/profile/${id}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: newEmail
-
-        })
+          email: newEmail,
+        }),
       });
-      console.log(JSON.stringify({email: newEmail}));
+      console.log(JSON.stringify({ email: newEmail }));
       if (response.ok) {
         setEditEmail(false);
         // Assuming you want to update the profile displayed after successful update
@@ -62,6 +62,7 @@ function ResidentProfile() {
     } catch (error) {
       console.error("Error updating email:", error);
     }
+    setIsReLoading(!isReLoading);
   };
 
   const handleCellphoneUpdate = async () => {
@@ -69,13 +70,13 @@ function ResidentProfile() {
       const response = await fetch(`/api/property/resident/profile/${id}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          cellPhone: newCellphone
-        })
+          cellPhone: newCellphone,
+        }),
       });
-      console.log(JSON.stringify({cellPhone: newCellphone}));
+      console.log(JSON.stringify({ cellPhone: newCellphone }));
       if (response.ok) {
         setEditCellphone(false);
         // Assuming you want to update the profile displayed after successful update
@@ -87,8 +88,8 @@ function ResidentProfile() {
     } catch (error) {
       console.error("Error updating cellphone:", error);
     }
+    setIsReLoading(!isReLoading);
   };
-
 
   return (
     <>
@@ -126,10 +127,14 @@ function ResidentProfile() {
                     onChange={handleCellphoneChange}
                   />
                 ) : (
-                  <span onClick={handleCellphoneClick}>{profile.cellPhone}</span>
+                  <span onClick={handleCellphoneClick}>
+                    {profile.cellPhone}
+                  </span>
                 )}
                 {editCellphone && (
-                  <button id="updateButton" onClick={handleCellphoneUpdate}>Update</button>
+                  <button id="updateButton" onClick={handleCellphoneUpdate}>
+                    Update
+                  </button>
                 )}
               </label>
             </article>
@@ -146,7 +151,9 @@ function ResidentProfile() {
                   <span onClick={handleEmailClick}>{profile.email}</span>
                 )}
                 {editEmail && (
-                  <button  id="updateButton" onClick={handleEmailUpdate}>Update</button>
+                  <button id="updateButton" onClick={handleEmailUpdate}>
+                    Update
+                  </button>
                 )}
               </label>
             </article>
@@ -158,3 +165,4 @@ function ResidentProfile() {
 }
 
 export default ResidentProfile;
+
