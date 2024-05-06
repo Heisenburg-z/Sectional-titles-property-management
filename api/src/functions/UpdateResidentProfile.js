@@ -11,11 +11,13 @@ const db = admin.firestore();
 
 app.http("updateResidentProfile", {
 	route: "property/resident/profile/{id}",
-	methods: ["PUT"],
+	methods: ["POST"],
 	authLevel: "anonymous",
 	handler: async (request, context) => {
 		const uid = request.params.id;
 		const newData = request.body; // Assuming you send the updated data in the request body
+
+		console.log(newData);
 
 		try {
 			const cityRef = db.collection("accounts").doc(uid);
