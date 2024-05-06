@@ -7,14 +7,16 @@ import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyAO0D17Cd9ZS5QkTkSRU4k6f6WlSkd1nP8",
-	authDomain: "property-management-2c762.firebaseapp.com",
-	projectId: "property-management-2c762",
-	storageBucket: "property-management-2c762.appspot.com",
-	messagingSenderId: "814653970961",
-	appId: "1:814653970961:web:99e215186d724cac162fb0",
+  apiKey: "AIzaSyAMx6xx4wiX_K7AQ_IB9l0H_zDPWGTzqwA",
+  authDomain: "sectional-titles-property.firebaseapp.com",
+  projectId: "sectional-titles-property",
+  storageBucket: "sectional-titles-property.appspot.com",
+  messagingSenderId: "1018382361851",
+  appId: "1:1018382361851:web:c3c7c0411eccee75137c5e"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

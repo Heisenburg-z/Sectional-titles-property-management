@@ -1,6 +1,6 @@
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.{js,jsx}"],
+  collectCoverageFrom: ["src/Pages/**/*.{js,jsx}"],
   coverageDirectory: "coverage",
   testEnvironment: "jsdom",
 };

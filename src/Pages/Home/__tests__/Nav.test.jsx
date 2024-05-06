@@ -30,4 +30,15 @@ describe("Renders the Nav", () => {
     const welcomeMessage = screen.getByText(/About Us/i);
     expect(welcomeMessage).toBeInTheDocument();
   });
+  test("renders the login link", () => {
+    render(
+      <BrowserRouter>
+        <AuthProvider>
+          <Nav />
+        </AuthProvider>
+      </BrowserRouter>,
+    );
+    const welcomeMessage = screen.getByText(/login/i);
+    expect(welcomeMessage).toBeInTheDocument();
+  });
 });
