@@ -47,8 +47,10 @@ function ResidentProfile() {
         },
         body: JSON.stringify({
           email: newEmail
+
         })
       });
+      console.log(JSON.stringify({email: newEmail}));
       if (response.ok) {
         setEditEmail(false);
         // Assuming you want to update the profile displayed after successful update
@@ -61,7 +63,7 @@ function ResidentProfile() {
       console.error("Error updating email:", error);
     }
   };
-  
+
   const handleCellphoneUpdate = async () => {
     try {
       const response = await fetch(`/api/property/resident/profile/${id}`, {
@@ -73,6 +75,7 @@ function ResidentProfile() {
           cellPhone: newCellphone
         })
       });
+      console.log(JSON.stringify({cellPhone: newCellphone}));
       if (response.ok) {
         setEditCellphone(false);
         // Assuming you want to update the profile displayed after successful update
@@ -85,7 +88,7 @@ function ResidentProfile() {
       console.error("Error updating cellphone:", error);
     }
   };
-  
+
 
   return (
     <>
