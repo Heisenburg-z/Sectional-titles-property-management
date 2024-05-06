@@ -30,4 +30,18 @@
   span {
     color: #333;
   }
+  button{
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: #00a1f1;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    background-image: none;
+  }
   
+  button:hover {
+    background-color: #258fff;
+  }

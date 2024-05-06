@@ -31,7 +31,8 @@ section {
   
   button {
     display: block;
-    width: 100%;
+    width: 20px;
+    height: 5px;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
