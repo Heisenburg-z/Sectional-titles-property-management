@@ -75,7 +75,7 @@ function ResidentProfile() {
           cellPhone: newCellphone
         })
       });
-      console.log(JSON.stringify({cellPhone: newCe}));
+      console.log(JSON.stringify({cellPhone: newCellphone}));
       if (response.ok) {
         setEditCellphone(false);
         // Assuming you want to update the profile displayed after successful update
