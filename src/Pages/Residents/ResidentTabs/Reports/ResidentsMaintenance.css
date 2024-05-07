@@ -28,7 +28,7 @@
   }
   select.input-field {
     /*appearance: none;*/
-    width: 80%;
+    width: 100%;
   }
   button[type="submit"] {
     width: 100%;
