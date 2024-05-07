@@ -1,13 +1,6 @@
 const db = require('./firebaseDB');
 const { app } = require("@azure/functions");
-// const admin = require("firebase-admin");
-// const serviceAccount = require("./serviceKey.json");
 
-// admin.initializeApp({
-// 	credential: admin.credential.cert(serviceAccount),
-// }, "getResidentProfile");
-
-// const db = admin.firestore();
 
 app.http("getResidentProfile", {
 	route: "property/resident/profile/{id}",
