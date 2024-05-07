@@ -1,4 +1,3 @@
-const { collection, addDoc } = require('firebase/firestore');
 const db = require('./firebaseDB');
 const { app } = require('@azure/functions');
 
