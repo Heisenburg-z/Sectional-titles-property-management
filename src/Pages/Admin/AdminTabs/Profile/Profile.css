@@ -1,33 +1,47 @@
 .profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #0d93e7;
-    border-radius: 5px;
-  }
-  
-  .profile-heading {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .profile-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-  }
-  
-  .detail {
-    display: flex;
-    align-items: center;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  
-  span {
-    color: #333;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #0d93e7;
+  border-radius: 5px;
+}
+
+.profile-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+span {
+  color: #333;
+}
+#updateButton {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: #00a1f1;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  background-image: none;
+}
+
+#updateButton:hover {
+  background-color: #258fff;
+}

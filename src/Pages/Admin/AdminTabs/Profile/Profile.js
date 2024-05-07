@@ -1,72 +1,167 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../../utils/auth";
-import "./Profile.css";
+import "./Profile.css"; // Import CSS file
 
 function Profile() {
-	const id = useAuth().profileId;
-	const [profile, setProfile] = useState(null);
+  const id = useAuth().profileId;
+  const [isReLoading, setIsReLoading] = useState(true);
+  const [profile, setProfile] = useState(null);
+  const [editEmail, setEditEmail] = useState(false);
+  const [editCellphone, setEditCellphone] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [newCellphone, setNewCellphone] = useState("");
 
-	useEffect(() => {
-		fetch(`/api/property/admin/profile/${id}`)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				// console.log(data);  16a7361594710c85a7b9df27dc6357223dffdc23git
-				setProfile(data);
-			});
-	}, [id]);
+  useEffect(() => {
+    fetch(`/api/property/admin/profile/${id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setProfile(data);
+      });
+  }, [id, isReLoading]);
 
-	return (
-		<>
-		{profile && (
-			 <section className="profile-container">
-	 <h1 className="profile-heading">Admin Profile</h1>
-	 <section className="profile-details">
-	   <article className="detail">
-		 <label>Name:</label>
-		 <span>{profile.name}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Surname:</label>
-		 <span>{profile.surName}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Roles:</label>
-		 <span>{profile.roles}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Username:</label>
-		 <span>{profile.userName}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Address:</label>
-		 <span>{profile.userAddress}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Cell Phone:</label>
-		 <span>{profile.cellPhone}</span>
-	   </article>
-	   <article className="detail">
-		 <label>Email:</label>
-		 <span>{profile.email}</span>
-	   </article>
-	 </section>
-   </section>
+  const handleEmailClick = () => {
+    setEditEmail(true);
+    setNewEmail(profile.email);
+  };
 
-		)}
-	</>
-	);
+  const handleCellphoneClick = () => {
+    setEditCellphone(true);
+    setNewCellphone(profile.cellPhone);
+  };
+
+  const handleEmailChange = (e) => {
+    setNewEmail(e.target.value);
+  };
+
+  const handleCellphoneChange = (e) => {
+    setNewCellphone(e.target.value);
+  };
+
+  const handleEmailUpdate = async () => {
+    try {
+      const response = await fetch(`/api/property/admin/profile/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: newEmail,
+        }),
+      });
+      console.log(JSON.stringify({ email: newEmail }));
+      if (response.ok) {
+        setEditEmail(false);
+        // Assuming you want to update the profile displayed after successful update
+        const updatedProfile = await response.json();
+        setProfile(updatedProfile);
+      } else {
+        console.error("Failed to update email:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating email:", error);
+    }
+    setIsReLoading(!isReLoading);
+  };
+
+  const handleCellphoneUpdate = async () => {
+    try {
+      const response = await fetch(`/api/property/admin/profile/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cellPhone: newCellphone,
+        }),
+      });
+      console.log(JSON.stringify({ cellPhone: newCellphone }));
+      if (response.ok) {
+        setEditCellphone(false);
+        // Assuming you want to update the profile displayed after successful update
+        const updatedProfile = await response.json();
+        setProfile(updatedProfile);
+      } else {
+        console.error("Failed to update cellphone:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating cellphone:", error);
+    }
+    setIsReLoading(!isReLoading);
+  };
+
+  return (
+    <>
+      {profile && (
+        <section className="profile-container">
+          <h1 className="profile-heading">Resident Profile</h1>
+          <section className="profile-details">
+            <article className="detail">
+              <label>Name:</label>
+              <span>{profile.name}</span>
+            </article>
+            <article className="detail">
+              <label>Surname:</label>
+              <span>{profile.surName}</span>
+            </article>
+            <article className="detail">
+              <label>Roles:</label>
+              <span>{profile.roles}</span>
+            </article>
+            <article className="detail">
+              <label>Username:</label>
+              <span>{profile.userName}</span>
+            </article>
+            <article className="detail">
+              <label>Address:</label>
+              <span>{profile.userAddress}</span>
+            </article>
+            <article className="detail">
+              <label>
+                Cell Phone:
+                {editCellphone ? (
+                  <input
+                    type="text"
+                    value={newCellphone}
+                    onChange={handleCellphoneChange}
+                  />
+                ) : (
+                  <span onClick={handleCellphoneClick}>
+                    {profile.cellPhone}
+                  </span>
+                )}
+                {editCellphone && (
+                  <button id="updateButton" onClick={handleCellphoneUpdate}>
+                    Update
+                  </button>
+                )}
+              </label>
+            </article>
+            <article className="detail">
+              <label>
+                Email:
+                {editEmail ? (
+                  <input
+                    type="email"
+                    value={newEmail}
+                    onChange={handleEmailChange}
+                  />
+                ) : (
+                  <span onClick={handleEmailClick}>{profile.email}</span>
+                )}
+                {editEmail && (
+                  <button id="updateButton" onClick={handleEmailUpdate}>
+                    Update
+                  </button>
+                )}
+              </label>
+            </article>
+          </section>
+        </section>
+      )}
+    </>
+  );
 }
 
 export default Profile;
-
-// {
-//   "userAddress": "asdlfja;slkdfj;als",
-//   "surName": "Yun",
-//   "roles": "Resident",
-//   "name": "Chan",
-//   "userName": "autumn_leaf",
-//   "email": "blessingeleer.school@gmail.com",
-//   "cellPhone": "0070703450345"
-// }
