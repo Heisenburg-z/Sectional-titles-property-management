@@ -25,11 +25,14 @@ import Residents from "./Pages/Admin/AdminTabs/Resident/Residents";
 import Maintenance from "./Pages/Admin/AdminTabs/Maintenance/Maintenance";
 import Admins from "./Pages/Admin/AdminTabs/Admin/Admins";
 import DashBoard from "./Pages/Admin/AdminTabs/Dashboard/DashBoard";
+
 import ResidentsDashBoard from "./Pages/Residents/ResidentTabs/Dashboard/ResidentsDashboard";
 import ResidentsIssues from "./Pages/Residents/ResidentTabs/Reports/ResidentsIssues";
 import ResidentsFines from "./Pages/Residents/ResidentTabs/Reports/ResidentsFines";
-import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Reports/ResidentsMaintenance";
+// import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Reports/ResidentsMaintenance";
+import ResidentMaintenance from "./Pages/Residents/ResidentTabs/Maintenance/ResidentMaintenance";
 import ResidentsReports from "./Pages/Residents/ResidentTabs/Reports/ResidentsReports";
+
 import StaffAllMaintenance from "./Pages/Staff/StaffTabs/AllMaintenanceIssues/StaffAllMaintenance";
 import StaffDashboard from "./Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
 import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
@@ -166,6 +169,14 @@ const router = createBrowserRouter(
 					}
 				/>
 				<Route
+					path="maintenance"
+					element={
+						<RequireAuth>
+							<ResidentMaintenance />
+						</RequireAuth>
+					}
+				/>
+				<Route
 					path="reports"
 					element={
 						<RequireAuth>
@@ -173,14 +184,6 @@ const router = createBrowserRouter(
 						</RequireAuth>
 					}
 				>
-					<Route
-					path="maintenance"
-					element={
-						<RequireAuth>
-							<ResidentsMaintenance />
-						</RequireAuth>
-					}
-				/>
 					<Route
 					path="fines"
 					element={

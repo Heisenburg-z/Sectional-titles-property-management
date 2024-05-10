@@ -1,5 +1,5 @@
 import React, {  useState } from 'react'
-import './ResidentsMaintenance.css';
+
 function ResidentsMaintenance() {
   const [dropdownValue, setDropdownValue] = useState("");
 
@@ -42,13 +42,14 @@ function ResidentsMaintenance() {
     
   };
 
-
-
+  //min-h-screen
 
   return (
-    <section>
-        <form action="" className='form' onSubmit={handleOnSubmit}>
-            <select name="" id="" className='input-field' onChange={handleDropdownChange} value={dropdownValue}>
+    <section className="pt-6 flex items-center justify-center">  
+        <form action="" className="bg-white shadow-md rounded-md p-8 w-2/5 flex flex-col items-center" onSubmit={handleOnSubmit}>
+            <select name="" id="" 
+            className="my-2 px-4 py-2 w-3/4 text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            onChange={handleDropdownChange} value={dropdownValue}>
                 <option value="">Type of Maintenance</option>
                 <option value="Cleaning">Cleaning</option>
                 <option value="Electricity">Electricity</option>
@@ -56,13 +57,20 @@ function ResidentsMaintenance() {
                 <option value="Groundskeeping">Groundskeeping</option>
             </select>
             <label htmlFor="">Room Number:</label>
-            <input type="text" className='input-field' id="" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)}/>
-            <input type="date" className='input-field' value={date} onChange={(e)=> setdate(e.target.value)}/>
+            <input type="text"
+                className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+                id="tt" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)}/>
+            <input type="date" 
+                className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
+                value={date} onChange={(e)=> setdate(e.target.value)}/>
             <label htmlFor="">Description</label>
-            <textarea className='input-field' id="" rows="5" col="40" value={description} 
+            <textarea 
+                className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
+                id="" rows="5" col="40" value={description} 
             onChange={(e)=>setDescription(e.target.value)}></textarea>
-            <button type="submit">Submit</button>
-
+            <button type="submit" 
+                className="w-full px-4 py-3 bg-blue-500 text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-blue-600"  
+            >Submit</button>
         </form>
     </section>
   )

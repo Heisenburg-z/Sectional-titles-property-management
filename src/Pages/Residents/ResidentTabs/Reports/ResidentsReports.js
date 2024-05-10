@@ -8,7 +8,6 @@ function ResidentsReports() {
   return (
     <section className="area">
      <section className="buttons">
-      <button onClick={()=> navigate(`/resident/reports/maintenance`)}>Maintenance</button>
       <button onClick={()=> navigate(`/resident/reports/fines`)}>Fines</button>
       <button onClick={()=> navigate(`/resident/reports/issues`)}>Issues</button>
      </section>

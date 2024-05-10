@@ -19,8 +19,8 @@
 }
 
 
-input[type="text"],
-input[type="password"] {
+.user,
+.password {
   margin: 10px 0px;
   padding-bottom: 10px;
   padding-top: 10px;

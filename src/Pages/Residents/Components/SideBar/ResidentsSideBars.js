@@ -62,7 +62,7 @@ function ResidentsSideBar({ className }) {
 					</NavLink>
 				</li>
 				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="reports/maintenance">
+					<NavLink className="sidebar-link" to="reports/fines">
 						<span className="icon-text">
 							<TbReportSearch size="1.5em" />
 							<p className="item-padding">Reports</p>
