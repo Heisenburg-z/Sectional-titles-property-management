@@ -10,7 +10,7 @@ function Admins() {
   const [admins, setAdmins] = useState([]);
 
   useEffect(() => {
-    fetch(`api/property/admin/admins`)
+    fetch(`/api/property/admin/admins`)
       .then((response) => {
         return response.json();
       })

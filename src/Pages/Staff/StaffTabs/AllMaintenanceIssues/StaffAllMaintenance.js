@@ -7,7 +7,7 @@ function StaffAllMaintenance() {
   const [maintenance, setMaintenance] = useState([]);
 
   useEffect(() => {
-    fetch(`api/property/staff/Maintenance/${id}`)
+    fetch(`/api/property/staff/maintenance/${id}`)
       .then((response) => {
         return response.json();
       })

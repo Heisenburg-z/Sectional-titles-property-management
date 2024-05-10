@@ -9,7 +9,7 @@ function Resident() {
   const [resident, setResident] = useState([]);
 
   useEffect(() => {
-    fetch(`api/property/admin/resident`)
+    fetch(`/api/property/admin/resident`)
       .then((response) => {
         return response.json();
       })
@@ -24,7 +24,7 @@ function Resident() {
   }, [isReLoad]);
 
   const deleteResident = (id) => {
-    fetch(`api/property/admin/resident/delete/${id}`, {
+    fetch(`/api/property/admin/resident/delete/${id}`, {
       method: "POST",
     })
       .then((response) => response.json())

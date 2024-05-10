@@ -9,7 +9,7 @@ function Staff() {
   const [staff, setStaff] = useState([]);
 
   useEffect(() => {
-    fetch(`api/property/admin/staff`)
+    fetch(`/api/property/admin/staff`)
       .then((response) => {
         return response.json();
       })

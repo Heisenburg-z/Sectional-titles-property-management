@@ -4,7 +4,7 @@ function Maintenance() {
   const [maintenance, setMaintenance] = useState([]);
 
   useEffect(() => {
-    fetch(`api/property/staff/allmaintenance`)
+    fetch(`/api/property/admin/allmaintenance`)
       .then((response) => {
         return response.json();
       })
