@@ -31,7 +31,6 @@ import ResidentsFines from "./Pages/Residents/ResidentTabs/Reports/ResidentsFine
 import ResidentsMaintenance from "./Pages/Residents/ResidentTabs/Reports/ResidentsMaintenance";
 import ResidentsReports from "./Pages/Residents/ResidentTabs/Reports/ResidentsReports";
 import StaffAllMaintenance from "./Pages/Staff/StaffTabs/AllMaintenanceIssues/StaffAllMaintenance";
-import AssignedMaintenance from "./Pages/Staff/StaffTabs/AssignMaintenanceIssues/AssignedMaintenance";
 import StaffDashboard from "./Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
 import StaffReports from "./Pages/Staff/StaffTabs/Reports/StaffReports";
 import Profile from "./Pages/Admin/AdminTabs/Profile/Profile";
@@ -222,14 +221,6 @@ const router = createBrowserRouter(
 					element={
 						<RequireAuth>
 							<StaffDashboard />
-						</RequireAuth>
-					}
-				/>
-				<Route
-					path="assignedmaintenanceissues"
-					element={
-						<RequireAuth>
-							<AssignedMaintenance />
 						</RequireAuth>
 					}
 				/>

@@ -1,6 +1,6 @@
 import "./StaffSideBar.css";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaToolbox } from "react-icons/fa6";
+import { FaBars } from "react-icons/fa6";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
@@ -25,14 +25,6 @@ function StaffSideBar({ className }) {
             <span className="icon-text">
               <FaBars size="1.5em" />
               <p className="item-padding">Dashboard</p>
-            </span>
-          </NavLink>
-        </li>
-        <li className="sidebar-link-li">
-          <NavLink className="sidebar-link" to ='assignedmaintenanceissues'>
-            <span className="icon-text">
-              <FaToolbox size="1.5em" />
-              <p className="item-padding">Assigned Maintenance Issues</p>
             </span>
           </NavLink>
         </li>

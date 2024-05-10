@@ -89,10 +89,10 @@ function StaffSignUpForm() {
 					required
 				>
 					<option value="">Select an option</option>
-					<option value="Cleaner">Cleaner</option>
-					<option value="Maintenance">Maintenance</option>
+					<option value="Cleaning">Cleaning</option>
+					<option value="Electricity">Electricity</option>
 					<option value="Security">Security</option>
-                    <option value="Groundskeeper">Groundskeeper</option>
+					<option value="Groundskeeping">Groundskeeping</option>
 				</select>
 
 				<input

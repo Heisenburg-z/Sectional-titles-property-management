@@ -50,9 +50,10 @@ function ResidentsMaintenance() {
         <form action="" className='form' onSubmit={handleOnSubmit}>
             <select name="" id="" className='input-field' onChange={handleDropdownChange} value={dropdownValue}>
                 <option value="">Type of Maintenance</option>
-                <option value="Water">Water</option>
+                <option value="Cleaning">Cleaning</option>
                 <option value="Electricity">Electricity</option>
-                <option value="Furniture">Furniture</option>
+                <option value="Security">Security</option>
+                <option value="Groundskeeping">Groundskeeping</option>
             </select>
             <label htmlFor="">Room Number:</label>
             <input type="text" className='input-field' id="" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)}/>
