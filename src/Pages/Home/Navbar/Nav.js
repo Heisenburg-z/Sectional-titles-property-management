@@ -9,7 +9,7 @@ function Nav() {
     <>
       <header>
         <nav className="navbar">
-          <NavLink to="" className="logo">
+          <NavLink to="" className="logo hover:text-slate-800">
             Logo
           </NavLink>
           <ul className="nav-links-container">
@@ -26,7 +26,10 @@ function Nav() {
               </li>
             ) : (
               <li className="nav-link">
-                <NavLink className="anchor-link" to={`${auth.userRole}/dashboard`}>
+                <NavLink
+                  className="anchor-link"
+                  to={`${auth.userRole}/dashboard`}
+                >
                   {auth.user}
                 </NavLink>
               </li>
