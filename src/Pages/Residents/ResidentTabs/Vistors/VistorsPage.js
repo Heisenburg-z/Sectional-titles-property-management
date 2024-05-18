@@ -35,6 +35,27 @@ function VistorsPage() {
 
     return () => unsubscribe();
   }, []);
+
+  const fetchVisitors = async () => {
+    if (residentEmail) {
+      setLoading(true); // Set loading to true before fetching data
+      try {
+        const response = await fetch(`/api/property/resident/allvistorsvisitors?residentEmail=${residentEmail}`);
+        if (response.ok) {
+          const data = await response.json();
+          setVisitors(data);
+        } else {
+          toast.error('Failed to fetch visitors');
+        }
+      } catch (error) {
+        toast.error('Error fetching visitors');
+        console.error('Error fetching visitors:', error);
+      }
+      finally {
+        setLoading(false);
+      }
+    }
+  };
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +92,7 @@ function VistorsPage() {
         setLeaveDate('');
         setResidentName('');
         setResidentEmail('');
+        fetchVisitors();
       }
       
     } catch (error) {
