@@ -103,6 +103,25 @@ function VistorsPage() {
     
   };
 
+  const handleSignOut = async (visitorId) => {
+    try {
+      const response = await fetch(`/api/property/admin/resident/deletevisitor/${visitorId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        toast.success('Visitor signed out successfully!');
+        fetchVisitors();
+      }
+      else {
+        toast.error('Failed to sign out visitor')
+      }
+    } catch (error) {
+      toast.error('Error signing out visitor');
+      console.error('Error signing out visitor:', error);
+    }
+  }
+
   const switchToTableView = () => setView('table');
   const switchToFormView = () => setView('form');
 
@@ -260,6 +279,7 @@ function VistorsPage() {
                     <td className="text-center">{visitor.date}</td>
                     <td className="text-center">
                       <button
+                        onClick={() => handleSignOut(visitor.id)}
                         className="px-1 py-1 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#008cd1]"
                       >
                         Sign Out
