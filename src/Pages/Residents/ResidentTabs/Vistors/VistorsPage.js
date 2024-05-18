@@ -2,8 +2,7 @@ import React, {  useState, useEffect } from 'react'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Oval } from 'react-loader-spinner';
-import auth  from "../../../../utils/firebase";
-import { onAuthStateChanged } from 'firebase/auth';
+
 
 function VistorsPage() {
   const [dropdownValue, setDropdownValue] = useState("");
@@ -24,17 +23,55 @@ function VistorsPage() {
   const [visitors, setVisitors] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setResidentEmail(user.email);
-      } else {
-        setResidentEmail('');
+  // Define fetchVisitors function
+  const fetchVisitors = async () => {
+    if (residentEmail) {
+      setLoading(true); // Set loading to true before fetching data
+      try {
+        const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
+        if (response.ok) {
+          const data = await response.json();
+          setVisitors(data);
+        } else {
+          toast.error('Failed to fetch visitors');
+        }
+      } catch (error) {
+        toast.error('Error fetching visitors');
+        console.error('Error fetching visitors:', error);
       }
-    });
+      finally {
+        setLoading(false);
+      }
+    }
+  };
 
-    return () => unsubscribe();
-  }, []);
+  // Fetch visitor data based on residentEmail
+  useEffect(() => {
+    // Define fetchVisitors function
+  const fetchVisitors = async () => {
+    if (residentEmail) {
+      setLoading(true); // Set loading to true before fetching data
+      try {
+        const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
+        if (response.ok) {
+          const data = await response.json();
+          setVisitors(data);
+        } else {
+          toast.error('Failed to fetch visitors');
+        }
+      } catch (error) {
+        toast.error('Error fetching visitors');
+        console.error('Error fetching visitors:', error);
+      }
+      finally {
+        setLoading(false);
+      }
+    }
+  };
+    if (view === 'table') {
+      fetchVisitors();
+    }
+  }, [residentEmail, view]);
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +108,8 @@ function VistorsPage() {
         setLeaveDate('');
         setResidentName('');
         setResidentEmail('');
+         // Reload visitors after adding a new visitor
+         fetchVisitors();
       }
       
     } catch (error) {
@@ -83,34 +122,6 @@ function VistorsPage() {
 
   const switchToTableView = () => setView('table');
   const switchToFormView = () => setView('form');
-
-  // Fetch visitor data based on residentEmail
-  useEffect(() => {
-    const fetchVisitors = async () => {
-      if (residentEmail) {
-        setLoading(true); // Set loading to true before fetching data
-        try {
-          const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
-          if (response.ok) {
-            const data = await response.json();
-            setVisitors(data);
-          } else {
-            toast.error('Failed to fetch visitors');
-          }
-        } catch (error) {
-          toast.error('Error fetching visitors');
-          console.error('Error fetching visitors:', error);
-        }
-        finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    if (view === 'table') {
-      fetchVisitors();
-    }
-  }, [residentEmail, view]);
 
   return (
     <section className="pt-6 flex  flex-col items-center justify-center ">
