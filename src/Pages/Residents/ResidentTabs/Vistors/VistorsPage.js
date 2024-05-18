@@ -2,7 +2,6 @@ import React, {  useState, useEffect } from 'react'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Oval } from 'react-loader-spinner';
-import { reload } from 'firebase/auth';
 
 
 function VistorsPage() {
