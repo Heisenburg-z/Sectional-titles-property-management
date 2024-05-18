@@ -7,6 +7,7 @@ import ResidentsDashBoard from "../Pages/Residents/ResidentTabs/Dashboard/Reside
 import ResidentMaintenance from "../Pages/Residents/ResidentTabs/Maintenance/ResidentMaintenance";
 import ResidentsReports from "../Pages/Residents/ResidentTabs/Reports/ResidentsReports";
 import ResidentProfile from "../Pages/Residents/ResidentTabs/Profile/ResidentProfile";
+import VistorsPage from "../Pages/Residents/ResidentTabs/Vistors/VistorsPage";
 
 const residentRoutes = (
   <Route>
@@ -51,6 +52,14 @@ const residentRoutes = (
         }
       />
     </Route>
+    <Route
+        path="vistors"
+        element={
+          <RequireAuth>
+            <VistorsPage />
+          </RequireAuth>
+        }
+      />
     <Route
       path="profile"
       element={
