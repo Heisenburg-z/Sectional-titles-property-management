@@ -200,7 +200,7 @@ function VistorsPage() {
         </form>
         ) }
         {view === 'table' && (
-        <article className="w-3/5">
+        <>
           {loading ? (
             <section className="flex justify-center items-center h-full">
               <Oval
@@ -248,7 +248,7 @@ function VistorsPage() {
               </tbody>
             </table>
           )}
-        </article>
+        </>
       )}
     </section>
   )
