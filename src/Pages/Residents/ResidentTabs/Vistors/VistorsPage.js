@@ -25,27 +25,6 @@ function VistorsPage() {
 
     // Fetch visitor data based on residentEmail
 
-    const reloadVisitorsTable = async () => {
-      if (residentEmail) {
-        setLoading(true); // Set loading to true before fetching data
-        try {
-          const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
-          if (response.ok) {
-            const data = await response.json();
-            setVisitors(data);
-          } else {
-            toast.error('Failed to fetch visitors');
-          }
-        } catch (error) {
-          toast.error('Error fetching visitors');
-          console.error('Error fetching visitors:', error);
-        }
-        finally {
-          setLoading(false);
-        }
-      }
-    };
-
     useEffect(() => {
       const fetchVisitors = async () => {
         if (residentEmail) {
@@ -109,7 +88,6 @@ function VistorsPage() {
         setResidentName('');
         setResidentEmail('');
          // Reload visitors after adding a new visitor
-         reloadVisitorsTable();
       }
       
     } catch (error) {
