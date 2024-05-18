@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import {toast, ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function Staff() {
@@ -7,6 +9,7 @@ function Staff() {
   const path = location.pathname.split("/")[3];
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
+  const [newRole, setNewRole] = useState("");
 
   useEffect(() => {
     fetch(`/api/property/admin/staff`)
@@ -25,11 +28,35 @@ function Staff() {
       .then((response) => response.json())
       .then(() => {
         console.log("Success");
+        setIsReLoad(!isReLoad);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-    setIsReLoad(!isReLoad);
+  };
+
+  const updateRole = (id) => {
+    fetch(`/api/property/admin/staff/updaterole/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ newRole }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message === "Role updated successfully") {
+          console.log("Role updated successfully");
+          toast.success("Role updated successfully");
+          setIsReLoad(!isReLoad);
+        } else {
+          toast.error("Failed to update role");
+        }
+      })
+      .catch((error) => {
+        toast.error("Error updating role");
+        console.error("Error updating role:", error);
+      });
   };
 
   if (staff.length === 0) {
@@ -52,6 +79,7 @@ function Staff() {
       <Outlet />
     ) : (
       <section className="staff-section">
+        <ToastContainer />
         <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
           <thead className="bg-sky-500 text-white text-left font-bold">
             <tr className="bg-sky-500 text-white text-left font-bold">
@@ -62,6 +90,7 @@ function Staff() {
               <th className="py-3 px-4">Address</th>
               <th className="py-3 px-4">Cellno</th>
               <th className="py-3 px-4">Action</th>
+              <th className="py-3 px-4">Update Role</th>
             </tr>
           </thead>
 
@@ -83,6 +112,23 @@ function Staff() {
                       Remove
                     </button>
                   </span>
+                </td>
+                <td className="py-3 px-4">
+                  <div>
+                    <input
+                      type="text"
+                      value={newRole}
+                      onChange={(e) => setNewRole(e.target.value)}
+                      className="py-2 px-3 border rounded-md"
+                      placeholder="New Role"
+                    />
+                    <button
+                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs ml-2"
+                      onClick={() => updateRole(s.id)}
+                    >
+                      Update Role
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

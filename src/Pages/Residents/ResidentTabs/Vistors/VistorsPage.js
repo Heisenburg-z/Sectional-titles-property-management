@@ -265,7 +265,7 @@ function VistorsPage() {
                   <th className="text-white text-center">Room Visiting</th>
                   <th className="text-white text-center">Visitation Type</th>
                   <th className="text-white text-center">Visitation Period</th>
-                  <th className="text-white text-center">Sign Out Vistor</th>
+                  <th className="text-white text-center">Sign Out Visitor</th>
                 </tr>
               </thead>
               <tbody>
