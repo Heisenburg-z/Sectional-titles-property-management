@@ -90,7 +90,7 @@ function VistorsPage() {
       if (residentEmail) {
         setLoading(true); // Set loading to true before fetching data
         try {
-          const response = await fetch(`http://localhost:7071/api/property/resident/visitors?residentEmail=${residentEmail}`);
+          const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
           if (response.ok) {
             const data = await response.json();
             setVisitors(data);
