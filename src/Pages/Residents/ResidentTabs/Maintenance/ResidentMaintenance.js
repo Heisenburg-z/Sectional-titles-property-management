@@ -14,7 +14,7 @@ function ResidentsMaintenance() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:7071/api/property/resident/maintenance`, {
+      const response = await fetch(`/api/property/resident/maintenance`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

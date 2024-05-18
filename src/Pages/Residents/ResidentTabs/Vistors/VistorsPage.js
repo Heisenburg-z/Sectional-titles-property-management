@@ -22,7 +22,7 @@ function VistorsPage() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:7071/api/property/resident/vistors`, {
+      const response = await fetch(`/api/property/resident/vistors`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
