@@ -9,7 +9,7 @@ function Resident() {
   const [resident, setResident] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:7071/api/property/admin/resident`)
+    fetch(`/api/property/admin/resident`)
       .then((response) => {
         return response.json();
       })
