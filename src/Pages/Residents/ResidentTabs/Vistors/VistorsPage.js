@@ -252,9 +252,9 @@ function VistorsPage() {
               <tbody>
                 {visitors.map((visitor) => (
                   <tr key={visitor.id} className="text-center">
-                    <td className="text-center">{visitor.visitorName}</td>
-                    <td className="text-center">{visitor.visitorSurname}</td>
-                    <td className="text-center">{visitor.visitorEmail}</td>
+                    <td className="text-center">{visitor.vistorName}</td>
+                    <td className="text-center">{visitor.vistorSurname}</td>
+                    <td className="text-center">{visitor.vistorEmail}</td>
                     <td className="text-center">{visitor.roomNumber}</td>
                     <td className="text-center">{visitor.visitationType}</td>
                     <td className="text-center">{visitor.date}</td>
