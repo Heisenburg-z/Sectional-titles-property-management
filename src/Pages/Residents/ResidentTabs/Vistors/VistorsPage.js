@@ -2,7 +2,8 @@ import React, {  useState, useEffect } from 'react'
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Oval } from 'react-loader-spinner';
-
+import auth  from "../../../../utils/firebase";
+import { onAuthStateChanged } from 'firebase/auth';
 
 function VistorsPage() {
   const [dropdownValue, setDropdownValue] = useState("");
@@ -23,34 +24,17 @@ function VistorsPage() {
   const [visitors, setVisitors] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
 
-    // Fetch visitor data based on residentEmail
-
-    useEffect(() => {
-      const fetchVisitors = async () => {
-        if (residentEmail) {
-          setLoading(true); // Set loading to true before fetching data
-          try {
-            const response = await fetch(`/api/property/resident/allvistors?residentEmail=${residentEmail}`);
-            if (response.ok) {
-              const data = await response.json();
-              setVisitors(data);
-            } else {
-              toast.error('Failed to fetch visitors');
-            }
-          } catch (error) {
-            toast.error('Error fetching visitors');
-            console.error('Error fetching visitors:', error);
-          }
-          finally {
-            setLoading(false);
-          }
-        }
-      };
-  
-      if (view === 'table') {
-        fetchVisitors();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setResidentEmail(user.email);
+      } else {
+        setResidentEmail('');
       }
-    }, [residentEmail, view]);
+    });
+
+    return () => unsubscribe();
+  }, []);
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -87,7 +71,6 @@ function VistorsPage() {
         setLeaveDate('');
         setResidentName('');
         setResidentEmail('');
-         // Reload visitors after adding a new visitor
       }
       
     } catch (error) {
@@ -100,6 +83,34 @@ function VistorsPage() {
 
   const switchToTableView = () => setView('table');
   const switchToFormView = () => setView('form');
+
+  // Fetch visitor data based on residentEmail
+  useEffect(() => {
+    const fetchVisitors = async () => {
+      if (residentEmail) {
+        setLoading(true); // Set loading to true before fetching data
+        try {
+          const response = await fetch(`/api/property/resident/visitors?residentEmail=${residentEmail}`);
+          if (response.ok) {
+            const data = await response.json();
+            setVisitors(data);
+          } else {
+            toast.error('Failed to fetch visitors');
+          }
+        } catch (error) {
+          toast.error('Error fetching visitors');
+          console.error('Error fetching visitors:', error);
+        }
+        finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    if (view === 'table') {
+      fetchVisitors();
+    }
+  }, [residentEmail, view]);
 
   return (
     <section className="pt-6 flex  flex-col items-center justify-center ">
@@ -219,9 +230,9 @@ function VistorsPage() {
               <tbody>
                 {visitors.map((visitor) => (
                   <tr key={visitor.id} className="text-center">
-                    <td className="text-center">{visitor.vistorName}</td>
-                    <td className="text-center">{visitor.vistorSurname}</td>
-                    <td className="text-center">{visitor.vistorEmail}</td>
+                    <td className="text-center">{visitor.visitorName}</td>
+                    <td className="text-center">{visitor.visitorSurname}</td>
+                    <td className="text-center">{visitor.visitorEmail}</td>
                     <td className="text-center">{visitor.roomNumber}</td>
                     <td className="text-center">{visitor.visitationType}</td>
                     <td className="text-center">{visitor.date}</td>
