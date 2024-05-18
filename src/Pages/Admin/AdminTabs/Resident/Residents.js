@@ -46,10 +46,11 @@ function Resident() {
     ) : (
       <>
         <h2 className="fetching-error"> No data available </h2>
-        <button 
-          id="bottom-right-button" 
-          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer" 
-          onClick={() => navigate("signupform")}>
+        <button
+          id="bottom-right-button"
+          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
+          onClick={() => navigate("signupform")}
+        >
           + Sign Up
         </button>
       </>
@@ -69,6 +70,7 @@ function Resident() {
               <th className="py-3 px-4">Address</th>
               <th className="py-3 px-4">Cellno</th>
               <th className="py-3 px-4">Action</th>
+              <th className="py-3 px-4">Fines</th>
             </tr>
           </thead>
 
@@ -91,13 +93,23 @@ function Resident() {
                     </button>
                   </span>
                 </td>
+                <td className="py-3 px-4">
+                  <span className="action-btn">
+                    <button
+                      className="py-2 px-3 bg-inherit hover:bg-red-600 text-white font-semibold rounded-md cursor-pointer text-xs"
+                      onClick={() => navigate(`${s.id}/fines`)}
+                    >
+                      fines
+                    </button>
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <button 
-          id="bottom-right-button" 
-          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer" 
+        <button
+          id="bottom-right-button"
+          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer"
           onClick={() => navigate("signupform")}
         >
           + Sign Up

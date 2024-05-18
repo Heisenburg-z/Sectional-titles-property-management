@@ -1,17 +1,20 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { RequireAuth } from "./RequireAuth";
 import Staff from "../Pages/Admin/AdminTabs/Staff/Staff";
 import StaffSignUpForm from "../Pages/Admin/SignUp/StaffSignUp";
 import Fines from "../Pages/Admin/AdminTabs/Fines/Fines";
 import Reports from "../Pages/Admin/AdminTabs/Reports/Reports";
 import AdminSignUpForm from "../Pages/Admin/SignUp/AdminSignUp";
-import Residents from "../Pages/Admin/AdminTabs/Resident/Residents";
 import Profile from "../Pages/Admin/AdminTabs/Profile/Profile";
 import ResidentSignUpForm from "../Pages/Admin/SignUp/ResidentSignUp";
 import DashBoard from "../Pages/Admin/AdminTabs/Dashboard/DashBoard";
 import Maintenance from "../Pages/Admin/AdminTabs/Maintenance/Maintenance";
 import Admins from "../Pages/Admin/AdminTabs/Admin/Admins";
+import FinesUpdateForm from "../Pages/Admin/AdminTabs/Fines/FinesUpdateForm";
+import AdminResidentDashBoard from "../Pages/Admin/AdminTabs/Resident/AdminResidentDashBoard";
+import { RequireAuth } from "./RequireAuth";
+import ResidentSpecificFines from "../Pages/Admin/AdminTabs/Resident/ResidentSpecificFines";
+import NewFine from "../Pages/Admin/AdminTabs/Fines/NewFine";
 
 const adminRoutes = (
   <Route>
@@ -30,7 +33,16 @@ const adminRoutes = (
           <Fines />
         </RequireAuth>
       }
-    />
+    >
+      <Route
+        path="update"
+        element={
+          <RequireAuth>
+            <FinesUpdateForm />
+          </RequireAuth>
+        }
+      />
+    </Route>
     <Route
       path="staff"
       element={
@@ -52,7 +64,7 @@ const adminRoutes = (
       path="residents"
       element={
         <RequireAuth>
-          <Residents />
+          <AdminResidentDashBoard />
         </RequireAuth>
       }
     >
@@ -61,6 +73,22 @@ const adminRoutes = (
         element={
           <RequireAuth>
             <ResidentSignUpForm />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path=":ResidentId/fines"
+        element={
+          <RequireAuth>
+            <ResidentSpecificFines />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path=":ResidentId/fines/new_fine"
+        element={
+          <RequireAuth>
+            <NewFine />
           </RequireAuth>
         }
       />
