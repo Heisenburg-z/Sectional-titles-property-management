@@ -21,6 +21,12 @@ function VistorsPage() {
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
+    if (dropdownValue === '') {
+      toast.error('Please select a visitation type');
+      return;
+    }
+
     try {
       const response = await fetch(`/api/property/resident/vistors`, {
         method: "POST",
@@ -63,7 +69,7 @@ function VistorsPage() {
         <form action="" className="bg-white shadow-md rounded-md p-8 w-2/5 flex flex-col items-center" onSubmit={handleOnSubmit}>
             <select name="" id="" 
             className="my-2 px-4 py-2 w-3/4 text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-            onChange={handleDropdownChange} value={dropdownValue}>
+            onChange={handleDropdownChange} value={dropdownValue} required>
                 <option value="">Type of Visitation</option>
                 <option value="Day Visit">Day Visit</option>
                 <option value="Sleepover">Sleepover</option>
@@ -76,6 +82,7 @@ function VistorsPage() {
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
+              required
             />
             <label>Leave Date:</label>
             <input
@@ -83,6 +90,7 @@ function VistorsPage() {
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
               value={leaveDate}
               onChange={(e) => setLeaveDate(e.target.value)}
+              required
             />
           </>
         ) : (
@@ -93,33 +101,34 @@ function VistorsPage() {
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
               value={date}
               onChange={(e) => setDate(e.target.value)}
+              required
             />
           </>
         )}
             <label htmlFor="">Residents Name:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={residentName} onChange={(e)=> setResidentName(e.target.value)}/>
+                id="tt" value={residentName} onChange={(e)=> setResidentName(e.target.value)} required/>
             <label htmlFor="">Residents Email Address:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={residentEmail} onChange={(e)=> setResidentEmail(e.target.value)}/>
+                id="tt" value={residentEmail} onChange={(e)=> setResidentEmail(e.target.value)} required/>
             <label htmlFor="">Room Number:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)}/>
+                id="tt" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)} required/>
             <label htmlFor="">Vistor Name:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={vistorName} onChange={(e)=> setVistorName(e.target.value)}/>
+                id="tt" value={vistorName} onChange={(e)=> setVistorName(e.target.value)} required/>
             <label htmlFor="">Vistor Surname:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={vistorSurname} onChange={(e)=> setVistorSurname(e.target.value)}/>
+                id="tt" value={vistorSurname} onChange={(e)=> setVistorSurname(e.target.value)} required/>
             <label htmlFor="">Vistor Email Address:</label>
             <input type="text"
                 className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-                id="tt" value={vistorEmail} onChange={(e)=> setVistorEmail(e.target.value)}/>
+                id="tt" value={vistorEmail} onChange={(e)=> setVistorEmail(e.target.value)} required/>
             <button type="submit" 
                 className="w-full px-4 py-3 bg-blue-500 text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-blue-600"  
             >Submit</button>
