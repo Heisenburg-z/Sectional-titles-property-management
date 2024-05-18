@@ -56,7 +56,7 @@ function StaffSignUpForm() {
 			// Add the user's details to Firestore
 			await setDoc(doc(db, "accounts", user.uid), {
 				roles: role,
-                staffRoles: dropdownValue,
+                maintenanceType: dropdownValue,
 				name: name,
                 idNumber: idNumber,
 				surName: surName,
