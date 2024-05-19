@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Resident() {
   const location = useLocation();
@@ -9,7 +11,9 @@ function Resident() {
   const [resident, setResident] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/property/admin/resident`)
+    setTimeout(() => {
+      setIsReLoad(false);
+      fetch(`/api/property/admin/resident`)
       .then((response) => {
         return response.json();
       })
@@ -21,7 +25,9 @@ function Resident() {
         console.error("No data to be fetched");
       });
     // Blessiing:After running the setIsReLoad function, the useEffect function will be triggered.
+    }, 3000)
   }, [isReLoad]);
+
 
   const deleteResident = (id) => {
     fetch(`/api/property/admin/resident/delete/${id}`, {
@@ -31,7 +37,6 @@ function Resident() {
       .then(() => {
         console.log("Success");
 
-        //Fetch again / reload
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -44,22 +49,28 @@ function Resident() {
     return path === "signupform" ? (
       <Outlet />
     ) : (
-      <>
-        <h2 className="fetching-error"> No data available </h2>
-        <button
-          id="bottom-right-button"
-          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
-          onClick={() => navigate("signupform")}
+      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
-          + Sign Up
-        </button>
-      </>
+         <CircularProgress color="inherit" />
+        </Backdrop> ):(
+
+        <>
+          <h2 className="fetching-error"> No data available </h2>
+          <button
+            id="bottom-right-button"
+            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
+            onClick={() => navigate("signupform")}
+          >
+            + Sign Up
+          </button>
+        </>
+      )
     );
   } else {
     return path === "signupform" ? (
       <Outlet />
     ) : (
-      <section className="resident-section">
+      <section className="resident-section" class="pt-2 flex items-center justify-center">
         <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
           <thead className="bg-sky-500 text-white text-left font-bold">
             <tr className="bg-sky-500 text-white text-left font-bold">

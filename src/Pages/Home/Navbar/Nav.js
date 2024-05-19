@@ -2,6 +2,8 @@ import React from "react";
 import "./Nav.css";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../utils/auth";
+import Brand from "../../../images/SCPY_Logo1.png";
+
 function Nav() {
   const auth = useAuth();
 
@@ -9,9 +11,10 @@ function Nav() {
     <>
       <header>
         <nav className="navbar">
-          <NavLink to="" className="logo hover:text-slate-800">
-            Logo
-          </NavLink>
+            <NavLink to="" className="pl-[100px] hover:text-slate-800">
+              <img src={Brand} alt="" style={{ width: '80px', height: '80px' }}/>
+            </NavLink>
+          
           <ul className="nav-links-container">
             <li className="nav-link">
               <NavLink className="anchor-link" to="about">

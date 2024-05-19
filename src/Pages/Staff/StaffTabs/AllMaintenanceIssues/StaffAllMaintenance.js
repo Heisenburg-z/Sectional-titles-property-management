@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from "../../../../utils/auth";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function StaffAllMaintenance() {
   const id = useAuth().profileId;
@@ -7,7 +9,9 @@ function StaffAllMaintenance() {
   const [maintenance, setMaintenance] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/property/staff/maintenance/${id}`)
+    setTimeout(() => {
+      setIsReLoading(false)
+      fetch(`/api/property/staff/maintenance/${id}`)
       .then((response) => {
         return response.json();
       })
@@ -17,6 +21,7 @@ function StaffAllMaintenance() {
       }).catch(() => {
         console.error("No maintenance to be fetched");
       });
+    }, 2000)
   }, [id, isReLoading]);
 
   const handleStatusUpdate = async (docid, taskStatus) => {
@@ -41,11 +46,22 @@ function StaffAllMaintenance() {
 
   if(maintenance.length === 0){
     return (
-      <h2 className="fetching-error"> No data available </h2>
+      isReLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+        >
+         <CircularProgress color="inherit" />
+        </Backdrop> ):(
+
+        <h2 className="fetching-error"> No data available </h2>
+      )
     )
   } else {
     return (
-      <section className="maintenance-section">
+      isReLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+        >
+         <CircularProgress color="inherit" />
+        </Backdrop> ):(
+
+        <section className="pt-2 flex items-center justify-center">
         <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
           <thead className="bg-sky-500 text-white text-left font-bold">
             <tr className="bg-sky-500 text-white text-left font-bold">
@@ -80,9 +96,9 @@ function StaffAllMaintenance() {
             ))}
           </tbody>
         </table>
-      </section>
-    )
-    
+        </section>
+        )
+      )
   }
 }
 

@@ -2,17 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f2f9fe;
+  /* background-color: #f2f9fe; */
   padding: 12px;
-}
-
-.logo {
-  padding-left: 100px;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 42px;
-  color: #00a1f1;
 }
 
 .nav-links-container {

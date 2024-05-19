@@ -5,6 +5,7 @@ import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
 import { FaTools } from "react-icons/fa";
+import Brand from "../../../../images/SCPY_Logo.png";
 
 function StaffSideBar({ className }) {
   const auth = useAuth();
@@ -13,11 +14,9 @@ function StaffSideBar({ className }) {
   };
   return (
     <section className={className}>
-      <ul className="sidebar-title">
-        <li className="sidebar-title-items">Sectional Titles</li>
-        <li className="sidebar-title-items">&</li>
-        <li className="sidebar-title-items">Property Management</li>
-      </ul>
+      <NavLink to="" className="flex items-center justify-center">
+        <img src={Brand} alt="" style={{ width: '120px', height: '120px' }}/>
+      </NavLink>
 
       <ul className="sidebar-links-container">
         <li className="sidebar-link-li">

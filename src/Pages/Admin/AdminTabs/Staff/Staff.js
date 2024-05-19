@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Staff() {
   const location = useLocation();
@@ -12,13 +14,16 @@ function Staff() {
   const [newRole, setNewRole] = useState("");
 
   useEffect(() => {
-    fetch(`/api/property/admin/staff`)
+    setTimeout(() => {
+      setIsReLoad(false);
+      fetch(`/api/property/admin/staff`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setStaff(data);
       });
+    },3000)
   }, [isReLoad]);
 
   const deleteStaff = (id) => {
@@ -28,11 +33,12 @@ function Staff() {
       .then((response) => response.json())
       .then(() => {
         console.log("Success");
-        setIsReLoad(!isReLoad);
+      
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+      setIsReLoad(!isReLoad);
   };
 
   const updateRole = (id) => {
@@ -60,88 +66,100 @@ function Staff() {
   };
 
   if (staff.length === 0) {
-    return path === "staffsignupform" ? (
+    return path === "signupform" ? (
       <Outlet />
     ) : (
-      <>
-        <h2 className="fetching-error"> No data available </h2>
-        <button
-          id="bottom-right-button"
-          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
-          onClick={() => navigate("staffsignupform")}
+      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
-          + Sign Up
-        </button>
-      </>
+         <CircularProgress color="inherit" />
+        </Backdrop> ):(
+
+        <>
+          <h2 className="fetching-error"> No data available </h2>
+          <button
+            id="bottom-right-button"
+            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
+            onClick={() => navigate("signupform")}
+          >
+            + Sign Up
+          </button>
+        </>
+      )
     );
   } else {
     return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      <section className="staff-section">
-        <ToastContainer />
-        <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
-          <thead className="bg-sky-500 text-white text-left font-bold">
-            <tr className="bg-sky-500 text-white text-left font-bold">
-              <th className="py-3 px-4">Name</th>
-              <th className="py-3 px-4">Surname</th>
-              <th className="py-3 px-4">Username</th>
-              <th className="py-3 px-4">Email</th>
-              <th className="py-3 px-4">Address</th>
-              <th className="py-3 px-4">Cellno</th>
-              <th className="py-3 px-4">Action</th>
-              <th className="py-3 px-4">Update Role</th>
-            </tr>
-          </thead>
-
-          <tbody className="border-b border-b-4 border-sky-500">
-            {staff.map((s, i) => (
-              <tr className="border-b even:bg-cyan-100" key={i}>
-                <td className="py-3 px-4">{s.name}</td>
-                <td className="py-3 px-4">{s.surName}</td>
-                <td className="py-3 px-4">{s.userName}</td>
-                <td className="py-3 px-4">{s.email}</td>
-                <td className="py-3 px-4">{s.userAddress}</td>
-                <td className="py-3 px-4">{s.cellPhone}</td>
-                <td className="py-3 px-4">
-                  <span className="action-btn">
-                    <button
-                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
-                      onClick={() => deleteStaff(s.id)}
-                    >
-                      Remove
-                    </button>
-                  </span>
-                </td>
-                <td className="py-3 px-4">
-                  <div>
-                    <input
-                      type="text"
-                      value={newRole}
-                      onChange={(e) => setNewRole(e.target.value)}
-                      className="py-2 px-3 border rounded-md"
-                      placeholder="New Role"
-                    />
-                    <button
-                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs ml-2"
-                      onClick={() => updateRole(s.id)}
-                    >
-                      Update Role
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <button
-          id="bottom-right-button"
-          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer"
-          onClick={() => navigate("staffsignupform")}
+      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
-          + Sign Up
-        </button>
-      </section>
+         <CircularProgress color="inherit" />
+        </Backdrop> ):(
+
+        <section className="staff-section" class="pt-2 flex items-center justify-center">
+          <ToastContainer />
+          <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
+            <thead className="bg-sky-500 text-white text-left font-bold">
+              <tr className="bg-sky-500 text-white text-left font-bold">
+                <th className="py-3 px-4">Name</th>
+                <th className="py-3 px-4">Surname</th>
+                <th className="py-3 px-4">Username</th>
+                <th className="py-3 px-4">Email</th>
+                <th className="py-3 px-4">Address</th>
+                <th className="py-3 px-4">Cellno</th>
+                <th className="py-3 px-4">Action</th>
+                <th className="py-3 px-4">Update Role</th>
+              </tr>
+            </thead>
+
+            <tbody className="border-b border-b-4 border-sky-500">
+              {staff.map((s, i) => (
+                <tr className="border-b even:bg-cyan-100" key={i}>
+                  <td className="py-3 px-4">{s.name}</td>
+                  <td className="py-3 px-4">{s.surName}</td>
+                  <td className="py-3 px-4">{s.userName}</td>
+                  <td className="py-3 px-4">{s.email}</td>
+                  <td className="py-3 px-4">{s.userAddress}</td>
+                  <td className="py-3 px-4">{s.cellPhone}</td>
+                  <td className="py-3 px-4">
+                    <span className="action-btn">
+                      <button
+                        className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
+                        onClick={() => deleteStaff(s.id)}
+                      >
+                        Remove
+                      </button>
+                    </span>
+                  </td>
+                  <td className="py-3 px-4">
+                    <div>
+                      <input
+                        type="text"
+                        value={newRole}
+                        onChange={(e) => setNewRole(e.target.value)}
+                        className="py-2 px-3 border rounded-md"
+                        placeholder="New Role"
+                      />
+                      <button
+                        className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs ml-2"
+                        onClick={() => updateRole(s.id)}
+                      >
+                        Update Role
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button
+            id="bottom-right-button"
+            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer"
+            onClick={() => navigate("staffsignupform")}
+          >
+            + Sign Up
+          </button>
+        </section>
+      )
     );
   }
 }

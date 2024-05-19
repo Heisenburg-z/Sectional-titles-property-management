@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function FinesDashBoard() {
 	const navigate = useNavigate();
 	return (
-		<section className="container ">
+		<section className="container " class="pt-2 flex items-center justify-center">
 			<table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
 				<thead className="bg-sky-500 text-white text-left font-bold">
 					<tr
