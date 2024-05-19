@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import StaffTopNav from "./Components/TopNav/StaffTopNav";
-import StaffMain from "./Components/MainSection/StaffMainSection";
+import StaffTopNav from "./Components/TopNav/StaffTopNav.js";
+import StaffMain from "./Components/MainSection/StaffMainSection.js";
 
 import { BrowserRouter } from 'react-router-dom';
-import StaffSideBar from './Components/SideBar/StaffSideBar';
+import StaffSideBar from './Components/SideBar/StaffSideBar.js';
 import { useAuth } from "../../utils/auth.js";
 
 import StaffPage from './StaffPage.js';
