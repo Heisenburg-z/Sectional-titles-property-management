@@ -1,3 +1,4 @@
+import React from "react";
 import "./StaffSideBar.css";
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
@@ -13,7 +14,7 @@ function StaffSideBar({ className }) {
     auth.logout();
   };
   return (
-    <section className={className}>
+    <section className={className} data-testid="staff-sidebar">
       <NavLink to="" className="flex items-center justify-center">
         <img src={Brand} alt="" style={{ width: '120px', height: '120px' }}/>
       </NavLink>
