@@ -12,10 +12,11 @@ function Staff() {
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
   const [newRole, setNewRole] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReLoad(false);
+      setIsLoading(false);
       fetch(`/api/property/admin/staff`)
       .then((response) => {
         return response.json();
@@ -65,11 +66,12 @@ function Staff() {
       });
   };
 
+
   if (staff.length === 0) {
     return path === "signupform" ? (
       <Outlet />
     ) : (
-      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(
@@ -90,7 +92,7 @@ function Staff() {
     return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(

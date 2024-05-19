@@ -10,31 +10,30 @@ function Admins() {
   const path = location.pathname.split("/")[3];
   const navigate = useNavigate();
   const [admins, setAdmins] = useState([]);
-  const [isReLoad, setIsReLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReLoad(false);
+      setIsLoading(false);
       fetch(`/api/property/admin/admins`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        //console.log(data);
         setAdmins(data);
       })
       .catch(() => {
         console.error("No data to be fetched");
       });
     }, 3000)
-  }, [isReLoad]);
+  }, []);
 
 
   if(admins.length === 0){
     return path === "signupform" ? (
       <Outlet />
     ) : (
-      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(
@@ -56,7 +55,7 @@ function Admins() {
     return path === "signupform" ? (
       <Outlet />
     ) : (
-      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
       >
        <CircularProgress color="inherit" />
       </Backdrop> ):(

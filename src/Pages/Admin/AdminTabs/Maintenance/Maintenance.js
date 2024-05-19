@@ -4,17 +4,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 function Maintenance() {
   const [maintenance, setMaintenance] = useState([]);
-  const [isReLoad, setIsReLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReLoad(false);
+      setIsLoading(false);
       fetch(`/api/property/admin/allmaintenance`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        //console.log(data);
         setMaintenance(data);
       })
       .catch(() => {
@@ -23,9 +22,10 @@ function Maintenance() {
     }, 3000)
   },[]);
 
+
   if(maintenance.length === 0){
     return (
-      isReLoad? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(
@@ -35,7 +35,7 @@ function Maintenance() {
     )
   } else {
     return (
-      isReLoad? (<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? (<Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
       >
        <CircularProgress color="inherit" />
       </Backdrop>):(

@@ -7,10 +7,11 @@ function StaffAllMaintenance() {
   const id = useAuth().profileId;
   const [isReLoading, setIsReLoading] = useState(true);
   const [maintenance, setMaintenance] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReLoading(false)
+      setIsLoading(false)
       fetch(`/api/property/staff/maintenance/${id}`)
       .then((response) => {
         return response.json();
@@ -46,7 +47,7 @@ function StaffAllMaintenance() {
 
   if(maintenance.length === 0){
     return (
-      isReLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(
@@ -56,7 +57,7 @@ function StaffAllMaintenance() {
     )
   } else {
     return (
-      isReLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
         >
          <CircularProgress color="inherit" />
         </Backdrop> ):(
