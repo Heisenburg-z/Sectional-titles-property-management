@@ -16,6 +16,7 @@ function Staff() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
       setIsLoading(false);
       fetch(`/api/property/admin/staff`)
       .then((response) => {
@@ -24,6 +25,7 @@ function Staff() {
       .then((data) => {
         setStaff(data);
       });
+    },3000)
   }, [isReLoad]);
 
   const deleteStaff = (id) => {
