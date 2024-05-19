@@ -68,7 +68,7 @@ function Staff() {
 
 
   if (staff.length === 0) {
-    return path === "signupform" ? (
+    return path === "staffsignupform" ? (
       <Outlet />
     ) : (
       isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
@@ -81,7 +81,7 @@ function Staff() {
           <button
             id="bottom-right-button"
             className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
-            onClick={() => navigate("signupform")}
+            onClick={() => navigate("staffsignupform")}
           >
             + Sign Up
           </button>
