@@ -1,6 +1,6 @@
 name: Run Tests and Upload Coverage
 
-on: push
+on: [push, pull_request]
 
 jobs:
   test:
@@ -9,7 +9,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
+      - name: Set up Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
       - name: Install dependencies
         run: npm install
 
@@ -17,6 +22,6 @@ jobs:
         run: npx jest --coverage
 
       - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_ORG_TOKEN }}
