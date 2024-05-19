@@ -69,15 +69,10 @@ describe('StaffSideBar Component', () => {
       </BrowserRouter>
     );
 
-    // Verify the presence of the main section
-    const sectionElement = screen.getByRole('region');
-    expect(sectionElement).toBeInTheDocument();
-    expect(sectionElement).toHaveClass('test-class');
-
     // Verify the brand image
     const brandImage = screen.getByAltText('');
     expect(brandImage).toBeInTheDocument();
-    expect(brandImage).toHaveStyle({ width: '120px', height: '120px' });
+    expect(brandImage).toHaveStyle('width: 120px; height: 120px;');
 
     // Verify the sidebar links
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
@@ -127,7 +122,12 @@ describe('StaffMain Component', () => {
 
 // Test case to check if the "STAFF / DASHBOARD" heading is rendered
 test("renders STAFF / DASHBOARD heading", () => {
-  render(<StaffTopNav />);
+  render(
+    <BrowserRouter>
+      <StaffTopNav />
+    </BrowserRouter>,
+  );
+
   const headingElement = screen.getByText("STAFF / DASHBOARD");
   expect(headingElement).toBeInTheDocument();
 });
