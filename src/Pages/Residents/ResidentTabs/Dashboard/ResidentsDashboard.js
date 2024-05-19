@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'; // Import useState and useEffect hooks
+import axios from 'axios'; // Import axios for API calls
 import { useAuth } from '../../../../utils/auth'; // Import useAuth hook
 
 function ResidentsDashboard() {
   // State to hold the messages data
   const [messages, setMessages] = useState([]);
+  const [weather, setWeather] = useState(null); // State to hold the weather data
   const id = useAuth().profileId; // Get the profileId using useAuth hook
 
   useEffect(() => {
@@ -26,6 +28,22 @@ function ResidentsDashboard() {
     fetchMessages();
   }, [id]); // Trigger the effect when id changes
 
+  useEffect(() => {
+    // Function to fetch weather data
+    const fetchWeather = async () => {
+      try {
+        const apiKey = 'bc4b2779792a33dc7defab0e8cae5ce8'; 
+        const location = 'Johannesburg';
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
+        setWeather(response.data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchWeather();
+  }, []); // Empty dependency array means this effect runs once after the initial render
+
   return (
     <section className="max-w-3xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-8">Hi, Thapelo Ndlovu</h1> 
@@ -43,7 +61,15 @@ function ResidentsDashboard() {
       {/* Weather Section */}
       <section className="bg-blue-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Weather</h2>
-        <p>Weather Loading...</p>
+        {weather ? (
+          <div>
+            <p>Location: {weather.name}</p>
+            <p>Temperature: {weather.main.temp}°C</p>
+            <p>Weather: {weather.weather[0].description}</p>
+          </div>
+        ) : (
+          <p>Weather Loading...</p>
+        )}
       </section>
 
       {/* Statements Section */}
