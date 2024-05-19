@@ -10,6 +10,7 @@ function ResidentsDashboard() {
     // Function to fetch messages from the server
     const fetchMessages = async () => {
       try {
+        console.log("Profile ID:", id); // Log the profile ID for debugging
         // Fetch messages using the provided API endpoint
         const response = await fetch(`/api/property/resident/dashboard/${id}`);
         if (!response.ok) {
@@ -42,19 +43,19 @@ function ResidentsDashboard() {
       {/* Weather Section */}
       <section className="bg-blue-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Weather</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>Weather Loading...</p>
       </section>
 
       {/* Statements Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Statements</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>Statements loading...</p>
       </section>
 
       {/* Visitors Section */}
       <section className="bg-gray-200 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Visitors</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>Visitors Loading...</p>
       </section>
 
       {/* Add any additional sections here */}
