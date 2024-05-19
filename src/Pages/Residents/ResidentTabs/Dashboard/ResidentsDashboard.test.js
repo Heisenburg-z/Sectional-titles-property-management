@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ResidentsDashBoard from './ResidentsDashboard'; // Assuming the component is in the same directory
+import '@testing-library/jest-dom/extend-expect';
 import { act } from 'react'; // Importing act from react
 
 // Test case to check if the "Residents DashBoard" heading is rendered
