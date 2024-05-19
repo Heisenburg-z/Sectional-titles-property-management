@@ -69,7 +69,6 @@ function Admins() {
       <Outlet />
     ) : (
         <section className="admin-section" class="pt-2 flex items-center justify-center">
-        <ToastContainer />
         <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
           <thead className="bg-sky-500 text-white text-left font-bold">
             <tr className="bg-sky-500 text-white text-left font-bold">
