@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import {toast, ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Oval } from 'react-loader-spinner';
 
 function Staff() {
   const location = useLocation();
@@ -13,19 +12,20 @@ function Staff() {
   const [staff, setStaff] = useState([]);
   const [newRole, setNewRole] = useState("");
   const [editingRowId, setEditingRowId] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      fetch(`/api/property/admin/staff`)
-      .then((response) => {
-        return response.json();
-      })
+    setLoading(true); 
+    fetch(`/api/property/admin/staff`)
+      .then((response) => response.json())
       .then((data) => {
         setStaff(data);
+        setLoading(false); 
+      })
+      .catch((error) => {
+        console.error('Error fetching staff:', error);
+        setLoading(false); 
       });
-    },3000)
   }, [isReLoad]);
 
   const deleteStaff = (id) => {
@@ -40,6 +40,7 @@ function Staff() {
       .catch((error) => {
         console.error("Error:", error);
       });
+
       setIsReLoad(!isReLoad);
   };
 
@@ -68,15 +69,30 @@ function Staff() {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={80}
+          width={80}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
+
 
   if (staff.length === 0) {
     return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
 
         <>
           <h2 className="fetching-error"> No data available </h2>
@@ -88,17 +104,11 @@ function Staff() {
             + Sign Up
           </button>
         </>
-      )
-    );
+      );
   } else {
     return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
-
         <section className="staff-section" class="pt-2 flex items-center justify-center">
           <ToastContainer />
           <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
@@ -181,8 +191,7 @@ function Staff() {
             + Sign Up
           </button>
         </section>
-      )
-    );
+      );
   }
 }
 
