@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function ResidentSpecificFines() {
@@ -6,7 +6,7 @@ function ResidentSpecificFines() {
   const { residentId } = useParams();
   const [residentFines, setResidentFines] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:7071/api/property/resident/fines/${residentId}`)
+    fetch(`/api/property/resident/fines/${residentId}`)
       .then((response) => {
         return response.json();
       })
@@ -17,7 +17,8 @@ function ResidentSpecificFines() {
       .catch((e) => {
         console.error("No data to be fetched", e);
       });
-  }, []);
+  }, [residentId
+  ]);
 
   return (
     <>

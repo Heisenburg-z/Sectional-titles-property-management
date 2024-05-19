@@ -6,7 +6,7 @@ function FinesUpdateForm() {
   const { fineId } = useParams();
   const response = (message) => {
     fetch(
-      `http://localhost:7071/api/property/admin/resident/${fineId}/fine/update`,
+      `/api/property/admin/resident/${fineId}/fine/update`,
       {
         method: "POST",
         headers: {
