@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Resident() {
   const location = useLocation();
@@ -29,7 +29,6 @@ function Resident() {
     }, 3000)
   }, [isReLoad]);
 
-
   const deleteResident = (id) => {
     fetch(`/api/property/admin/resident/delete/${id}`, {
       method: "POST",
@@ -37,7 +36,6 @@ function Resident() {
       .then((response) => response.json())
       .then(() => {
         console.log("Success");
-
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -49,23 +47,25 @@ function Resident() {
   if (resident.length === 0) {
     return path === "signupform" ? (
       <Outlet />
+    ) : isReLoad ? (
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     ) : (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
 
-        <>
-          <h2 className="fetching-error"> No data available </h2>
-          <button
-            id="bottom-right-button"
-            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
-            onClick={() => navigate("signupform")}
-          >
-            + Sign Up
-          </button>
-        </>
-      )
+      <>
+        <h2 className="fetching-error"> No data available </h2>
+        <button
+          id="bottom-right-button"
+          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
+          onClick={() => navigate("signupform")}
+        >
+          + Sign Up
+        </button>
+      </>
     );
   } else {
     return path === "signupform" ? (

@@ -1,4 +1,4 @@
-const db = require('./firebaseDB');
+const db = require('./src/functions/firebaseDB');
 const { app } = require('@azure/functions');
 // const admin = require("firebase-admin");
 // const serviceAccount = require("./serviceKey.json");

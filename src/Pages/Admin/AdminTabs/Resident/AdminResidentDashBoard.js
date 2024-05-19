@@ -10,6 +10,8 @@ const AdminResidentDashBoard = () => {
       return <Outlet />;
     case "new_fine":
       return <Outlet />;
+    case "update":
+      return <Outlet />;
     default:
       return <Resident />;
   }

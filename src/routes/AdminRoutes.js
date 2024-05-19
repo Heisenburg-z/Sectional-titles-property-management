@@ -77,7 +77,7 @@ const adminRoutes = (
         }
       />
       <Route
-        path=":ResidentId/fines"
+        path=":residentId/fines"
         element={
           <RequireAuth>
             <ResidentSpecificFines />
@@ -85,7 +85,15 @@ const adminRoutes = (
         }
       />
       <Route
-        path=":ResidentId/fines/new_fine"
+        path=":residentId/fines/:fineId/update"
+        element={
+          <RequireAuth>
+            <FinesUpdateForm />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path=":residentId/fines/new_fine"
         element={
           <RequireAuth>
             <NewFine />
