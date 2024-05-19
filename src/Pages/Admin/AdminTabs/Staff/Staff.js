@@ -12,6 +12,7 @@ function Staff() {
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
   const [newRole, setNewRole] = useState("");
+  const [editingRowId, setEditingRowId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ function Staff() {
           console.log("Role updated successfully");
           toast.success("Role updated successfully");
           setIsReLoad(!isReLoad);
+          setEditingRowId(null);
         } else {
           toast.error("Failed to update role");
         }
@@ -133,6 +135,7 @@ function Staff() {
                     </span>
                   </td>
                   <td className="py-3 px-4">
+                  {editingRowId === s.id ? (
                     <div>
                       <input
                         type="text"
@@ -147,8 +150,25 @@ function Staff() {
                       >
                         Update Role
                       </button>
+                      <button
+                        className="py-2 px-3 bg-red-500 text-white font-semibold rounded-md cursor-pointer text-xs ml-2"
+                        onClick={() => setEditingRowId(null)}
+                      >
+                        Cancel
+                      </button>
                     </div>
-                  </td>
+                  ) : (
+                    <button
+                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
+                      onClick={() => {
+                        setEditingRowId(s.id);
+                        setNewRole("");
+                      }}
+                    >
+                      Edit Role
+                    </button>
+                  )}
+                </td>
                 </tr>
               ))}
             </tbody>
