@@ -1,27 +1,52 @@
-import React,{useEffect, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { Oval } from 'react-loader-spinner';
 
 function FinesDashBoard() {
 	const navigate = useNavigate();
 	const [fines, setFines] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+		setLoading(true);
 		fetch(`/api/property/admin/fines/all`)
-			.then((response) => {
-				return response.json();
-			})
+			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				setFines(data);
+				setLoading(false);
 			})
 			.catch((e) => {
 				console.error("No data to be fetched", e);
+				setLoading(false);
 			});
 	}, []);
+
+	const handleUpdateSuccess = () => {
+		toast.success("Fine updated successfully");
+	};
+
 	return (
 		<>
-			<section className="container ">
-				{fines.length === 0 ? (
+			<ToastContainer />
+			<section className="container">
+				{loading ? (
+					<div className="flex justify-center items-center min-h-screen">
+						<Oval
+							height={80}
+							width={80}
+							color="#4fa94d"
+							wrapperStyle={{}}
+							wrapperClass=""
+							visible={true}
+							ariaLabel="oval-loading"
+							secondaryColor="#4fa94d"
+							strokeWidth={2}
+							strokeWidthSecondary={2}
+						/>
+					</div>
+				) : fines.length === 0 ? (
 					<h1>No Fines</h1>
 				) : (
 					<table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
@@ -35,7 +60,7 @@ function FinesDashBoard() {
 								<th className="py-3 px-4">Action</th>
 							</tr>
 						</thead>
-						<tbody className=" border-b-4 border-sky-500">
+						<tbody className="border-b-4 border-sky-500">
 							{fines.map((fine, i) => (
 								<tr className="border-b even:bg-cyan-100" key={i}>
 									<td className="py-3 px-4">{fine.id}</td>
@@ -47,7 +72,7 @@ function FinesDashBoard() {
 										<span className="action-btn">
 											<button
 												onClick={() => {
-													navigate(`${fine.id}/update`);
+													navigate(`${fine.id}/update`, { state: { handleUpdateSuccess } });
 												}}
 												className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
 											>
@@ -74,3 +99,4 @@ function FinesDashBoard() {
 }
 
 export default FinesDashBoard;
+
