@@ -50,7 +50,7 @@ function ResidentsDashboard() {
       {/* Message Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Messages</h2>
-        {/* Display messages */}
+        {/* Display messages. */}
         {messages.map(message => (
           <div key={message.id} className={`p-2 mb-2 ${message.sender === 'Admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
             <p className="font-bold">{message.sender}:</p>
@@ -68,20 +68,20 @@ function ResidentsDashboard() {
             <p>Weather: {weather.weather[0].description}</p>
           </div>
         ) : (
-          <p>Weather Loading...</p>
+          <p>Weather info Loading...</p>
         )}
       </section>
 
       {/* Statements Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Statements</h2>
-        <p>Statements loading...</p>
+        <p>Visit reports tab to see all your Statements.</p>
       </section>
 
       {/* Visitors Section */}
       <section className="bg-gray-200 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Visitors</h2>
-        <p>Visitors Loading...</p>
+        <p>View your visitation history on the visitation tab</p>
       </section>
 
       {/* Add any additional sections here */}
