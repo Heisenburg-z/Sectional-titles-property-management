@@ -2,7 +2,7 @@ import React from 'react'
 
 function ResidentsIssues() {
   return (
-    <div>
+    <div data-testid="empty-div">
       
     </div>
   )

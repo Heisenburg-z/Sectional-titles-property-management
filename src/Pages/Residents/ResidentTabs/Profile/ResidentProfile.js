@@ -13,12 +13,18 @@ function ResidentProfile() {
 
 	useEffect(() => {
 		fetch(`/api/property/resident/profile/${id}`)
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				setProfile(data);
-			});
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProfile(data);
+      })
+      .catch((error) => {
+        throw new Error(error.message);
+      });
 	}, [id, isReLoading]);
 
 	const handleEmailClick = () => {

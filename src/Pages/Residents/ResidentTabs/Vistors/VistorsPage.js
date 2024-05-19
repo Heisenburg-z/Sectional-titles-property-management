@@ -33,8 +33,11 @@ function VistorsPage() {
       }
     });
 
+    // Return a cleanup function to unsubscribe
     return () => unsubscribe();
-  }, []);
+
+    // Add dependencies if needed for your useEffect
+}, []); // Ensure this effect runs only once on mount, change dependencies if needed
 
   const fetchVisitors = async () => {
     if (residentEmail) {
@@ -164,6 +167,7 @@ function VistorsPage() {
           Sign In Vistor
         </button>
         <button 
+          data-testid="view-signed-in-visitors-button"
           onClick={switchToTableView} 
           className={`px-4 py-2 ml-2 ${view === 'table' ? 'bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#0080c0db]' : 'bg-gray-300 text-black font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-gray-400'}`}
         >
@@ -211,22 +215,22 @@ function VistorsPage() {
           />
         </>
       )}
-          <label htmlFor="">Residents Name:</label>
+          <label htmlFor="residents-name">Residents Name:</label>
           <input type="text"
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={residentName} onChange={(e)=> setResidentName(e.target.value)} required/>
-          <label htmlFor="">Residents Email Address:</label>
+              id="residents-name" value={residentName} onChange={(e)=> setResidentName(e.target.value)} required/>
+          <label htmlFor="residents-email-address">Residents Email Address:</label>
           <input type="text"
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={residentEmail} onChange={(e)=> setResidentEmail(e.target.value)} required readOnly/>
-          <label htmlFor="">Room Number:</label>
+              id="residents-email-address" value={residentEmail} onChange={(e)=> setResidentEmail(e.target.value)} required readOnly/>
+          <label htmlFor="room-number">Room Number:</label>
           <input type="text"
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)} required/>
-          <label htmlFor="">Vistor Name:</label>
+              id="room-number" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)} required/>
+          <label htmlFor="vistor-name">Vistor Name:</label>
           <input type="text"
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={vistorName} onChange={(e)=> setVistorName(e.target.value)} required/>
+              id="vistor-name" value={vistorName} onChange={(e)=> setVistorName(e.target.value)} required/>
           <label htmlFor="">Vistor Surname:</label>
           <input type="text"
               className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
