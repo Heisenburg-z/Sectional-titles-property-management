@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from 'react'; // Import useState and useEffect hooks
 import axios from 'axios'; // Import axios for API calls
-import { useAuth } from '../../../../utils/auth'; // Import useAuth hook
 
 function ResidentsDashboard() {
   // State to hold the messages data
   const [messages, setMessages] = useState([]);
   const [weather, setWeather] = useState(null); // State to hold the weather data
-  const id = useAuth().profileId; // Get the profileId using useAuth hook
 
   useEffect(() => {
-    // Function to fetch messages from the server
-    const fetchMessages = async () => {
-      try {
-        console.log("Profile ID:", id); // Log the profile ID for debugging
-        // Fetch messages using the provided API endpoint
-        const response = await fetch(`/api/property/resident/dashboard`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch messages: ${response.statusText}`);
-        }
-        const data = await response.json();
-        setMessages(data); // Assuming the response contains messages data
-      } catch (error) {
+    // setLoading(true); 
+    fetch(`/api/property/resident/dashboard`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMessages(data);
+        // setLoading(false); 
+      })
+      .catch((error) => {
         console.error('Error fetching messages:', error);
-      }
-    };
-
-    fetchMessages();
-  }); // Empty dependency array means this effect runs once after the initial render
+        // toast.error('Error fetching messages');
+        // setLoading(false); 
+      });
+  });
 
   useEffect(() => {
     // Function to fetch weather data
@@ -54,9 +47,9 @@ function ResidentsDashboard() {
         {/* Display messages. */}
         {messages.length > 0 ? messages.map((message, index) => (
           <div key={index} className={`p-2 mb-2 ${message.sender === 'admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
-            <p className="font-bold">{message.sender}:</p>
+            <p className="font-bold">{message.sender}</p>
             <p>{message.message}</p>
-            <p className="text-sm text-gray-500">{message.date.seconds}</p>
+            <p className="text-sm text-gray-500">{message.date}</p>
           </div>
         )) : <p>No messages found.</p>}
       </section>
