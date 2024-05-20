@@ -16,7 +16,7 @@ function ResidentsDashboard() {
         // Fetch messages using the provided API endpoint
         const response = await fetch(`/api/property/resident/dashboard/${id}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch messages');
+          throw new Error(`Failed to fetch messages: ${response.statusText}`);
         }
         const data = await response.json();
         setMessages(data); // Assuming the response contains messages data
@@ -35,6 +35,7 @@ function ResidentsDashboard() {
         const apiKey = 'bc4b2779792a33dc7defab0e8cae5ce8'; 
         const location = 'Johannesburg';
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
+        console.log(response.data); // Log weather data for debugging
         setWeather(response.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -51,12 +52,13 @@ function ResidentsDashboard() {
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
         <h2 className="text-xl font-bold mb-2">Messages</h2>
         {/* Display messages. */}
-        {messages.map(message => (
-          <div key={message.id} className={`p-2 mb-2 ${message.sender === 'Admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
+        {messages.length > 0 ? messages.map((message, index) => (
+          <div key={index} className={`p-2 mb-2 ${message.sender === 'admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
             <p className="font-bold">{message.sender}:</p>
-            <p>{message.content}</p>
+            <p>{message.message}</p>
+            <p className="text-sm text-gray-500">{new Date(message.date.seconds * 1000).toLocaleString()}</p>
           </div>
-        ))}
+        )) : <p>No messages found.</p>}
       </section>
       {/* Weather Section */}
       <section className="bg-blue-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
@@ -66,6 +68,12 @@ function ResidentsDashboard() {
             <p>Location: {weather.name}</p>
             <p>Temperature: {weather.main.temp}°C</p>
             <p>Weather: {weather.weather[0].description}</p>
+            <img 
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+              alt={weather.weather[0].description} 
+              className="weather-icon"
+              onError={(e) => console.error("Error loading weather icon", e)} // Log error if image fails to load
+            />
           </div>
         ) : (
           <p>Weather info Loading...</p>
