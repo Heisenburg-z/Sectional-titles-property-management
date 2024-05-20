@@ -26,7 +26,7 @@ function ResidentsDashboard() {
     };
 
     fetchMessages();
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }); // Empty dependency array means this effect runs once after the initial render
 
   useEffect(() => {
     // Function to fetch weather data
