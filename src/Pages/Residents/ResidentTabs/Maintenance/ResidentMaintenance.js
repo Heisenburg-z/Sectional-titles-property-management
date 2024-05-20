@@ -1,5 +1,5 @@
 import React, {  useState } from 'react'
-
+import { useAuth } from "../../../../utils/auth";
 function ResidentsMaintenance() {
   const [dropdownValue, setDropdownValue] = useState("");
 
@@ -9,7 +9,7 @@ function ResidentsMaintenance() {
   const [roomNo, setRoomNo] = useState("");
   const [date, setdate] = useState("");
   const [description, setDescription] = useState("");
-
+  const id = useAuth().profileId;
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ function ResidentsMaintenance() {
           date: date,
           Description: description,
           Status: "Open",
+          userId: id,
         }),
       });
       if(response.ok){
