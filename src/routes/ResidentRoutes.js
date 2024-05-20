@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { RequireAuth } from "./RequireAuth";
-import ResidentsFines from "../Pages/Residents/ResidentTabs/Reports/ResidentsFines";
+import ResidentsFines from "../Pages/Residents/ResidentTabs/Fines/ResidentsFines";
 import ResidentsIssues from "../Pages/Residents/ResidentTabs/Reports/ResidentsIssues";
 import ResidentsDashBoard from "../Pages/Residents/ResidentTabs/Dashboard/ResidentsDashboard";
 import ResidentMaintenance from "../Pages/Residents/ResidentTabs/Maintenance/ResidentMaintenance";
@@ -34,7 +34,7 @@ const residentRoutes = (
           <ResidentsReports />
         </RequireAuth>
       }
-    >
+    />
       <Route
         path="fines"
         element={
@@ -51,7 +51,7 @@ const residentRoutes = (
           </RequireAuth>
         }
       />
-    </Route>
+    
     <Route
         path="vistors"
         element={
