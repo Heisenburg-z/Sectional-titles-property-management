@@ -157,7 +157,7 @@ function VistorsPage() {
   }, [residentEmail, view]);
 
   return (
-    <section className="pt-6 flex  flex-col items-center justify-center ">
+    <section className="pt-6  w-full flex  flex-col items-center justify-center ">
         <ToastContainer /> 
         <section className="mb-4 flex">
         <button 

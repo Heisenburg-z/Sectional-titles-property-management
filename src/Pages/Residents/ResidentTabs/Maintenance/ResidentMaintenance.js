@@ -46,7 +46,7 @@ function ResidentsMaintenance() {
   //min-h-screen
 
   return (
-    <section className="pt-2 flex items-center justify-center">  
+    <section className="pt-2 w-full flex items-center justify-center">  
         <form action="" className="bg-white shadow-md rounded-md p-8 w-2/5 flex flex-col items-center" onSubmit={handleOnSubmit}>
             <select name="" id="" data-testid="maintenance-dropdown" 
             className="my-2 px-4 py-2 w-3/4 text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
