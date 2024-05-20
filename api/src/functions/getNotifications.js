@@ -3,7 +3,7 @@ const { app } = require("@azure/functions");
 
 
 app.http("getNotifications", {
-	route: "property/resident/profile/{id}",
+	route: "property/resident/dashboard/{id}",
 	methods: ["GET"],
 	authLevel: "anonymous",
 	handler: async (request, context) => {
