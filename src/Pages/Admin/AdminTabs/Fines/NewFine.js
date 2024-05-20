@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function NewFine() {
   const [reason, setReason] = useState("");
@@ -14,7 +14,7 @@ function NewFine() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:7071/api/property/admin/resident/${residentId}/fine/newfine`,
+        `/api/property/admin/resident/${residentId}/fine/newfine`,
         {
           method: "POST",
           headers: {
@@ -96,7 +96,6 @@ function NewFine() {
 }
 
 export default NewFine;
-
 
 //TODO: Fields required
 //Fine Type
