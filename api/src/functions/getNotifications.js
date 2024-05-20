@@ -9,7 +9,7 @@ app.http("getNotifications", {
     try {
       const notificationsRef = db.collection("notifications");
       const snapshot = await notificationsRef.get();
-      const notifications = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const notifications = snapshot.docs.map(doc => doc.data());
 
       return { body: JSON.stringify(notifications) };
     } catch (error) {

@@ -12,6 +12,7 @@ function ResidentsDashboard() {
     // Function to fetch messages from the server
     const fetchMessages = async () => {
       try {
+        console.log("Profile ID:", id); // Log the profile ID for debugging
         // Fetch messages using the provided API endpoint
         const response = await fetch(`/api/property/resident/dashboard`);
         if (!response.ok) {
