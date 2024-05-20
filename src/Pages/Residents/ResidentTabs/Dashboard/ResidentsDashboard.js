@@ -44,7 +44,7 @@ function ResidentsDashboard() {
 
     fetchWeather();
   }, []); // Empty dependency array means this effect runs once after the initial render
-
+//new Date(message.date.seconds * 1000).toLocaleString()
   return (
     <section className="max-w-3xl mx-auto p-4">
       <h1 className="text-3xl font-bold mb-8">Hi, Thapelo Ndlovu</h1> 
@@ -56,7 +56,7 @@ function ResidentsDashboard() {
           <div key={index} className={`p-2 mb-2 ${message.sender === 'admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
             <p className="font-bold">{message.sender}:</p>
             <p>{message.message}</p>
-            <p className="text-sm text-gray-500">{new Date(message.date.seconds * 1000).toLocaleString()}</p>
+            <p className="text-sm text-gray-500">{message.date.seconds}</p>
           </div>
         )) : <p>No messages found.</p>}
       </section>
