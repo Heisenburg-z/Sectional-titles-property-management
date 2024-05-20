@@ -12,9 +12,8 @@ function ResidentsDashboard() {
     // Function to fetch messages from the server
     const fetchMessages = async () => {
       try {
-        console.log("Profile ID:", id); // Log the profile ID for debugging
         // Fetch messages using the provided API endpoint
-        const response = await fetch(`/api/property/resident/dashboard/${id}`);
+        const response = await fetch(`/api/property/resident/dashboard`);
         if (!response.ok) {
           throw new Error(`Failed to fetch messages: ${response.statusText}`);
         }
@@ -26,13 +25,13 @@ function ResidentsDashboard() {
     };
 
     fetchMessages();
-  }, [id]); // Trigger the effect when id changes
+  }, []); // Empty dependency array means this effect runs once after the initial render
 
   useEffect(() => {
     // Function to fetch weather data
     const fetchWeather = async () => {
       try {
-        const apiKey = 'bc4b2779792a33dc7defab0e8cae5ce8'; 
+        const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY'; 
         const location = 'Johannesburg';
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
         console.log(response.data); // Log weather data for debugging

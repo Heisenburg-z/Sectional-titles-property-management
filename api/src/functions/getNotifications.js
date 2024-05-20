@@ -2,19 +2,19 @@ const db = require('./firebaseDB');
 const { app } = require("@azure/functions");
 
 app.http("getNotifications", {
-  route: "property/resident/dashboard/{id}",
+  route: "property/resident/dashboard",
   methods: ["GET"],
   authLevel: "anonymous",
   handler: async (request, context) => {
-    const uid = request.params.id;
+    try {
+      const notificationsRef = db.collection("notifications");
+      const snapshot = await notificationsRef.get();
+      const notifications = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-    console.log(uid);
-    const cityRef = db.collection("notifications").doc(uid);
-    const doc = await cityRef.get();
-    if (doc.exists) {
-      return { body: JSON.stringify([doc.data()]) }; // Returning an array to maintain consistency
-    } else {
-      return { body: JSON.stringify([]) }; // Returning an empty array if no document is found
+      return { body: JSON.stringify(notifications) };
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+      return { status: 500, body: JSON.stringify({ error: 'Failed to fetch notifications' }) };
     }
   }
 });
