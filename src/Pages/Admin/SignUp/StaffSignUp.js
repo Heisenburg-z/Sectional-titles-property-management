@@ -6,11 +6,11 @@ import { setDoc, doc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./ResidentSignUp.css";
+import "./StaffSignUp.css";
 
 const db = getFirestore();
 
-function ResidentSignUpForm() {
+function StaffSignUpForm() {
     const navigate = useNavigate();
     const role = 'Staff';
 
@@ -165,4 +165,4 @@ function ResidentSignUpForm() {
     );
 }
 
-export default ResidentSignUpForm;
+export default StaffSignUpForm;

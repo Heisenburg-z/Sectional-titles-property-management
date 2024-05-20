@@ -12,7 +12,7 @@ const db = getFirestore();
 
 function ResidentSignUpForm() {
     const navigate = useNavigate();
-    const role = 'Resident';
+    const role = 'Staff';
 
     const [userName, setUserName] = useState("");
     const [userAddress, setuserAddress] = useState("");
@@ -25,25 +25,32 @@ function ResidentSignUpForm() {
     const [idNumber, setIdNumber] = useState("");
     const [error, setError] = useState(null);
 
+    // Form submission handler
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
+        // Check if passwords match
         if (password !== confirmPassword) {
             setError("Passwords do not match");
             toast.error("Passwords do not match");
             return;
         }
-
+    
         try {
+            // Create a new user with Firebase Authentication
             const userCredential = await createUserWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
-
+    
+            // Send email verification
             await sendEmailVerification(userCredential.user);
+    
+            // Get user details from the userCredential
             const user = userCredential.user;
-
+    
+            // Add the user's details to Firestore
             await setDoc(doc(db, "accounts", user.uid), {
                 roles: role,
                 name: name,
@@ -54,20 +61,22 @@ function ResidentSignUpForm() {
                 email: email,
                 cellPhone: cellPhone,
             });
-
+    
             toast.success("Account created successfully. Please verify your email.");
             navigate(-1);
         } catch (error) {
+            // Handle any errors that may occur during signup
             console.log(error);
             setError("An error occurred during signup");
             toast.error("An error occurred during signup");
         }
     };
-
+    
     return (
         <section className="formBox">
             <ToastContainer />
             <Form className="form" onSubmit={handleSubmit}>
+                {/* Input fields for form data */}
                 <input
                     type="text"
                     className="input-field"
@@ -137,6 +146,8 @@ function ResidentSignUpForm() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
+
+                {/* Submit button */}
                 {error && <center><p className="error-message" style={{ color: "red" }}>{error}</p></center>}
                 <button type="submit">Create account</button>
             </Form>
