@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+          
       - name: Install dependencies
         run: npm install
 
@@ -19,4 +19,4 @@ jobs:
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+         token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,0 +1,51 @@
+/* Styles for the entire dashboard */
+.residents-dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styles for section headings */
+  .residents-dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .residents-dashboard h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for each section */
+  .residents-dashboard section {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  /* Styles for the content within each section */
+  .residents-dashboard section p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Additional styling for specific sections if needed */
+  .residents-dashboard .admin-messages {
+    background-color: #f2f2f2;
+  }
+  
+  .residents-dashboard .weather {
+    background-color: #e6f7ff;
+  }
+  
+  .residents-dashboard .statements {
+    background-color: #f2f2f2;
+  }
+  
+  .residents-dashboard .visitors {
+    background-color: #e6e6e6;
+  }
+
+  

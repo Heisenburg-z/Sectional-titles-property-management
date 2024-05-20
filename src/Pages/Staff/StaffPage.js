@@ -7,7 +7,7 @@ import StaffMain from './Components/MainSection/StaffMainSection';
 
 function StaffPage() {
   return (
-    <section className="body">
+    <section className="body" data-testid="staff-page-section">
       <StaffTopNav className="header" />
       <StaffSideBar className="sidebar" />
       <StaffMain className="main">

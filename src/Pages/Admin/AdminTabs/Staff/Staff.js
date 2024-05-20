@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {toast, ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Oval } from 'react-loader-spinner';
 
 function Staff() {
   const location = useLocation();
@@ -12,19 +11,21 @@ function Staff() {
   const navigate = useNavigate();
   const [staff, setStaff] = useState([]);
   const [newRole, setNewRole] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [editingRowId, setEditingRowId] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      fetch(`/api/property/admin/staff`)
-      .then((response) => {
-        return response.json();
-      })
+    setLoading(true);
+    fetch(`/api/property/admin/staff`)
+      .then((response) => response.json())
       .then((data) => {
         setStaff(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching staff:', error);
+        setLoading(false);
       });
-    },3000)
   }, [isReLoad]);
 
   const deleteStaff = (id) => {
@@ -33,13 +34,13 @@ function Staff() {
     })
       .then((response) => response.json())
       .then(() => {
-        console.log("Success");
-      
+        toast.success("Staff deleted successfully");
+        setIsReLoad(!isReLoad);
       })
       .catch((error) => {
+        toast.error("Error deleting staff");
         console.error("Error:", error);
       });
-      setIsReLoad(!isReLoad);
   };
 
   const updateRole = (id) => {
@@ -53,9 +54,9 @@ function Staff() {
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "Role updated successfully") {
-          console.log("Role updated successfully");
           toast.success("Role updated successfully");
           setIsReLoad(!isReLoad);
+          setEditingRowId(null);
         } else {
           toast.error("Failed to update role");
         }
@@ -66,73 +67,82 @@ function Staff() {
       });
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={80}
+          width={80}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#4fa94d"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
 
   if (staff.length === 0) {
-    return path === "signupform" ? (
+    return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
+      <>
+        <ToastContainer />
+        <h2 className="fetching-error">No data available</h2>
+        <button
+          id="bottom-right-button"
+          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
+          onClick={() => navigate("staffsignupform")}
         >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
-
-        <>
-          <h2 className="fetching-error"> No data available </h2>
-          <button
-            id="bottom-right-button"
-            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"
-            onClick={() => navigate("signupform")}
-          >
-            + Sign Up
-          </button>
-        </>
-      )
+          + Sign Up
+        </button>
+      </>
     );
   } else {
     return path === "staffsignupform" ? (
       <Outlet />
     ) : (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
+      <section className="staff-section pt-2 flex items-center justify-center">
+        <ToastContainer />
+        <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
+          <thead className="bg-sky-500 text-white text-left font-bold">
+            <tr className="bg-sky-500 text-white text-left font-bold">
+              <th className="py-3 px-4">Name</th>
+              <th className="py-3 px-4">Surname</th>
+              <th className="py-3 px-4">Username</th>
+              <th className="py-3 px-4">Email</th>
+              <th className="py-3 px-4">Address</th>
+              <th className="py-3 px-4">Cellno</th>
+              <th className="py-3 px-4">Action</th>
+              <th className="py-3 px-4">Update Role</th>
+            </tr>
+          </thead>
 
-        <section className="staff-section" class="pt-2 flex items-center justify-center">
-          <ToastContainer />
-          <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
-            <thead className="bg-sky-500 text-white text-left font-bold">
-              <tr className="bg-sky-500 text-white text-left font-bold">
-                <th className="py-3 px-4">Name</th>
-                <th className="py-3 px-4">Surname</th>
-                <th className="py-3 px-4">Username</th>
-                <th className="py-3 px-4">Email</th>
-                <th className="py-3 px-4">Address</th>
-                <th className="py-3 px-4">Cellno</th>
-                <th className="py-3 px-4">Action</th>
-                <th className="py-3 px-4">Update Role</th>
-              </tr>
-            </thead>
-
-            <tbody className="border-b border-b-4 border-sky-500">
-              {staff.map((s, i) => (
-                <tr className="border-b even:bg-cyan-100" key={i}>
-                  <td className="py-3 px-4">{s.name}</td>
-                  <td className="py-3 px-4">{s.surName}</td>
-                  <td className="py-3 px-4">{s.userName}</td>
-                  <td className="py-3 px-4">{s.email}</td>
-                  <td className="py-3 px-4">{s.userAddress}</td>
-                  <td className="py-3 px-4">{s.cellPhone}</td>
-                  <td className="py-3 px-4">
-                    <span className="action-btn">
-                      <button
-                        className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
-                        onClick={() => deleteStaff(s.id)}
-                      >
-                        Remove
-                      </button>
-                    </span>
-                  </td>
-                  <td className="py-3 px-4">
+          <tbody className="border-b border-b-4 border-sky-500">
+            {staff.map((s, i) => (
+              <tr className="border-b even:bg-cyan-100" key={i}>
+                <td className="py-3 px-4">{s.name}</td>
+                <td className="py-3 px-4">{s.surName}</td>
+                <td className="py-3 px-4">{s.userName}</td>
+                <td className="py-3 px-4">{s.email}</td>
+                <td className="py-3 px-4">{s.userAddress}</td>
+                <td className="py-3 px-4">{s.cellPhone}</td>
+                <td className="py-3 px-4">
+                  <span className="action-btn">
+                    <button
+                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
+                      onClick={() => deleteStaff(s.id)}
+                    >
+                      Remove
+                    </button>
+                  </span>
+                </td>
+                <td className="py-3 px-4">
+                  {editingRowId === s.id ? (
                     <div>
                       <input
                         type="text"
@@ -147,21 +157,37 @@ function Staff() {
                       >
                         Update Role
                       </button>
+                      <button
+                        className="py-2 px-3 bg-red-500 text-white font-semibold rounded-md cursor-pointer text-xs ml-2"
+                        onClick={() => setEditingRowId(null)}
+                      >
+                        Cancel
+                      </button>
                     </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button
-            id="bottom-right-button"
-            className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer"
-            onClick={() => navigate("staffsignupform")}
-          >
-            + Sign Up
-          </button>
-        </section>
-      )
+                  ) : (
+                    <button
+                      className="py-2 px-3 bg-sky-500 text-white font-semibold rounded-md cursor-pointer text-xs"
+                      onClick={() => {
+                        setEditingRowId(s.id);
+                        setNewRole("");
+                      }}
+                    >
+                      Edit Role
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button
+          id="bottom-right-button"
+          className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-500 text-white rounded-md shadow-md cursor-pointer"
+          onClick={() => navigate("staffsignupform")}
+        >
+          + Sign Up
+        </button>
+      </section>
     );
   }
 }
