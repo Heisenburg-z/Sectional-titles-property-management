@@ -15,7 +15,7 @@ function SideBar() {
   };
   return (
     <section className="sidebar">
-      <NavLink to="" className="flex items-center justify-center">
+      <NavLink to="dashboard" className="flex items-center justify-center">
         <img src={Brand} alt="" style={{ width: '120px', height: '120px' }}/>
       </NavLink>
 
