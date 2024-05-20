@@ -32,7 +32,7 @@ function ResidentsDashboard() {
     // Function to fetch weather data
     const fetchWeather = async () => {
       try {
-        const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY'; 
+        const apiKey = 'bc4b2779792a33dc7defab0e8cae5ce8'; 
         const location = 'Johannesburg';
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`);
         setWeather(response.data);
