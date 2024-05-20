@@ -1,18 +1,19 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import About from './About'; // Adjust the import path as necessary
 import "@testing-library/jest-dom/extend-expect";
-import About from "./About";
 
-// Test case to check if the "About Us" heading is rendered
-test("renders About Us heading", () => {
+test("renders 'Sectional Titles & Property Management' heading", () => {
   render(<About />);
-  const headingElement = screen.getByText("About Us");
+  const headingElement = screen.getByText(/Sectional Titles & Property Management/i);
   expect(headingElement).toBeInTheDocument();
 });
 
-// Test case to check if the paragraph content is rendered
 test("renders paragraph content", () => {
   render(<About />);
-  const paragraphElement = screen.getByText(/Non in in sint/i);
+  const paragraphElement = screen.getByText(/describes the separate ownership of a unit/i);
   expect(paragraphElement).toBeInTheDocument();
+
+  const multipleOwnersElement = screen.getByText(/multiple owners/i);
+  expect(multipleOwnersElement).toBeInTheDocument();
 });
