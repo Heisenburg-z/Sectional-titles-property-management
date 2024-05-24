@@ -1,5 +1,5 @@
 const { app } = require("@azure/functions");
-const db = require('./firebaseDB');
+const {db} = require('./firebaseDB');
 
 app.http("getStaffProfile", {
   route: "property/staff/profile/{id}",

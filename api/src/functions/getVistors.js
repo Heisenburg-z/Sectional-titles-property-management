@@ -1,4 +1,4 @@
-const db = require('./firebaseDB');
+const {db} = require('./firebaseDB');
 const { app } = require('@azure/functions');
 
 app.http('getVistors', {

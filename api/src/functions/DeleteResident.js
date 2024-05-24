@@ -1,4 +1,4 @@
-const db = require('./firebaseDB');  //use this when creating a new api
+const {db }= require('./firebaseDB');  //use this when creating a new api
 const { app } = require('@azure/functions');
 
 app.http('DeleteResident', {
