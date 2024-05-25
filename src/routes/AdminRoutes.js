@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import Staff from "../Pages/Admin/AdminTabs/Staff/Staff";
 import StaffSignUpForm from "../Pages/Admin/SignUp/StaffSignUp";
 import Fines from "../Pages/Admin/AdminTabs/Fines/Fines";
-import Reports from "../Pages/Admin/AdminTabs/Reports/Reports";
 import AdminSignUpForm from "../Pages/Admin/SignUp/AdminSignUp";
 import Profile from "../Pages/Admin/AdminTabs/Profile/Profile";
 import ResidentSignUpForm from "../Pages/Admin/SignUp/ResidentSignUp";
@@ -18,14 +17,6 @@ import NewFine from "../Pages/Admin/AdminTabs/Fines/NewFine";
 
 const adminRoutes = (
   <Route>
-    <Route
-      path="reports"
-      element={
-        <RequireAuth>
-          <Reports />
-        </RequireAuth>
-      }
-    />
     <Route
       path="fines"
       element={

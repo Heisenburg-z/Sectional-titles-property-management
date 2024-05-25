@@ -68,14 +68,6 @@ function SideBar() {
             </span>
           </NavLink>
         </li>
-        <li className="sidebar-link-li">
-          <NavLink className="sidebar-link" to="reports">
-            <span className="icon-text">
-              <TbReportSearch size="1.5em" />
-              <p className="item-padding">Reports</p>
-            </span>
-          </NavLink>
-        </li>
       </ul>
       <footer className="sidebar-footer">
         <ul className="sidebar-footer-li-container">

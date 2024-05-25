@@ -1,25 +1,21 @@
-import React, {  useState, useEffect } from 'react'
-import {toast, ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useState, useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Oval } from 'react-loader-spinner';
-import auth  from "../../../../utils/firebase";
+import auth from "../../../../utils/firebase";
 import { onAuthStateChanged } from 'firebase/auth';
 
-function VistorsPage() {
+function VisitorsPage() {
   const [dropdownValue, setDropdownValue] = useState("");
-
-  const handleDropdownChange = (e) => {
-		setDropdownValue(e.target.value);
-	};
   const [roomNo, setRoomNo] = useState("");
   const [date, setDate] = useState('');
   const [startDate, setStartDate] = useState('');
   const [leaveDate, setLeaveDate] = useState('');
   const [residentName, setResidentName] = useState("");
   const [residentEmail, setResidentEmail] = useState("");
-  const [vistorEmail, setVistorEmail] = useState("");
-  const [vistorName, setVistorName] = useState("");
-  const [vistorSurname, setVistorSurname] = useState("");
+  const [visitorEmail, setVisitorEmail] = useState("");
+  const [visitorName, setVisitorName] = useState("");
+  const [visitorSurname, setVisitorSurname] = useState("");
   const [view, setView] = useState('form'); // 'form' or 'table'
   const [visitors, setVisitors] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
@@ -33,11 +29,8 @@ function VistorsPage() {
       }
     });
 
-    // Return a cleanup function to unsubscribe
     return () => unsubscribe();
-
-    // Add dependencies if needed for your useEffect
-}, []); // Ensure this effect runs only once on mount, change dependencies if needed
+  }, []);
 
   const fetchVisitors = async () => {
     if (residentEmail) {
@@ -53,13 +46,12 @@ function VistorsPage() {
       } catch (error) {
         toast.error('Error fetching visitors');
         console.error('Error fetching visitors:', error);
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     }
   };
-  
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
@@ -79,31 +71,31 @@ function VistorsPage() {
           roomNumber: roomNo,
           residentName: residentName,
           residentEmail: residentEmail,
-          vistorName: vistorName,
-          vistorSurname: vistorSurname,
-          vistorEmail: vistorEmail,
-          date:  dropdownValue === 'Sleepover' ? `${startDate} to ${leaveDate}` : date,
+          visitorName: visitorName,
+          visitorSurname: visitorSurname,
+          visitorEmail: visitorEmail,
+          date: dropdownValue === 'Sleepover' ? `${startDate} to ${leaveDate}` : date,
         }),
       });
-      if(response.ok){
-        console.log("Request sent" + response);
-        toast.success('Vistor Successfully Signed In!');
+
+      if (response.ok) {
+        toast.success('Visitor Successfully Signed In!');
         setDropdownValue('');
         setRoomNo('');
         setDate('');
         setStartDate('');
         setLeaveDate('');
         setResidentName('');
-        setResidentEmail('');
+        setVisitorName('');
+        setVisitorSurname('');
+        setVisitorEmail('');
         fetchVisitors();
       }
-      
+
     } catch (error) {
-      toast.error("Error Signing In Vistor.");
-      console.error("Error adding maintenance problem:", error);
+      toast.error("Error Signing In Visitor.");
+      console.error("Error adding visitor:", error);
     }
-    
-    
   };
 
   const handleSignOut = async (visitorId) => {
@@ -115,20 +107,18 @@ function VistorsPage() {
       if (response.ok) {
         toast.success('Visitor signed out successfully!');
         fetchVisitors();
-      }
-      else {
-        toast.error('Failed to sign out visitor')
+      } else {
+        toast.error('Failed to sign out visitor');
       }
     } catch (error) {
       toast.error('Error signing out visitor');
       console.error('Error signing out visitor:', error);
     }
-  }
+  };
 
   const switchToTableView = () => setView('table');
   const switchToFormView = () => setView('form');
 
-  // Fetch visitor data based on residentEmail
   useEffect(() => {
     const fetchVisitors = async () => {
       if (residentEmail) {
@@ -144,8 +134,7 @@ function VistorsPage() {
         } catch (error) {
           toast.error('Error fetching visitors');
           console.error('Error fetching visitors:', error);
-        }
-        finally {
+        } finally {
           setLoading(false);
         }
       }
@@ -157,147 +146,187 @@ function VistorsPage() {
   }, [residentEmail, view]);
 
   return (
-    <section className="pt-6  w-full flex  flex-col items-center justify-center ">
-        <ToastContainer /> 
-        <section className="mb-4 flex">
+    <section className="pt-30p w-full flex flex-col items-center justify-center"> {/* Adjusted top padding */}
+      <ToastContainer />
+      <section className="mb-4 flex">
         <button 
           onClick={switchToFormView} 
           className={`px-4 py-2 ${view === 'form' ? 'bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#0080c0db]' : 'bg-gray-300 text-black font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-gray-400'}`}
         >
-          Sign In Vistor
+          Sign In Visitor
         </button>
         <button 
           data-testid="view-signed-in-visitors-button"
           onClick={switchToTableView} 
           className={`px-4 py-2 ml-2 ${view === 'table' ? 'bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#0080c0db]' : 'bg-gray-300 text-black font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-gray-400'}`}
         >
-          View Signed In Vistors
+          View Signed In Visitors
         </button>
       </section>
-        {/* Render form or table based on view state */}
-        { view === 'form' && (
-          <form action="" className="bg-white shadow-md rounded-md p-8 w-2/5 flex flex-col items-center" onSubmit={handleOnSubmit}>
-          <select name="" id="" 
-          className="my-2 px-4 py-2 w-3/4 text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-          onChange={handleDropdownChange} value={dropdownValue} required>
-              <option value="">Type of Visitation</option>
-              <option value="Day Visit">Day Visit</option>
-              <option value="Sleepover">Sleepover</option>
+
+      {view === 'form' && (
+        <form className="bg-white shadow-md rounded-md p-6 w-full max-w-md flex flex-col items-center" onSubmit={handleOnSubmit}>
+          <select 
+            className="my-2 px-4 py-2 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            onChange={(e) => setDropdownValue(e.target.value)} 
+            value={dropdownValue} 
+            required
+          >
+            <option value="">Type of Visitation</option>
+            <option value="Day Visit">Day Visit</option>
+            <option value="Sleepover">Sleepover</option>
           </select>
           {dropdownValue === 'Sleepover' ? (
-        <>
-          <label>Start Date:</label>
-          <input
-            type="date"
-            className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            <>
+              <label className="w-full text-left">Start Date:</label>
+              <input
+                type="date"
+                className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                required
+              />
+              <label className="w-full text-left">Leave Date:</label>
+              <input
+                type="date"
+                className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
+                value={leaveDate}
+                onChange={(e) => setLeaveDate(e.target.value)}
+                required
+              />
+            </>
+          ) : (
+            <>
+              <label className="w-full text-left">Date:</label>
+              <input
+                type="date"
+                className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </>
+          )}
+          <label className="w-full text-left" htmlFor="residents-name">Residents Name:</label>
+          <input 
+            type="text"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="residents-name" 
+            value={residentName} 
+            onChange={(e) => setResidentName(e.target.value)} 
             required
           />
-          <label>Leave Date:</label>
-          <input
-            type="date"
-            className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
-            value={leaveDate}
-            onChange={(e) => setLeaveDate(e.target.value)}
+          <label className="w-full text-left" htmlFor="residents-email-address">Residents Email Address:</label>
+          <input 
+            type="text"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="residents-email-address" 
+            value={residentEmail} 
+            onChange={(e) => setResidentEmail(e.target.value)} 
+            required 
+            readOnly
+          />
+          <label className="w-full text-left" htmlFor="room-number">Room Number:</label>
+          <input 
+            type="text"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="room-number" 
+            value={roomNo} 
+            onChange={(e) => setRoomNo(e.target.value)} 
             required
           />
-        </>
-      ) : (
-        <>
-          <label>Date:</label>
-          <input
-            type="date"
-            className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+          <label className="w-full text-left" htmlFor="visitor-name">Visitor Name:</label>
+          <input 
+            type="text"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="visitor-name" 
+            value={visitorName} 
+            onChange={(e) => setVisitorName(e.target.value)} 
             required
           />
-        </>
-      )}
-          <label htmlFor="residents-name">Residents Name:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="residents-name" value={residentName} onChange={(e)=> setResidentName(e.target.value)} required/>
-          <label htmlFor="residents-email-address">Residents Email Address:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="residents-email-address" value={residentEmail} onChange={(e)=> setResidentEmail(e.target.value)} required readOnly/>
-          <label htmlFor="room-number">Room Number:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="room-number" value={roomNo} onChange={(e)=> setRoomNo(e.target.value)} required/>
-          <label htmlFor="vistor-name">Vistor Name:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="vistor-name" value={vistorName} onChange={(e)=> setVistorName(e.target.value)} required/>
-          <label htmlFor="">Vistor Surname:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={vistorSurname} onChange={(e)=> setVistorSurname(e.target.value)} required/>
-          <label htmlFor="">Vistor Email Address:</label>
-          <input type="text"
-              className="my-2 px-4 py-3 w-full text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
-              id="tt" value={vistorEmail} onChange={(e)=> setVistorEmail(e.target.value)} required/>
-          <button type="submit" 
-              className="w-full px-4 py-3 bg-blue-500 text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-blue-600"  
-          >Submit</button>
+          <label className="w-full text-left" htmlFor="visitor-surname">Visitor Surname:</label>
+          <input 
+            type="text"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="visitor-surname" 
+            value={visitorSurname} 
+            onChange={(e) => setVisitorSurname(e.target.value)} 
+            required
+          />
+          <label className="w-full text-left" htmlFor="visitor-email-address">Visitor Email Address:</label>
+          <input 
+            type="email"
+            className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
+            id="visitor-email-address" 
+            value={visitorEmail} 
+            onChange={(e) => setVisitorEmail(e.target.value)} 
+            required
+          />
+          <button 
+            type="submit" 
+            className="mt-4 px-6 py-2 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-lg transition duration-300 hover:bg-[#0080c0db]"
+          >
+            Submit
+          </button>
         </form>
-        ) }
-        {view === 'table' && (
-        <>
+      )}
+
+      {view === 'table' && (
+        <section className="w-full flex flex-col items-center">
           {loading ? (
-            <section className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center">
               <Oval
-                height={50}
-                width={50}
+                height={80}
+                width={80}
                 color="#00a1f1"
                 visible={true}
                 ariaLabel="oval-loading"
-                secondaryColor="#00a1f1"
+                secondaryColor="#4fa94d"
                 strokeWidth={2}
                 strokeWidthSecondary={2}
               />
-            </section>
+            </div>
           ) : (
-            <table className="resident-table">
-              <thead className="bg-[#00a1f1]">
-                <tr>
-                  <th className="text-white text-center">Name</th>
-                  <th className="text-white text-center">Surname</th>
-                  <th className="text-white text-center">Email</th>
-                  <th className="text-white text-center">Room Visiting</th>
-                  <th className="text-white text-center">Visitation Type</th>
-                  <th className="text-white text-center">Visitation Period</th>
-                  <th className="text-white text-center">Sign Out Visitor</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visitors.map((visitor) => (
-                  <tr key={visitor.id} className="text-center">
-                    <td className="text-center">{visitor.vistorName}</td>
-                    <td className="text-center">{visitor.vistorSurname}</td>
-                    <td className="text-center">{visitor.vistorEmail}</td>
-                    <td className="text-center">{visitor.roomNumber}</td>
-                    <td className="text-center">{visitor.visitationType}</td>
-                    <td className="text-center">{visitor.date}</td>
-                    <td className="text-center">
-                      <button
-                        onClick={() => handleSignOut(visitor.id)}
-                        className="px-1 py-1 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#008cd1]"
-                      >
-                        Sign Out
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <>
+              {visitors.length === 0 ? (
+                <div className="text-gray-500 text-lg mt-4">No visitors signed in</div>
+              ) : (
+                <table className="table-auto w-full max-w-4xl mt-4">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2">Visitor Name</th>
+                      <th className="px-4 py-2">Visitor Surname</th>
+                      <th className="px-4 py-2">Visitor Email</th>
+                      <th className="px-4 py-2">Sign In Date</th>
+                      <th className="px-4 py-2">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visitors.map((visitor) => (
+                      <tr key={visitor.id}>
+                        <td className="border px-4 py-2">{visitor.visitorName}</td>
+                        <td className="border px-4 py-2">{visitor.visitorSurname}</td>
+                        <td className="border px-4 py-2">{visitor.visitorEmail}</td>
+                        <td className="border px-4 py-2">{visitor.date}</td>
+                        <td className="border px-4 py-2">
+                          <button
+                            onClick={() => handleSignOut(visitor.id)}
+                            className="px-4 py-2 bg-red-500 text-white font-bold rounded-md cursor-pointer text-sm transition duration-300 hover:bg-red-600"
+                          >
+                            Sign Out
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </>
           )}
-        </>
+        </section>
       )}
     </section>
-  )
+  );
 }
 
-export default VistorsPage
+export default VisitorsPage;
