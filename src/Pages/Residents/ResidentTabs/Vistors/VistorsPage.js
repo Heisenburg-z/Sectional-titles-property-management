@@ -178,7 +178,7 @@ function VisitorsPage() {
           </select>
           {dropdownValue === 'Sleepover' ? (
             <>
-              <label className="w-full text-left">Start Date:</label>
+              <label className="w-full text-center">Start Date:</label>
               <input
                 type="date"
                 className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
@@ -186,7 +186,7 @@ function VisitorsPage() {
                 onChange={(e) => setStartDate(e.target.value)}
                 required
               />
-              <label className="w-full text-left">Leave Date:</label>
+              <label className="w-full text-center">Leave Date:</label>
               <input
                 type="date"
                 className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
@@ -197,7 +197,7 @@ function VisitorsPage() {
             </>
           ) : (
             <>
-              <label className="w-full text-left">Date:</label>
+              <label className="w-full text-center">Date:</label>
               <input
                 type="date"
                 className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none"
@@ -207,7 +207,7 @@ function VisitorsPage() {
               />
             </>
           )}
-          <label className="w-full text-left" htmlFor="residents-name">Residents Name:</label>
+          <label className="w-full text-center" htmlFor="residents-name">Residents Name:</label>
           <input 
             type="text"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
@@ -216,7 +216,7 @@ function VisitorsPage() {
             onChange={(e) => setResidentName(e.target.value)} 
             required
           />
-          <label className="w-full text-left" htmlFor="residents-email-address">Residents Email Address:</label>
+          <label className="w-full text-center" htmlFor="residents-email-address">Residents Email Address:</label>
           <input 
             type="text"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
@@ -226,7 +226,7 @@ function VisitorsPage() {
             required 
             readOnly
           />
-          <label className="w-full text-left" htmlFor="room-number">Room Number:</label>
+          <label className="w-full text-center" htmlFor="room-number">Room Number:</label>
           <input 
             type="text"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
@@ -235,7 +235,7 @@ function VisitorsPage() {
             onChange={(e) => setRoomNo(e.target.value)} 
             required
           />
-          <label className="w-full text-left" htmlFor="visitor-name">Visitor Name:</label>
+          <label className="w-full text-center" htmlFor="visitor-name">Visitor Name:</label>
           <input 
             type="text"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
@@ -244,7 +244,7 @@ function VisitorsPage() {
             onChange={(e) => setVisitorName(e.target.value)} 
             required
           />
-          <label className="w-full text-left" htmlFor="visitor-surname">Visitor Surname:</label>
+          <label className="w-full text-center" htmlFor="visitor-surname">Visitor Surname:</label>
           <input 
             type="text"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
@@ -253,7 +253,7 @@ function VisitorsPage() {
             onChange={(e) => setVisitorSurname(e.target.value)} 
             required
           />
-          <label className="w-full text-left" htmlFor="visitor-email-address">Visitor Email Address:</label>
+          <label className="w-full text-center" htmlFor="visitor-email-address">Visitor Email Address:</label>
           <input 
             type="email"
             className="my-2 px-4 py-3 w-full text-black border border-gray-300 rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 

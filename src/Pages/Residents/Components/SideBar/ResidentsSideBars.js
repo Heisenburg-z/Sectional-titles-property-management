@@ -5,7 +5,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
-import { FaRegEdit, FaRegAddressCard } from "react-icons/fa";
+import { FaRegAddressCard } from "react-icons/fa";
 import Brand from "../../../../images/SCPY_Logo.png";
 
 function ResidentsSideBar({ className }) {
@@ -25,14 +25,6 @@ function ResidentsSideBar({ className }) {
 						<span className="icon-text">
 							<FaBars size="1.5em" />
 							<p className="item-padding">Dashboard</p>
-						</span>
-					</NavLink>
-				</li>
-				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="issues">
-						<span className="icon-text">
-							<FaRegEdit size="1.5em" />
-							<p className="item-padding">Issues</p>
 						</span>
 					</NavLink>
 				</li>

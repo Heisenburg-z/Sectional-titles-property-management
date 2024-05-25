@@ -1,5 +1,10 @@
 import React, {  useState } from 'react'
 import { useAuth } from "../../../../utils/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
 function ResidentsMaintenance() {
   const [dropdownValue, setDropdownValue] = useState("");
 
@@ -33,11 +38,15 @@ function ResidentsMaintenance() {
         setDropdownValue("");
         setRoomNo("");
         setdate("");
-        setDescription("")
+        setDescription("");
+
+         // Show success toast notification
+        toast.success("Maintenance log submitted successfully!");
       }
       
     } catch (error) {
       console.error("Error adding maintenance problem:", error);
+      toast.error("Error adding maintenance problem.");
     }
 
     
@@ -46,7 +55,8 @@ function ResidentsMaintenance() {
   //min-h-screen
 
   return (
-    <section className="pt-2 w-full flex items-center justify-center">  
+    <section className="pt-2 w-full flex items-center justify-center">
+         <ToastContainer />  
         <form action="" className="bg-white shadow-md rounded-md p-8 w-2/5 flex flex-col items-center" onSubmit={handleOnSubmit}>
             <select name="" id="" data-testid="maintenance-dropdown" 
             className="my-2 px-4 py-2 w-3/4 text-black border border-black rounded-md bg-transparent outline-none transition duration-300 focus:border-blue-500 focus:outline-none" 
