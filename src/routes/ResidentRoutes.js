@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { RequireAuth } from "./RequireAuth";
 import ResidentsFines from "../Pages/Residents/ResidentTabs/Fines/ResidentsFines";
+import ResidentsIssues from "../Pages/Residents/ResidentTabs/Reports/ResidentsIssues";
 import ResidentsDashBoard from "../Pages/Residents/ResidentTabs/Dashboard/ResidentsDashboard";
 import ResidentMaintenance from "../Pages/Residents/ResidentTabs/Maintenance/ResidentMaintenance";
 import ResidentsReports from "../Pages/Residents/ResidentTabs/Reports/ResidentsReports";
@@ -52,6 +53,14 @@ const residentRoutes = (
 				}
 			/>
 		</Route>
+		<Route
+			path="issues"
+			element={
+				<RequireAuth>
+					<ResidentsIssues />
+				</RequireAuth>
+			}
+		/>
 
 		<Route
 			path="vistors"
