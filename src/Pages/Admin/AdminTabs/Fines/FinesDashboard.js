@@ -23,9 +23,9 @@ function FinesDashBoard() {
       });
   }, []);
 
-  const handleUpdateSuccess = () => {
-    toast.success("Fine updated successfully");
-  };
+  //const handleUpdateSuccess = () => {
+  // toast.success("Fine updated successfully");
+  //};
 
   return (
     <>
