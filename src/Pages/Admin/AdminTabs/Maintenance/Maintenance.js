@@ -55,7 +55,7 @@ function Maintenance() {
           <tbody className="border-b border-b-4 border-sky-500">
             {maintenance.map((s, i) => (
               <tr
-                className={`border-b even:bg-cyan-100 ${s.Status === "Closed" ? 'line-through' : ''}`}
+                className={`border-b even:bg-cyan-50 ${s.Status === "Closed" ? 'bg-blue-200' : ''}`}
                 key={i}
               >
                 <td className="py-3 px-4">{s.Description}</td>

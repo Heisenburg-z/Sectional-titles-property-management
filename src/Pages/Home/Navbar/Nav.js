@@ -9,38 +9,42 @@ function Nav() {
 
 	return (
 		<>
-			<header>
+			<header> 
 				<nav className="navbar">
+
 					<NavLink
 						to=""
-						className="  ml-10 rounded-lg hover:bg-sky-400 hover:border hover:border-sky-700"
+						className="pl-[80px] ml-10 rounded-lg"
 					>
 						<img src={Brand} alt="" style={{ width: "80px", height: "80px" }} />
 					</NavLink>
 
-					<ul className="nav-links-container">
-						<li className="nav-link text-sky-400 hover:text-sky-600 hover:underline font-bold">
-							<NavLink className="anchor-link" to="about">
-								About Us
-							</NavLink>
-						</li>
-						{!auth.user ? (
+					<section class="shadow-lg rounded-l-full">
+						<ul className="nav-links-container pr-[50px]">
 							<li className="nav-link text-sky-400 hover:text-sky-600 hover:underline font-bold">
-								<NavLink className="anchor-link" to="login">
-									Login
+								<NavLink className="anchor-link" to="about">
+									About Us
 								</NavLink>
 							</li>
-						) : (
-							<li className="nav-link text-sky-400 hover:text-sky-600 hover:underline font-bold">
-								<NavLink
-									className="anchor-link"
-									to={`${auth.userRole}/dashboard`}
-								>
-									{auth.user}
-								</NavLink>
-							</li>
-						)}
-					</ul>
+							{!auth.user ? (
+								<li className="nav-link text-sky-400 hover:text-sky-600 hover:underline font-bold">
+									<NavLink className="anchor-link" to="login">
+										Login
+									</NavLink>
+								</li>
+							) : (
+								<li className="nav-link text-sky-400 hover:text-sky-600 hover:underline font-bold">
+									<NavLink
+										className="anchor-link"
+										to={`${auth.userRole}/dashboard`}
+									>
+										{auth.user}
+									</NavLink>
+								</li>
+							)}
+						</ul>
+					</section>
+					
 				</nav>
 			</header>
 		</>
