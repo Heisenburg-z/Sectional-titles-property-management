@@ -8,67 +8,77 @@ import ResidentMaintenance from "../Pages/Residents/ResidentTabs/Maintenance/Res
 import ResidentsReports from "../Pages/Residents/ResidentTabs/Reports/ResidentsReports";
 import ResidentProfile from "../Pages/Residents/ResidentTabs/Profile/ResidentProfile";
 import VistorsPage from "../Pages/Residents/ResidentTabs/Vistors/VistorsPage";
+import UploadPaymentForm from "../Pages/Residents/ResidentTabs/Fines/UploadPaymentForm";
 
 const residentRoutes = (
-  <Route>
-    <Route
-      path="dashboard"
-      element={
-        <RequireAuth>
-          <ResidentsDashBoard />
-        </RequireAuth>
-      }
-    />
-    <Route
-      path="maintenance"
-      element={
-        <RequireAuth>
-          <ResidentMaintenance />
-        </RequireAuth>
-      }
-    />
-    <Route
-      path="reports"
-      element={
-        <RequireAuth>
-          <ResidentsReports />
-        </RequireAuth>
-      }
-    />
-      <Route
-        path="fines"
-        element={
-          <RequireAuth>
-            <ResidentsFines />
-          </RequireAuth>
-        }
-      />
-      <Route
-        path="issues"
-        element={
-          <RequireAuth>
-            <ResidentsIssues />
-          </RequireAuth>
-        }
-      />
-    
-    <Route
-        path="vistors"
-        element={
-          <RequireAuth>
-            <VistorsPage />
-          </RequireAuth>
-        }
-      />
-    <Route
-      path="profile"
-      element={
-        <RequireAuth>
-          <ResidentProfile />
-        </RequireAuth>
-      }
-    />
-  </Route>
+	<Route>
+		<Route
+			path="dashboard"
+			element={
+				<RequireAuth>
+					<ResidentsDashBoard />
+				</RequireAuth>
+			}
+		/>
+		<Route
+			path="maintenance"
+			element={
+				<RequireAuth>
+					<ResidentMaintenance />
+				</RequireAuth>
+			}
+		/>
+		<Route
+			path="reports"
+			element={
+				<RequireAuth>
+					<ResidentsReports />
+				</RequireAuth>
+			}
+		/>
+		<Route
+			path="fines"
+			element={
+				<RequireAuth>
+					<ResidentsFines />
+				</RequireAuth>
+			}
+		>
+			<Route
+				path="payment-upload"
+				element={
+					<RequireAuth>
+						<UploadPaymentForm />
+					</RequireAuth>
+				}
+			/>
+		</Route>
+		<Route
+			path="issues"
+			element={
+				<RequireAuth>
+					<ResidentsIssues />
+				</RequireAuth>
+			}
+		/>
+
+		<Route
+			path="vistors"
+			element={
+				<RequireAuth>
+					<VistorsPage />
+				</RequireAuth>
+			}
+		/>
+		<Route
+			path="profile"
+			element={
+				<RequireAuth>
+					<ResidentProfile />
+				</RequireAuth>
+			}
+		/>
+	</Route>
 );
 
 export default residentRoutes;
