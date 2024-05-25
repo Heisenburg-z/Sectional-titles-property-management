@@ -26,6 +26,14 @@ const adminRoutes = (
       }
     >
       <Route
+        path=":fineId/update"
+        element={
+          <RequireAuth>
+            <FinesUpdateForm />
+          </RequireAuth>
+        }
+      />
+      <Route
         path="update"
         element={
           <RequireAuth>
