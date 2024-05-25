@@ -79,12 +79,12 @@ function LoginForm() {
 					<Oval
 						height={100}
 						width={100}
-						color="#4fa94d"
+						color="#00a1f1"
 						wrapperStyle={{}}
 						wrapperClass=""
 						visible={true}
 						ariaLabel="oval-loading"
-						secondaryColor="#4fa94d"
+						secondaryColor="#00a1f1"
 						strokeWidth={2}
 						strokeWidthSecondary={2}
 					/>
