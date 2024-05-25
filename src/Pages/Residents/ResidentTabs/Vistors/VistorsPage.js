@@ -281,7 +281,7 @@ function VisitorsPage() {
                 color="#00a1f1"
                 visible={true}
                 ariaLabel="oval-loading"
-                secondaryColor="#4fa94d"
+                secondaryColor="#00a1f1"
                 strokeWidth={2}
                 strokeWidthSecondary={2}
               />
@@ -291,7 +291,7 @@ function VisitorsPage() {
               {visitors.length === 0 ? (
                 <div className="text-gray-500 text-lg mt-4">No visitors signed in</div>
               ) : (
-                <table className="table-auto w-full max-w-4xl mt-4">
+                <table className="resident-table">
                   <thead>
                     <tr>
                       <th className="px-4 py-2">Visitor Name</th>
@@ -311,7 +311,7 @@ function VisitorsPage() {
                         <td className="border px-4 py-2">
                           <button
                             onClick={() => handleSignOut(visitor.id)}
-                            className="px-4 py-2 bg-red-500 text-white font-bold rounded-md cursor-pointer text-sm transition duration-300 hover:bg-red-600"
+                            className="px-4 py-2 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-sm transition duration-300 hover:bg-[#00a1f1]"
                           >
                             Sign Out
                           </button>

@@ -32,7 +32,7 @@ function ResidentsReports() {
             strokeWidthSecondary={2}
           />
         </div>
-      ) : profile.length > 0 ? (
+      ) : (
         <table className="resident-table">
           <thead>
             <tr>
@@ -55,8 +55,6 @@ function ResidentsReports() {
             ))}
           </tbody>
         </table>
-      ) : (
-        <div>No Maintenance Logs</div>
       )}
     </section>
   );
