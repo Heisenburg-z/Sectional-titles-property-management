@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaUsers, FaUsersGear, FaToolbox } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
-import { TbReportSearch } from "react-icons/tb";
+//import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
 import Brand from "../../../../images/SCPY_Logo.png";
