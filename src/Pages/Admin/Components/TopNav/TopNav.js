@@ -5,7 +5,6 @@ import { IoNotifications } from "react-icons/io5";
 function TopNav() {
   const location = useLocation();
   const displayName = location.pathname.split("/");
-  console.log(displayName);
 
   return (
     <header className="header">
