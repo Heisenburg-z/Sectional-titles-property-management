@@ -24,7 +24,7 @@ function Staff() {
 				response.json();
 			})
 			.then((data) => {
-				setStaff(data || []);
+				setStaff(data);
 				setLoading(false);
 			})
 			.catch((error) => {
