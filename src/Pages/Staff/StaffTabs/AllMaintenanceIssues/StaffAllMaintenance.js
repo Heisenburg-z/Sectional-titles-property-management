@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from "../../../../utils/auth";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Oval } from 'react-loader-spinner';
 
 function StaffAllMaintenance() {
   const id = useAuth().profileId;
   const [isReLoading, setIsReLoading] = useState(true);
-  const [maintenance, setMaintenance] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [maintenance, setMaintenance] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
       fetch(`/api/property/staff/maintenance/${id}`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setMaintenance(data);
+        setIsLoading(false);
 
       }).catch(() => {
         console.error("No maintenance to be fetched");
+        setIsLoading(false);
       });
-    }, 2000)
   }, [id, isReLoading]);
+
 
   const handleStatusUpdate = async (docid, taskStatus) => {
 		try {
@@ -44,23 +43,31 @@ function StaffAllMaintenance() {
 		setIsReLoading(!isReLoading);
 	};
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Oval
+          height={100}
+          width={100}
+          color="#00a1f1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+          ariaLabel='oval-loading'
+          secondaryColor="#00a1f1"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
 
   if(maintenance.length === 0){
     return (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
-
         <h2 className="fetching-error"> No data available </h2>
-      )
     )
   } else {
     return (
-      isLoading? ( <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open
-        >
-         <CircularProgress color="inherit" />
-        </Backdrop> ):(
 
         <section className="pt-2 flex items-center justify-center">
         <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
@@ -75,7 +82,7 @@ function StaffAllMaintenance() {
           </thead>
           <tbody className="border-b border-b-4 border-sky-500">
             {maintenance.map((s, i) => (
-              <tr class="border-b even:bg-cyan-100 " className={`table-row ${s.Status === "Closed" ? 'line-through' : ''}`} key={i}>
+              <tr className={`border-b ${s.Status === "Closed" ? 'bg-blue-200' : ''}`} key={i}>
                 <td className="py-3 px-4"> 
                 
                   <span className="py-2 px-3 text-sky-500 font-semibold rounded-md cursor-pointer text-xs"  
@@ -99,7 +106,6 @@ function StaffAllMaintenance() {
         </table>
         </section>
         )
-      )
   }
 }
 

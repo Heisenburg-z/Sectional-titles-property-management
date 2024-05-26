@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../../utils/firebase";
 import { doc, getFirestore, getDoc } from "firebase/firestore";
 import { useAuth } from "../../utils/auth";
-import { Oval } from 'react-loader-spinner';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Oval } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//
 
 const db = getFirestore();
 
@@ -25,9 +27,12 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
       const user = userCredential.user;
-      console.log(user);
 
       const docRef = doc(db, "accounts", user.uid);
       const docSnap = await getDoc(docRef);
@@ -36,7 +41,11 @@ function LoginForm() {
         const userData = docSnap.data();
         const userRole = userData.roles;
 
-        auth20.login(userData.name, user.uid, userRole.toLowerCase());
+        auth20.login(
+          `${userData.name} ${userData.surName}`,
+          user.uid,
+          userRole.toLowerCase(),
+        );
 
         setLoading(false);
         toast.success("Login successful!");
@@ -46,13 +55,13 @@ function LoginForm() {
             navigate("/admin/dashboard", { replace: true });
             break;
           case "Resident":
-            navigate("/resident");
+            navigate("/resident/dashboard");
             break;
           case "Staff":
-            navigate("/staff");
+            navigate("/staff/dashboard");
             break;
           default:
-            navigate("/admin");
+            navigate("/nopage");
             break;
         }
       } else {
@@ -62,33 +71,34 @@ function LoginForm() {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error.code, error.message);
+      console.error(error.message);
     }
   };
 
   return (
-    <section className="LoginPage">
+    <section className="LoginPage" data-testid="custom-section">
       <ToastContainer />
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <Oval
             height={100}
             width={100}
-            color="#4fa94d"
+            color="#00a1f1"
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
-            ariaLabel='oval-loading'
-            secondaryColor="#4fa94d"
+            ariaLabel="oval-loading"
+            secondaryColor="#00a1f1"
             strokeWidth={2}
             strokeWidthSecondary={2}
           />
         </div>
       ) : !auth20.user ? (
-        <Form className="LoginForm" method="POST" action="/admin">
+        <form className="LoginForm" method="POST" action="/admin">
           <h1 className="login">Login</h1> <br />
           <br />
           <input
+            data-testid="input-username"
             type="text"
             className="user"
             required
@@ -97,6 +107,7 @@ function LoginForm() {
           />
           <input
             type="password"
+            data-testid="input-password"
             required
             className="password"
             placeholder="Password"
@@ -108,7 +119,7 @@ function LoginForm() {
           <button className="loginbtn" onClick={onLogin}>
             Login
           </button>
-        </Form>
+        </form>
       ) : (
         <h1>You are already logged in</h1>
       )}

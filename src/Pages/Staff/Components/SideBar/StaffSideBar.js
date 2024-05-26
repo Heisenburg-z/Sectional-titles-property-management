@@ -15,14 +15,14 @@ function StaffSideBar({ className }) {
   };
   return (
     <section className={className} data-testid="staff-sidebar">
-      <NavLink to="" className="flex items-center justify-center">
-        <img src={Brand} alt="" style={{ width: '120px', height: '120px' }}/>
+      <NavLink to="dashboard" className="flex items-center justify-center">
+        <img src={Brand} alt="" style={{ width: "120px", height: "120px" }} />
       </NavLink>
 
       <ul className="sidebar-links-container">
         <li className="sidebar-link-li">
-          <NavLink className="sidebar-link" to='staffdashboard'>
-            <span className="icon-text">
+          <NavLink className="sidebar-link" to="staffdashboard">
+            <span className="icon-text hover:text-sky-100">
               <FaBars size="1.5em" />
               <p className="item-padding">Dashboard</p>
             </span>
@@ -30,7 +30,7 @@ function StaffSideBar({ className }) {
         </li>
         <li className="sidebar-link-li">
           <NavLink className="sidebar-link" to="allmaintenanceissues">
-            <span className="icon-text">
+            <span className="icon-text hover:text-sky-100">
               <FaTools size="1.5em" />
               <p className="item-padding">All Maintenance Issues</p>
             </span>
@@ -38,7 +38,7 @@ function StaffSideBar({ className }) {
         </li>
         <li className="sidebar-link-li">
           <NavLink className="sidebar-link" to="staffreports">
-            <span className="icon-text">
+            <span className="icon-text hover:text-sky-100">
               <TbReportSearch size="1.5em" />
               <p className="item-padding">Reports</p>
             </span>
@@ -49,19 +49,14 @@ function StaffSideBar({ className }) {
         <ul className="sidebar-footer-li-container">
           <li className="sidebar-link-li__image">
             <NavLink className="sidebar-link" to="staffprofile">
-              <span className="icon-text">
-                <img
-                  className="sidebar-footer-profile"
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="profile"
-                />
-                <p className="item-padding"> Thabo </p>
+              <span className="icon-text hover:text-sky-100">
+                <p className="item-padding font-bold">{auth.user}</p>
               </span>
             </NavLink>
           </li>
           <li className="sidebar-link-li">
             <NavLink className="sidebar-link" to="/">
-              <span className="icon-text">
+              <span className="icon-text hover:text-sky-100">
                 <GiExitDoor size="1.5em" />
                 <p className="item-padding" onClick={logout}>
                   Sign Out

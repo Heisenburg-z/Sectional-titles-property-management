@@ -1,53 +1,28 @@
-import React from 'react'
-import './ResidentsResports.css';
-import { useAuth } from '../../../../utils/auth';
-import { useEffect, useState } from 'react';
-
+import React from "react";
+import { useNavigate, Outlet } from "react-router-dom";
 
 function ResidentsReports() {
-  const id = useAuth().profileId;
-    const [profile, setProfile] = useState([]);
-    useEffect(() => {
-        fetch(`/api/property/resident/reports/${id}`)
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            setProfile(data);
-          });
-      }, [id]);
+  const navigate = useNavigate();
 
-      
   return (
     <section className="main">
-      
-      <table className="resident-table">
-            <thead>
-              <tr>
-                <th>RoomNo</th>
-                <th>Type Of Maintenance</th>
-                <th>Description</th>
-                <th>Date Issued</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-                {profile.map((s, i)=>(
-                <tr key={i}>
-                    <th>{s.roomNumber}</th>
-                    <th>{s.maintenanceType}</th>
-                    <th>{s.Description}</th>
-                    <th>{s.date}</th>
-                    <th>{s.Status}</th>
-                </tr>
-                ))}
-                
-            </tbody>
-            </table>
-            
+      <section className="btn-group">
+        <button 
+          onClick={() => navigate('maintenance')} 
+          className="px-4 py-2 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#0080c0db] mr-1"
+        >
+          Maintenance
+        </button>
+        <button 
+          onClick={() => navigate('fines')} 
+          className="px-4 py-2 bg-[#00a1f1] text-white font-bold rounded-md cursor-pointer text-base transition duration-300 hover:bg-[#0080c0db] ml-1"
+        >
+          Fines
+        </button>
+      </section>
+      <Outlet />
     </section>
-  )
+  );
 }
 
-export default ResidentsReports
+export default ResidentsReports;

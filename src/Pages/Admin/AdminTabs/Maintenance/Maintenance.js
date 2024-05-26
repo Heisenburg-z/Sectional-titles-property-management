@@ -24,12 +24,12 @@ function Maintenance() {
         <Oval
           height={100}
           width={100}
-          color="#4fa94d"
+          color="#00a1f1"
           wrapperStyle={{}}
           wrapperClass=""
           visible={true}
           ariaLabel='oval-loading'
-          secondaryColor="#4fa94d"
+          secondaryColor="#00a1f1"
           strokeWidth={2}
           strokeWidthSecondary={2}
         />
@@ -55,7 +55,7 @@ function Maintenance() {
           <tbody className="border-b border-b-4 border-sky-500">
             {maintenance.map((s, i) => (
               <tr
-                className={`border-b even:bg-cyan-100 ${s.Status === "Closed" ? 'line-through' : ''}`}
+                className={`border-b ${s.Status === "Closed" ? 'bg-blue-200' : ''}`}
                 key={i}
               >
                 <td className="py-3 px-4">{s.Description}</td>

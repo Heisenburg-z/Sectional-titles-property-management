@@ -1,11 +1,11 @@
 import "../SideBar/ResidentsSideBar.css";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaToolbox } from "react-icons/fa6";
-import { GiTakeMyMoney } from "react-icons/gi";
+//import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
-import { FaExclamationCircle, FaRegEdit, FaRegAddressCard } from "react-icons/fa";
+import { FaRegEdit, FaRegAddressCard } from "react-icons/fa";
 import Brand from "../../../../images/SCPY_Logo.png";
 
 function ResidentsSideBar({ className }) {
@@ -29,26 +29,10 @@ function ResidentsSideBar({ className }) {
 					</NavLink>
 				</li>
 				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="filecomplaint">
-						<span className="icon-text">
-							<FaExclamationCircle size="1.5em" />
-							<p className="item-padding">File Complaint</p>
-						</span>
-					</NavLink>
-				</li>
-				<li className="sidebar-link-li">
 					<NavLink className="sidebar-link" to="issues">
 						<span className="icon-text">
 							<FaRegEdit size="1.5em" />
 							<p className="item-padding">Issues</p>
-						</span>
-					</NavLink>
-				</li>
-				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="fines">
-						<span className="icon-text">
-							<GiTakeMyMoney size="1.5em" />
-							<p className="item-padding">Fines</p>
 						</span>
 					</NavLink>
 				</li>
@@ -61,7 +45,7 @@ function ResidentsSideBar({ className }) {
 					</NavLink>
 				</li>
 				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="reports">
+					<NavLink className="sidebar-link" to="reports/maintenance">
 						<span className="icon-text">
 							<TbReportSearch size="1.5em" />
 							<p className="item-padding">Reports</p>

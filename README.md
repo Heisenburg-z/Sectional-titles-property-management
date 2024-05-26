@@ -14,3 +14,7 @@ typically elect a body corporate made up of some of the owners to take responsib
 of the tasks required to maintain the property. This includes overseeing the enforcement of rules
 and regulations, the security, upkeep and maintenance of the property, and managing
 communication with the owners, renters and related parties among other things.
+
+
+## Documentation For Project
+https://shorturl.at/Yg3ZV

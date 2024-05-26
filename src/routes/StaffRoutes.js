@@ -8,7 +8,7 @@ import StaffDashboard from "../Pages/Staff/StaffTabs/Dashboard/StaffDashboard";
 const staffRoutes = (
   <Route>
     <Route
-      path="staffdashboard"
+      path="dashboard"
       element={
         <RequireAuth>
           <StaffDashboard />
