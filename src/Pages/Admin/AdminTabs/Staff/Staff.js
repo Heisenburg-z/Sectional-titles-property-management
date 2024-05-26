@@ -30,19 +30,48 @@ function Staff() {
 			});
 	}, [isReLoad]);
 
-	const deleteStaff = (id) => {
-		fetch(`/api/property/admin/staff/delete/${id}`, {
-			method: "POST",
-		})
-			.then((response) => response.json())
-			.then(() => {
-				toast.success("Staff deleted successfully");
-				setIsReLoad(!isReLoad);
+	
+	const fetchStaff = async () => {
+		setLoading(true); // Set loading to true before fetching data
+		try {
+		  fetch(`/api/property/admin/staff`)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setStaff(data);
 			})
 			.catch((error) => {
-				toast.error("Error deleting staff");
-				console.error("Error:", error);
+				console.error("Error fetching staff:", error.message);
 			});
+		} catch (error) {
+		  toast.error('Error fetching staff');
+		  console.error('Error fetching staff:', error);
+		} finally {
+		  setLoading(false);
+		}
+	  
+	};
+
+	const deleteStaff = async (id) => {
+		try{
+			const response = await fetch(`/api/property/admin/staff/delete/${id}`, {
+				method: 'DELETE',
+			  });
+		
+			  if (response.ok) {
+				toast.success('Staff deleted successfully');
+				fetchStaff();
+			  } else {
+				fetchStaff();
+				toast.error('Failed to delete staff');
+			  }
+		} catch(error) {
+			fetchStaff();
+			toast.error('Error deleting staff');
+			console.error('Error deleting staff:', error);
+		}
+		
 	};
 
 	const updateRole = (id) => {

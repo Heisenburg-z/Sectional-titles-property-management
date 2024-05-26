@@ -3,7 +3,7 @@ const { app } = require('@azure/functions');
 
 app.http('DeleteStaff', {
     route:"property/admin/staff/delete/{id}",
-    methods: ['POST'],
+    methods: ['DELETE'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
 

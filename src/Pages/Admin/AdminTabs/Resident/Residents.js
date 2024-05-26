@@ -6,7 +6,7 @@ import { Oval } from 'react-loader-spinner';
 
 function Resident() {
   const location = useLocation();
-  const [isReLoad, setIsReLoad] = useState(true);
+  const [isReLoad] = useState(true);
   const path = location.pathname.split("/")[3];
   const navigate = useNavigate();
   const [resident, setResident] = useState([]); // Add the resident state
@@ -27,20 +27,68 @@ function Resident() {
       });
   }, [isReLoad]);
 
-  const deleteResident = (id) => {
-    fetch(`/api/property/admin/resident/delete/${id}`, {
-      method: "POST",
-    })
+
+  const fetchResident = async () => {
+		setLoading(true); // Set loading to true before fetching data
+		try {
+
+		  fetch(`/api/property/admin/resident`)
       .then((response) => response.json())
-      .then(() => {
-        toast.success("Resident deleted successfully");
-        setIsReLoad(!isReLoad);
+      .then((data) => {
+        setResident(data);
+        setLoading(false); 
       })
       .catch((error) => {
-        console.error("Error:", error);
-        toast.error("Error deleting resident");
+        console.error('Error fetching residents:', error);
+        toast.error('Error fetching residents');
+        setLoading(false); 
       });
-  };
+
+		} catch (error) {
+		  toast.error('Error fetching residents');
+		  console.error('Error fetching residents:', error);
+		} finally {
+		  setLoading(false);
+		}
+	  
+	};
+
+
+  const deleteResident = async (id) => {
+		try{
+			const response = await fetch(`/api/property/admin/resident/delete/${id}`, {
+				method: 'DELETE',
+			  });
+		
+			  if (response.ok) {
+				toast.success('Resident deleted successfully');
+				fetchResident();
+			  } else {
+				fetchResident();
+				toast.error('Failed to delete resident');
+			  }
+		} catch(error) {
+			fetchResident();
+			toast.error('Error deleting resident');
+			console.error('Error deleting resident:', error);
+		}
+		
+	};
+
+  // const deleteResident = (id) => {
+  //   fetch(`/api/property/admin/resident/delete/${id}`, {
+  //     method: "POST",
+  //   })
+  //     .then((response) => response.json())
+  //     .then(() => {
+  //       toast.success("Resident deleted successfully");
+  //       setIsReLoad(!isReLoad);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //       toast.error("Error deleting resident");
+  //     });
+  // };
 
   if (loading) {
     return (
