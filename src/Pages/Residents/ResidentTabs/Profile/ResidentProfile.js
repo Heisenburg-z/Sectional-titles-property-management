@@ -12,7 +12,7 @@ function ResidentProfile() {
 	const [newCellphone, setNewCellphone] = useState("");
 
 	useEffect(() => {
-		fetch(`/api/property/resident/profile/${id}`)
+		fetch(`http://localhost:7071/api/property/resident/profile/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch profile data");
