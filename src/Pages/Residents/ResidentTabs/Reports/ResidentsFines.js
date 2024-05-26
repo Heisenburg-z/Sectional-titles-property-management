@@ -55,8 +55,6 @@ function ResidentsFines() {
               <table className="resident-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>RoomNo</th>
                     <th>Reason for fine</th>
                     <th>Amount Due</th>
                     <th>Date Issued</th>
@@ -70,8 +68,6 @@ function ResidentsFines() {
                       onClick={() => navigate("payment-upload")}
                       className="hover:bg-sky-400"
                     >
-                      <td>{s.Name}</td>
-                      <td>{s.RoomNo}</td>
                       <td>{s.Type}</td>
                       <td>{s.Amount}</td>
                       <td>{s.DateIssued}</td>

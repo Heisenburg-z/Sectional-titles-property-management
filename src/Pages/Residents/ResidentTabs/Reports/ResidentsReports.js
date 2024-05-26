@@ -7,7 +7,7 @@ function ResidentsReports() {
   return (
     <section className="main">
       <section className="btn-group">
-        <button onClick={()=>navigate('maintenance')}>Maintenance</button>
+        <button  onClick={()=>navigate('maintenance')}>Maintenance</button>
         <button onClick={()=>navigate('fines')}>Fines</button>
       </section>
       <Outlet/>
