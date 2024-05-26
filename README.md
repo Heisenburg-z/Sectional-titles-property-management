@@ -16,21 +16,30 @@ of the tasks required to maintain the property. This includes overseeing the enf
 and regulations, the security, upkeep and maintenance of the property, and managing
 communication with the owners, renters and related parties among other things.
 
-## Documentation For Project
+### Documentation For Project
 
-<https://shorturl.at/Yg3ZV>
+[Documentation Link](https://shorturl.at/Yg3ZV)
 
-## How to run the app locally
+## Install locally
 
-Use this link to access the git-hub repository, [Git-hub Repo](https://github.com/Heisenburg-z/Sectional-titles-property-management).
-Clone the project on your machine and install all the dependencies by running the command *npm i*, in the terminal. Prior to installing
-all the dependecies, open the project using your editor (preferably VS-Code). Go to your terminal and change the directory to the *api* folder,
-and run the command *func start*. **You have to install the Azure extension and also login into your account.** After all the APIs run successfully,
-you have to go *src/Pages* directory in your editor and add *http://localhost:7071/* to every file that has code where the API is being used. Make sure 
-to check all of this properly as it is crucial for the APIs to run locally. In a new terminal, change the directory to the project folder, and run the 
-command *npm start*, this will run the app on your browser. The following details are to be used for the different roles:
+1. Clone the repository on your machine and `cd Sectional-titles-property-management` in your terminal.
+2. run `npm i` in your terminal to install all the dependencies.
+3. Change into the API directory `cd api` and run the command `func start` in your terminal to setup the server.
+   - You need Azure Core tools to be able to run the API locally, here is a link on setting it up on your machine [Azure Core Tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-javascript)
+   - After setting up Azure Core Tools, move into `src/Pages` directory in your terminal and append `http://localhost:7071/` before every URL link that starts with `/api` in every file that has code where the API is being used.
+   - *Go to step 3 again until `func start` runs successfully*
+   - **Make sure to check all of this properly as it is crucial for the APIs to run locally**.
+4. *While the server is running*, use a new terminal instance or tab to change the directory to the **root** project directory, and run the command `npm start`, this will start the react app.
+5. Surf the web app.
 
-- Admin: **email: blessingeleer@gmail.com, password: cargorun**
-- Resident: **email: jim@gmail.com, password: jim123**
-- Staff(Cleaner): **email: s.clean@gmail.com, password:**
-- Staff(Security): **email: sasa.security@gmai.com, password:**
+$$\text{Made with love }$$
+
+##### The following details are to be used for the different roles
+
+**Admin**: email: `blessingeleer@gmail.com`, password: `cargorun`
+
+**Resident**: email: `jim@gmail.com`, password: `jim123`
+
+**Staff**(*Cleaner*): email: `s.clean@gmail.com`, password:``
+
+**Staff**(*Security*): email: `sasa.security@gmai.com`, password:``
