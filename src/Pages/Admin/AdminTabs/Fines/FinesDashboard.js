@@ -74,7 +74,7 @@ function FinesDashBoard() {
                   <td className="py-3 px-4">{fine.Status}</td>
                   <td className="py-3 px-4">{fine.Type}</td>
                   <td className="py-3 px-4">{fine.DateIssued}</td>
-                  <td className="py-3 px-4">{fine.Amount}</td>
+                  <td className="py-3 px-4">R{fine.Amount}</td>
                 </tr>
               ))}
             </tbody>

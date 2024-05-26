@@ -37,14 +37,6 @@ function StaffSideBar({ className }) {
             </span>
           </NavLink>
         </li>
-        <li className="sidebar-link-li">
-          <NavLink className="sidebar-link" to="staffreports">
-            <span className="icon-text hover:text-sky-100">
-              <TbReportSearch size="1.5em" />
-              <p className="item-padding">Reports</p>
-            </span>
-          </NavLink>
-        </li>
       </ul>
       <footer className="sidebar-footer">
         <ul className="sidebar-footer-li-container">

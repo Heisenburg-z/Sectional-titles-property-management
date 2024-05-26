@@ -73,7 +73,7 @@ function ResidentsFines() {
                       <td>{s.Name}</td>
                       <td>{s.RoomNo}</td>
                       <td>{s.Type}</td>
-                      <td>{s.Amount}</td>
+                      <td>R{s.Amount}</td>
                       <td>{s.DateIssued}</td>
                       <td>{s.Status}</td>
                     </tr>

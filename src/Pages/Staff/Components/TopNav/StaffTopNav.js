@@ -8,8 +8,8 @@ function StaffTopNav({ className }) {
   const displayName = location.pathname.split("/");
   return (
     <header className={className} data-testid="staff-top-nav">
-      <h1 className="header-title">
-        {displayName[1].toUpperCase()}/{displayName[2].toUpperCase()}
+      <h1 className="header-title text-slate-600">
+        {displayName[1].toUpperCase()} DASHBOARD
       </h1>
       <IoNotifications size={30} className="header-icon" />
     </header>
