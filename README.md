@@ -17,4 +17,4 @@ communication with the owners, renters and related parties among other things.
 
 
 ## Documentation For Project
-https://shorturl.at/Yg3ZV
+(Link to project documentation)](https://bokangs-organization.gitbook.io/sectional-titles-property-management)
