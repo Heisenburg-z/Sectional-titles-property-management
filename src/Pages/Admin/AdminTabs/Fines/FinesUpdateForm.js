@@ -44,13 +44,13 @@ function FinesUpdateForm() {
             onClick={() => response("Unpaid")}
             className="bg-sky-400 px-4 py-2 my-2 mx-auto w-2/5 rounded-md hover:bg-sky-500"
           >
-            Open
+            Unpaid
           </button>
           <button
             onClick={() => response("Paid")}
             className="bg-sky-400 px-4 py-2 my-2 mx-auto w-2/5 rounded-md hover:bg-sky-500"
           >
-            Closed
+            Paid
           </button>
           <button
             onClick={() => response("Pending...")}
