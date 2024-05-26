@@ -40,27 +40,27 @@ function ResidentsDashboard() {
 //new Date(message.date.seconds * 1000).toLocaleString()
   return (
     <section className="max-w-3xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-8">Hi, Thapelo Ndlovu</h1> 
+      {/*<h1 className="text-3xl font-bold mb-8">Hi, Thapelo Ndlovu</h1>*/}
       {/* Message Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Messages</h2>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Messages</h2>
         {/* Display messages. */}
         {messages.length > 0 ? messages.map((message, index) => (
           <div key={index} className={`p-2 mb-2 ${message.sender === 'admin' ? 'bg-blue-100' : 'bg-green-100'}`}>
-            <p className="font-bold">{message.sender}</p>
-            <p>{message.message}</p>
-            <p className="text-sm text-gray-500">{message.date}</p>
+            <p className="font-bold text-slate-600">{message.sender}</p>
+            <p class="text-slate-600">{message.message}</p>
+            <p className="text-sm text-gray-500 text-slate-600">{message.date}</p>
           </div>
-        )) : <p>No messages found.</p>}
+        )) : <p class="text-slate-600" >No messages found.</p>}
       </section>
       {/* Weather Section */}
       <section className="bg-blue-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Weather</h2>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Weather</h2>
         {weather ? (
           <div>
-            <p>Location: {weather.name}</p>
-            <p>Temperature: {weather.main.temp}°C</p>
-            <p>Weather: {weather.weather[0].description}</p>
+            <p class="text-slate-600">Location: {weather.name}</p>
+            <p class="text-slate-600">Temperature: {weather.main.temp}°C</p>
+            <p class="text-slate-600">Weather: {weather.weather[0].description}</p>
             <img 
               src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
               alt={weather.weather[0].description} 
@@ -69,20 +69,20 @@ function ResidentsDashboard() {
             />
           </div>
         ) : (
-          <p>Weather info Loading...</p>
+          <p class="text-slate-600">Weather info Loading...</p>
         )}
       </section>
 
       {/* Statements Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Statements</h2>
-        <p>Visit reports tab to see all your Statements.</p>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Statements</h2>
+        <p class="text-slate-600">Visit reports tab to see all your Statements.</p>
       </section>
 
       {/* Visitors Section */}
       <section className="bg-gray-200 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Visitors</h2>
-        <p>View your visitation history on the visitation tab</p>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Visitors</h2>
+        <p class="text-slate-600">View your visitation history on the visitation tab</p>
       </section>
 
       {/* Add any additional sections here */}

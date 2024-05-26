@@ -59,7 +59,7 @@ function ResidentsMaintenance() {
         </div>
       ) : error ? (
         <div className="flex justify-center items-center h-screen">
-          <p>No data available.</p>
+          <p class="text-slate-600">No data available.</p>
         </div>
       ) : (
         <section ref={componentPDF} style={{ width: "100%" }}>

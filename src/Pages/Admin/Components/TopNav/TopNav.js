@@ -8,8 +8,8 @@ function TopNav() {
 
   return (
     <header className="header">
-      <h2 className="header-title">
-        {displayName[1].toUpperCase()}/{displayName[2].toUpperCase()}
+      <h2 className="header-title text-slate-600">
+        {displayName[1].toUpperCase()} {displayName[2].toUpperCase()}
       </h2>
       <IoNotifications size={30} className="header-icon" />
     </header>

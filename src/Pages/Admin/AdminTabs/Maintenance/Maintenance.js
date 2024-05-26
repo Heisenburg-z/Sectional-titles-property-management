@@ -38,7 +38,7 @@ function Maintenance() {
   }
 
   if (maintenance.length === 0) {
-    return <h2 className="fetching-error">No data available</h2>;
+    return <h2 className="fetching-error text-slate-600">No data available</h2>;
   } else {
     return (
       <section className="pt-2 flex items-center justify-center">

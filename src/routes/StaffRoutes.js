@@ -1,5 +1,4 @@
 import { Route } from "react-router-dom";
-import StaffReports from "../Pages/Staff/StaffTabs/Reports/StaffReports";
 import StaffAllMaintenance from "../Pages/Staff/StaffTabs/AllMaintenanceIssues/StaffAllMaintenance";
 import StaffProfile from "../Pages/Staff/StaffTabs/Profile/StaffProfile";
 import { RequireAuth } from "./RequireAuth";
@@ -20,14 +19,6 @@ const staffRoutes = (
       element={
         <RequireAuth>
           <StaffAllMaintenance />
-        </RequireAuth>
-      }
-    />
-    <Route
-      path="staffreports"
-      element={
-        <RequireAuth>
-          <StaffReports />
         </RequireAuth>
       }
     />

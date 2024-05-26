@@ -68,7 +68,7 @@ function Dashboard() {
 
       {/* Section for admin to post messages */}
       <section className="mb-4">
-        <h2 className="text-xl font-bold mb-2">Post Announcement</h2>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Post Announcement</h2>
         <textarea
           className="w-full border rounded p-2"
           placeholder="Type your message here..."
@@ -86,22 +86,22 @@ function Dashboard() {
 
       {/* Section to display admin messages */}
       <section>
-        <h2 className="text-xl font-bold mb-2">Staff Announcements</h2>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Staff Announcements</h2>
         {adminMessages.map((message) => (
           <div key={message.id} className="bg-gray-100 rounded-lg p-4 mb-2">
-            <p>{message.content}</p>
+            <p class="text-slate-600">{message.content}</p>
           </div>
         ))}
       </section>
 
       {/* Weather Section */}
       <section className="bg-blue-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Weather</h2>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Weather</h2>
         {weather ? (
           <div>
-            <p>Location: {weather.name}</p>
-            <p>Temperature: {weather.main?.temp}°C</p>
-            <p>Weather: {weather.weather?.[0]?.description}</p>
+            <p class="text-slate-600">Location: {weather.name}</p>
+            <p class="text-slate-600">Temperature: {weather.main?.temp}°C</p>
+            <p class="text-slate-600">Weather: {weather.weather?.[0]?.description}</p>
             {weather.weather?.[0]?.icon && (
               <img 
                 src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
@@ -112,20 +112,20 @@ function Dashboard() {
             )}
           </div>
         ) : (
-          <p>Weather info Loading...</p>
+          <p class="text-slate-600">Weather info Loading...</p>
         )}
       </section>
 
       {/* Statements Section */}
       <section className="bg-gray-100 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Statements</h2>
-        <p>Visit reports tab to see all your Statements.</p>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Statements</h2>
+        <p class="text-slate-600">Visit reports tab to see all your Statements.</p>
       </section>
 
       {/* Visitors Section */}
       <section className="bg-gray-200 rounded-lg p-4 mb-4 hover:bg-blue-50 transition duration-300">
-        <h2 className="text-xl font-bold mb-2">Visitors</h2>
-        <p>View your visitation history on the visitation tab</p>
+        <h2 className="text-xl font-bold mb-2 text-slate-600">Visitors</h2>
+        <p class="text-slate-600">View your visitation history on the visitation tab</p>
       </section>
 
       {/* Add any additional sections here */}
