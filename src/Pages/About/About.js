@@ -3,7 +3,7 @@ import React from "react";
 function About() {
   return (
     <>
-      <section className="container flex flex-col justify-center">
+      <section className="container flex flex-col justify-center p-40">
         <h1 className="text-sky-400 mb-20 text-center">
           Sectional Titles & Property Management
         </h1>
