@@ -16,11 +16,18 @@ function StaffProfile() {
   useEffect(() => {
     fetch(`/api/property/staff/profile/${id}`)
       .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
         return response.json();
       })
       .then((data) => {
         setProfile(data);
         setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
+        setLoading(false); // Set loading to false in case of error
       });
   }, [id, isReLoading]);
 
@@ -94,24 +101,28 @@ function StaffProfile() {
     setIsReLoading(!isReLoading);
   };
 
-  return (
+  // Loader component
+  const Loader = (
+    <div className="flex justify-center items-center h-screen">
+      <Oval
+        height={80}
+        width={80}
+        color="#00a1f1"
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor="#00a1f1"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      />
+    </div>
+  );
+
+  // Content to render once data is loaded
+  const Content = (
     <>
-      {loading ? (
-        <div className="flex justify-center items-center h-screen">
-          <Oval
-            height={80}
-            width={80}
-            color="#00a1f1"
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="#00a1f1"
-            strokeWidth={2}
-            strokeWidthSecondary={2}
-          />
-        </div>
-      ) : (
+      {profile && (
         <section className="profile-container">
-          <h1 className="profile-heading">Resident Profile</h1>
+          <h1 className="profile-heading">Staff Profile</h1>
           <section className="profile-details">
             <article className="detail">
               <label>Name:</label>
@@ -143,16 +154,12 @@ function StaffProfile() {
                     onChange={handleCellphoneChange}
                   />
                 ) : (
-                  <span onClick={handleCellphoneClick}>
+                  <span className="editable" onClick={handleCellphoneClick}>
                     {profile.cellPhone}
                   </span>
                 )}
                 {editCellphone && (
-                  <button
-                    id="updateButton"
-                    onClick={handleCellphoneUpdate}
-                    className="ml-2"
-                  >
+                  <button id="updateButton" onClick={handleCellphoneUpdate}>
                     Update
                   </button>
                 )}
@@ -168,14 +175,12 @@ function StaffProfile() {
                     onChange={handleEmailChange}
                   />
                 ) : (
-                  <span onClick={handleEmailClick}>{profile.email}</span>
+                  <span className="editable" onClick={handleEmailClick}>
+                    {profile.email}
+                  </span>
                 )}
                 {editEmail && (
-                  <button
-                    id="updateButton"
-                    onClick={handleEmailUpdate}
-                    className="ml-2"
-                  >
+                  <button id="updateButton" onClick={handleEmailUpdate}>
                     Update
                   </button>
                 )}
@@ -186,6 +191,8 @@ function StaffProfile() {
       )}
     </>
   );
+
+  return <>{loading ? Loader : Content}</>;
 }
 
 export default StaffProfile;

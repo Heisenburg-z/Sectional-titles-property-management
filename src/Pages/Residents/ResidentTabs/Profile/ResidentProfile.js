@@ -154,7 +154,7 @@ function ResidentProfile() {
                     onChange={handleCellphoneChange}
                   />
                 ) : (
-                  <span onClick={handleCellphoneClick}>
+                  <span className="editable" onClick={handleCellphoneClick}>
                     {profile.cellPhone}
                   </span>
                 )}
@@ -175,7 +175,9 @@ function ResidentProfile() {
                     onChange={handleEmailChange}
                   />
                 ) : (
-                  <span onClick={handleEmailClick}>{profile.email}</span>
+                  <span className="editable" onClick={handleEmailClick}>
+                    {profile.email}
+                  </span>
                 )}
                 {editEmail && (
                   <button id="updateButton" onClick={handleEmailUpdate}>

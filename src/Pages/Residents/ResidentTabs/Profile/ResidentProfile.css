@@ -1,4 +1,4 @@
-.profile-container {
+/* .profile-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -44,4 +44,64 @@
   
   #updateButton:hover {
     background-color: #258fff;
-  }
+  } */
+
+
+  /* ResidentProfile.css */
+
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.profile-heading {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.detail label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+.detail span {
+  color: #555555;
+}
+
+.editable {
+  color: blue !important;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#updateButton {
+  margin-top: 5px;
+  padding: 5px 10px;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#updateButton:hover {
+  background-color: #0056b3;
+}
