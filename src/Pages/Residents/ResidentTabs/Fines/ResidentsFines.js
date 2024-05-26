@@ -82,7 +82,7 @@ function ResidentsFines() {
               </table>
             </section>
           ) : (
-            <div>No Fines To Display</div>
+            <div class="text-slate-600">No Fines To Display</div>
           )}
           <section>
             <button

@@ -95,7 +95,7 @@ function Staff() {
 		) : (
 			<>
 				<ToastContainer />
-				<h2 className="fetching-error">No data available</h2>
+				<h2 className="fetching-error text-slate-600">No data available</h2>
 				<button
 					data-testid="staff-signup"
 					id="bottom-right-button"
