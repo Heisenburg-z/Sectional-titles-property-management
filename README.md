@@ -43,6 +43,4 @@ $$\text{Made with love }$$
 
 **Resident**: email: `jim@gmail.com`, password: `jim123`
 
-**Staff**(*Cleaner*): email: `s.clean@gmail.com`, password:``
-
-**Staff**(*Security*): email: `sasa.security@gmai.com`, password:``
+**Staff**(*Security*): email: `sasa.security@gmai.com`, password:`sasa1234`
