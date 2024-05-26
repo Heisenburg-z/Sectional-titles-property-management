@@ -26,7 +26,7 @@ function ResidentSpecificFines() {
         {residentFines.length === 0 ? (
           <h1 className="text-center">No Fines</h1>
         ) : (
-          <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px]">
+          <table className="border-collapse border border-gray-300 rounded-t-lg overflow-hidden shadow-lg mt-6 mb-0 text-sm min-w-[400px] mx-auto">
             <thead className="bg-sky-500 text-white text-left font-bold">
               <tr className="bg-sky-500 text-white text-left font-bold">
                 <th className="py-3 px-4">UserID</th>
