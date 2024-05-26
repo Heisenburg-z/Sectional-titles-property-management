@@ -108,6 +108,7 @@ function VisitorsPage() {
         toast.success('Visitor signed out successfully!');
         fetchVisitors();
       } else {
+        fetchVisitors();
         toast.error('Failed to sign out visitor');
       }
     } catch (error) {
