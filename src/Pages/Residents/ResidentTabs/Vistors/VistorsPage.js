@@ -134,7 +134,6 @@ function VisitorsPage() {
             toast.error('Failed to fetch visitors');
           }
         } catch (error) {
-          toast.error('Error fetching visitors');
           console.error('Error fetching visitors:', error);
         } finally {
           setLoading(false);
