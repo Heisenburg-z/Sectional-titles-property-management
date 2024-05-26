@@ -108,9 +108,11 @@ function VisitorsPage() {
         toast.success('Visitor signed out successfully!');
         fetchVisitors();
       } else {
+        fetchVisitors();
         toast.error('Failed to sign out visitor');
       }
     } catch (error) {
+      fetchVisitors();
       toast.error('Error signing out visitor');
       console.error('Error signing out visitor:', error);
     }
@@ -132,7 +134,6 @@ function VisitorsPage() {
             toast.error('Failed to fetch visitors');
           }
         } catch (error) {
-          toast.error('Error fetching visitors');
           console.error('Error fetching visitors:', error);
         } finally {
           setLoading(false);

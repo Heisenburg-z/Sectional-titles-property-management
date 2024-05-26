@@ -11,7 +11,7 @@ function FinesDashBoard() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:7071/api/property/admin/fines/all`)
+    fetch(`/api/property/admin/fines/all`)
       .then((response) => response.json())
       .then((data) => {
         setFines(data);

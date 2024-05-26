@@ -20,7 +20,7 @@ function ResidentsReports() {
           Fines
         </button>
       </section>
-      <Outlet />
+      <Outlet/>
     </section>
   );
 }

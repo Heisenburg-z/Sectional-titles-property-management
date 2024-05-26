@@ -1,6 +1,6 @@
 import "../SideBar/ResidentsSideBar.css";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaToolbox } from "react-icons/fa6";
+import { FaBars} from "react-icons/fa6";
 //import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
@@ -33,14 +33,6 @@ function ResidentsSideBar({ className }) {
 						<span className="icon-text">
 							<FaRegEdit size="1.5em" />
 							<p className="item-padding">Issues</p>
-						</span>
-					</NavLink>
-				</li>
-				<li className="sidebar-link-li">
-					<NavLink className="sidebar-link" to="maintenance">
-						<span className="icon-text">
-							<FaToolbox size="1.5em" />
-							<p className="item-padding">Maintenance</p>
 						</span>
 					</NavLink>
 				</li>

@@ -66,7 +66,6 @@ function ResidentsMaintenance() {
           <table className="resident-table">
             <thead>
               <tr>
-                <th>RoomNo</th>
                 <th>Type Of Maintenance</th>
                 <th>Description</th>
                 <th>Date Issued</th>
@@ -76,7 +75,6 @@ function ResidentsMaintenance() {
             <tbody>
               {profile.map((s, i) => (
                 <tr key={i}>
-                  <td>{s.roomNumber}</td>
                   <td>{s.maintenanceType}</td>
                   <td>{s.Description}</td>
                   <td>{s.date}</td>
