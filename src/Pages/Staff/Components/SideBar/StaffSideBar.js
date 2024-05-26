@@ -1,4 +1,5 @@
 import React from "react";
+import { VscAccount } from "react-icons/vsc";
 import "./StaffSideBar.css";
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
@@ -50,13 +51,14 @@ function StaffSideBar({ className }) {
           <li className="sidebar-link-li__image">
             <NavLink className="sidebar-link" to="staffprofile">
               <span className="icon-text hover:text-sky-100">
-                <p className="item-padding font-bold">{auth.user}</p>
+                <VscAccount size="1.5em" />
+                <p className="ml-2 item-padding font-bold">{auth.user}</p>
               </span>
             </NavLink>
           </li>
           <li className="sidebar-link-li">
             <NavLink className="sidebar-link" to="/">
-              <span className="icon-text hover:text-sky-100">
+              <span className="icon-text hover:underline hover:text-sky-100">
                 <GiExitDoor size="1.5em" />
                 <p className="item-padding" onClick={logout}>
                   Sign Out
