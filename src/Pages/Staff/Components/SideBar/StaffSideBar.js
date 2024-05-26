@@ -3,7 +3,6 @@ import { VscAccount } from "react-icons/vsc";
 import "./StaffSideBar.css";
 import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
-import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
 import { useAuth } from "../../../../utils/auth.js";
 import { FaTools } from "react-icons/fa";
