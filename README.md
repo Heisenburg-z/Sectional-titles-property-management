@@ -1,5 +1,6 @@
 [![codecov](https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management/branch/main/graph/badge.svg?token=NCM4PXH1F3)](https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management)
 <img src="https://codecov.io/gh/Heisenburg-z/Sectional-titles-property-management/graphs/sunburst.svg?token=NCM4PXH1F3">
+Please navigate to the "Test Plan & Results" page in the documentation link for our test results and coverage, as we experience issues with CodeCov as it stopped tracking our coverage.
 
 # Sectional titles and property management
 
