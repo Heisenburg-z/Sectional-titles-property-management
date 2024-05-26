@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../../utils/auth";
 import "./StaffProfile.css"; // Import CSS file
+import { Oval } from "react-loader-spinner";
 
 function StaffProfile() {
   const id = useAuth().profileId;
@@ -10,6 +11,7 @@ function StaffProfile() {
   const [editCellphone, setEditCellphone] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newCellphone, setNewCellphone] = useState("");
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     fetch(`/api/property/staff/profile/${id}`)
@@ -18,6 +20,7 @@ function StaffProfile() {
       })
       .then((data) => {
         setProfile(data);
+        setLoading(false); // Set loading to false after data is fetched
       });
   }, [id, isReLoading]);
 
@@ -93,7 +96,20 @@ function StaffProfile() {
 
   return (
     <>
-      {profile && (
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Oval
+            height={80}
+            width={80}
+            color="#00a1f1"
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#00a1f1"
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
+        </div>
+      ) : (
         <section className="profile-container">
           <h1 className="profile-heading">Resident Profile</h1>
           <section className="profile-details">
@@ -132,7 +148,11 @@ function StaffProfile() {
                   </span>
                 )}
                 {editCellphone && (
-                  <button id="updateButton" onClick={handleCellphoneUpdate}>
+                  <button
+                    id="updateButton"
+                    onClick={handleCellphoneUpdate}
+                    className="ml-2"
+                  >
                     Update
                   </button>
                 )}
@@ -151,7 +171,11 @@ function StaffProfile() {
                   <span onClick={handleEmailClick}>{profile.email}</span>
                 )}
                 {editEmail && (
-                  <button id="updateButton" onClick={handleEmailUpdate}>
+                  <button
+                    id="updateButton"
+                    onClick={handleEmailUpdate}
+                    className="ml-2"
+                  >
                     Update
                   </button>
                 )}

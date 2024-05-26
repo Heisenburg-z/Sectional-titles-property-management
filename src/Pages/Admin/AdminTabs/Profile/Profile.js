@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../../../utils/auth";
 import "./Profile.css"; // Import CSS file
+import { Oval } from "react-loader-spinner";
 
 function Profile() {
   const id = useAuth().profileId;
@@ -10,14 +11,23 @@ function Profile() {
   const [editCellphone, setEditCellphone] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newCellphone, setNewCellphone] = useState("");
+  const [loading, setLoading] = useState(true); // State for loader
 
   useEffect(() => {
     fetch(`/api/property/admin/profile/${id}`)
       .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
         return response.json();
       })
       .then((data) => {
         setProfile(data);
+        setLoading(false); // Set loading to false once data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
+        setLoading(false); // Set loading to false in case of error
       });
   }, [id, isReLoading]);
 
@@ -91,7 +101,24 @@ function Profile() {
     setIsReLoading(!isReLoading);
   };
 
-  return (
+  // Loader component
+  const Loader = (
+    <div className="flex justify-center items-center h-screen">
+      <Oval
+        height={100}
+        width={100}
+        color="#00a1f1"
+        visible={true}
+        ariaLabel="oval-loading"
+        secondaryColor="#00a1f1"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      />
+    </div>
+  );
+
+  // Content to render once data is loaded
+  const Content = (
     <>
       {profile && (
         <section className="profile-container">
@@ -162,6 +189,9 @@ function Profile() {
       )}
     </>
   );
+
+  return <>{loading ? Loader : Content}</>;
 }
 
 export default Profile;
+

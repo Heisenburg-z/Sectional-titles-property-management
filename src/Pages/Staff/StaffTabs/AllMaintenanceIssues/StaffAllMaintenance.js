@@ -82,7 +82,7 @@ function StaffAllMaintenance() {
           </thead>
           <tbody className="border-b border-b-4 border-sky-500">
             {maintenance.map((s, i) => (
-              <tr className={`border-b even:bg-cyan-50 ${s.Status === "Closed" ? 'bg-blue-200' : ''}`} key={i}>
+              <tr className={`border-b ${s.Status === "Closed" ? 'bg-blue-200' : ''}`} key={i}>
                 <td className="py-3 px-4"> 
                 
                   <span className="py-2 px-3 text-sky-500 font-semibold rounded-md cursor-pointer text-xs"  

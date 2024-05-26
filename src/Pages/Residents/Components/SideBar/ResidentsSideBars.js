@@ -1,6 +1,6 @@
 import "../SideBar/ResidentsSideBar.css";
 import { NavLink } from "react-router-dom";
-import { FaBars, FaToolbox } from "react-icons/fa6";
+import { FaBars} from "react-icons/fa6";
 //import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
