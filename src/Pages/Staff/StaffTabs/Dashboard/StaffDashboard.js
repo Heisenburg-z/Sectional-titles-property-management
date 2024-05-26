@@ -1,22 +1,47 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getFirestore, setDoc, doc, serverTimestamp } from "firebase/firestore"; // Updated import
+
+
+const db = getFirestore();
 
 function StaffDashboard() {
-  // State to hold the messages posted by admin
-  const [adminMessages, setAdminMessages] = useState([]);
   const [newMessage, setNewMessage] = useState(""); // State to hold the new message to be posted
+  const [adminMessages, setAdminMessages] = useState([]);
   const [weather, setWeather] = useState(null); // State to hold weather data
 
-  // Function to handle posting a new message by admin
-  const postMessage = () => {
-    if (newMessage.trim() !== "") {
-      // Add the new message to the adminMessages array
-      setAdminMessages(prevMessages => [
-        ...prevMessages,
-        { id: prevMessages.length + 1, content: newMessage }
-      ]);
-      // Clear the input field after posting the message
+
+  // Function to handle submitting the announcement to Firestore
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+
+      if (newMessage.trim() !== "") {
+        // Add the new message to the adminMessages array
+        setAdminMessages(prevMessages => [
+          ...prevMessages,
+          { id: prevMessages.length + 1, content: newMessage }
+        ]);
+        // Clear the input field after posting the message
+        setNewMessage("");
+      }
+      // Add the new message to Firestore
+      await setDoc(doc(db, "notifications", `${Date.now()}`), {
+        Date: serverTimestamp(),
+        sender: "staff",
+        message: newMessage,
+      });
+
+      toast.success("Announcement posted!");
+      // Optionally clear the message input field
       setNewMessage("");
+    } catch (error) {
+      // Handle any errors that may occur during the announcement posting
+      console.error("Error posting announcement:", error);
+      toast.error("An error occurred while posting the announcement");
     }
   };
 
@@ -39,6 +64,8 @@ function StaffDashboard() {
 
   return (
     <section className="max-w-3xl mx-auto p-4">
+      <ToastContainer />
+
       {/* Section for admin to post messages */}
       <section className="mb-4">
         <h2 className="text-xl font-bold mb-2">Post Announcement</h2>
@@ -50,10 +77,11 @@ function StaffDashboard() {
         ></textarea>
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-2 rounded"
-          onClick={postMessage}
+          onClick={handleSubmit}
         >
-          Post
+          Post Announcement
         </button>
+
       </section>
 
       {/* Section to display admin messages */}
@@ -105,8 +133,4 @@ function StaffDashboard() {
   );
 }
 
-export default StaffDashboard
-
-
-
-
+export default StaffDashboard;
