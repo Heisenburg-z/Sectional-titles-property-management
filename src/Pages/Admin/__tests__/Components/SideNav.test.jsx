@@ -11,7 +11,7 @@ jest.mock("../../../../utils/auth.js", () => ({
   }),
 }));
 jest.mock("../../Components/SideBar/SideBar.css", () => ({}));
-// describe("SideBar Component", () => {
+// describe("SideBar Component", () => {Renders the SideBar component
 test("renders Dashboard tab name on sidebar", () => {
   render(
     <BrowserRouter>
@@ -85,4 +85,11 @@ test("renders SignOut button on sidebar", () => {
   const welcomeMessage = screen.getByText("Sign Out");
   expect(welcomeMessage).toBeInTheDocument();
 });
+
+// test("renders SideBar component", () => {
+//   render(
+//     <BrowserRouter>
+//       <SideBar />
+//     </BrowserRouter>,
+//   );
 // });

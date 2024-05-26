@@ -14,7 +14,7 @@ function Profile() {
   const [loading, setLoading] = useState(true); // State for loader
 
   useEffect(() => {
-    fetch(`/api/property/admin/profile/${id}`)
+    fetch(`/api/property/admin/profile/${id}`) 
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch profile data");
@@ -154,7 +154,7 @@ function Profile() {
                     onChange={handleCellphoneChange}
                   />
                 ) : (
-                  <span onClick={handleCellphoneClick}>
+                  <span className="editable" onClick={handleCellphoneClick}>
                     {profile.cellPhone}
                   </span>
                 )}
@@ -175,7 +175,9 @@ function Profile() {
                     onChange={handleEmailChange}
                   />
                 ) : (
-                  <span onClick={handleEmailClick}>{profile.email}</span>
+                  <span className="editable" onClick={handleEmailClick}>
+                    {profile.email}
+                  </span>
                 )}
                 {editEmail && (
                   <button id="updateButton" onClick={handleEmailUpdate}>
@@ -194,4 +196,3 @@ function Profile() {
 }
 
 export default Profile;
-

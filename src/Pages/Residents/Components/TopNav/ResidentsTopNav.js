@@ -9,8 +9,8 @@ function ResidentsTopNav({ className }) {
 
   return (
     <header className={className}>
-      <h1 className="header-title">
-        {displayName[1].toUpperCase()}/{displayName[2].toUpperCase()}
+      <h1 className="header-title text-slate-600">
+        {displayName[1].toUpperCase()} {displayName[2].toUpperCase()}
       </h1>
       <IoNotifications size={30} className="header-icon" />
     </header>

@@ -53,7 +53,7 @@ function Admins() {
       <Outlet />
     ) : (
         <>
-          <h2 className="fetching-error"> No data available </h2>
+          <h2 className="fetching-error text-slate-600"> No data available </h2>
           <button
             id="bottom-right-button"
             className="fixed bottom-20 right-20 px-4 py-3 bg-sky-500 hover:bg-blue-700 text-white rounded-md shadow-md cursor-pointer"

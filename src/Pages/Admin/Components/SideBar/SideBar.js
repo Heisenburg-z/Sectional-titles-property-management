@@ -1,4 +1,5 @@
 import "./SideBar.css";
+import { VscAccount } from "react-icons/vsc";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaUsers, FaUsersGear, FaToolbox } from "react-icons/fa6";
@@ -58,7 +59,7 @@ function SideBar() {
             </span>
           </NavLink>
         </li>
-        <li className="sidebar-link-li">
+        <li className="sidebar-link-li ">
           <NavLink className="sidebar-link" to="fines">
             <span className="icon-text hover:text-sky-100">
               <GiTakeMyMoney size="1.5em" />
@@ -69,16 +70,15 @@ function SideBar() {
       </ul>
       <footer className="sidebar-footer">
         <ul className="sidebar-footer-li-container">
-          <li className="sidebar-link-li__image">
+          <li className="sidebar-link-li__image ">
             <NavLink className="sidebar-link" to="profile">
-              <span className="icon-text">
-                <p className="ml-10 item-padding font-bold hover:text-sky-100">
-                  {auth.user}
-                </p>
+              <span className="icon-text hover:underline hover:text-sky-100">
+                <VscAccount size="1.5em" />
+                <p className="ml-2 item-padding font-bold">{auth.user}</p>
               </span>
             </NavLink>
           </li>
-          <li className="sidebar-link-li">
+          <li className="sidebar-link-li ">
             <NavLink className="sidebar-link" to="/">
               <span className="icon-text hover:text-sky-100">
                 <GiExitDoor size="1.5em" />

@@ -12,7 +12,7 @@ const db = getFirestore();
 
 function ResidentSignUpForm() {
     const navigate = useNavigate();
-    const role = 'Staff';
+    const role = 'Resident';
 
     const [userName, setUserName] = useState("");
     const [userAddress, setuserAddress] = useState("");
